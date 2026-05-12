@@ -1,0 +1,106 @@
+---
+import '../styles/global.css';
+
+const projects = [
+  {
+    title: "Arctic Wolf",
+    subtitle: "Cybersecurity Tooling",
+    description: "Enhancing search to empower customers to run fast & efficient searches.",
+    readTime: "8 min read",
+    link: "#"
+  },
+  {
+    title: "Siteability",
+    subtitle: "Accessibility Auditing",
+    description: "Streamlining the auditing process for web accessibility specialists.",
+    readTime: "6 min read",
+    link: "#"
+  },
+  {
+    title: "Spur",
+    subtitle: "eCommerce Store",
+    description: "Designing a seamless shopping experience for local artisans.",
+    readTime: "5 min read",
+    link: "#"
+  }
+];
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Drasti | Product Designer</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+	</head>
+	<body class="bg-white text-slate-900 font-['Inter',sans-serif] selection:bg-blue-100">
+		<nav class="max-w-5xl mx-auto px-6 py-8 flex justify-between items-center">
+			<a href="/" class="text-xl font-bold tracking-tight">DP.</a>
+			<div class="space-x-8 text-sm font-medium text-slate-600">
+				<a href="#work" class="hover:text-blue-600 transition-colors">Work</a>
+				<a href="#about" class="hover:text-blue-600 transition-colors">About</a>
+				<a href="/resume.pdf" class="hover:text-blue-600 transition-colors">Resume</a>
+			</div>
+		</nav>
+
+		<main class="max-w-5xl mx-auto px-6 pt-24 pb-32">
+			<section class="max-w-2xl mb-32">
+				<h1 class="text-5xl font-bold leading-tight mb-6">
+					Hi, I'm Drasti 👋
+				</h1>
+				<p class="text-xl text-slate-600 leading-relaxed">
+					Digital Product Designer @ <span class="text-slate-900 font-medium">Arctic Wolf</span> & <span class="text-slate-900 font-medium">Siteability</span>. 
+					Currently studying @ <span class="text-slate-900 font-medium">uWaterloo</span>. 
+					I build tools that make complex data simple and accessible.
+				</p>
+			</section>
+
+			<section id="work" class="space-y-12">
+				<h2 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-12">Selected Work</h2>
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+					{projects.map((project) => (
+						<a href={project.link} class="group block space-y-4">
+							<div class="aspect-[16/10] bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 group-hover:border-blue-200 group-hover:bg-slate-100 transition-all duration-300">
+								<!-- Placeholder for project image -->
+								<div class="w-full h-full flex items-center justify-center text-slate-300 font-medium italic">
+									{project.title} Preview
+								</div>
+							</div>
+							<div class="flex justify-between items-start">
+								<div>
+									<h3 class="text-xl font-bold group-hover:text-blue-600 transition-colors">{project.title}</h3>
+									<p class="text-sm text-slate-500 font-medium mb-2">{project.subtitle}</p>
+								</div>
+								<span class="text-xs font-bold uppercase tracking-wider bg-slate-100 px-2 py-1 rounded text-slate-500">
+									{project.readTime}
+								</span>
+							</div>
+							<p class="text-slate-600 leading-relaxed">
+								{project.description}
+							</p>
+						</a>
+					))}
+				</div>
+			</section>
+
+			<section id="contact" class="mt-48 pt-24 border-t border-slate-100">
+				<h2 class="text-3xl font-bold mb-6">Let's Connect</h2>
+				<p class="text-lg text-slate-600 mb-8">
+					I'm always open to discussing new opportunities or design challenges.
+				</p>
+				<div class="flex space-x-6">
+					<a href="mailto:drasti.sp@gmail.com" class="text-blue-600 font-bold hover:underline underline-offset-4">Email</a>
+					<a href="https://linkedin.com/in/drastip" class="text-blue-600 font-bold hover:underline underline-offset-4">LinkedIn</a>
+				</div>
+			</section>
+		</main>
+
+		<footer class="max-w-5xl mx-auto px-6 py-12 text-sm text-slate-400">
+			© {new Date().getFullYear()} Drasti Patel. Built with Astro & Tailwind CSS.
+		</footer>
+	</body>
+</html>
