@@ -22,11 +22,11 @@ const { title } = Astro.props;
 	</head>
 	<body class="bg-white text-slate-900 font-['Inter',sans-serif] selection:bg-blue-100">
 		<nav class="max-w-5xl mx-auto px-6 py-8 flex justify-between items-center">
-			<a href="/ux-portfolio-drasti/" class="text-xl font-bold tracking-tight">DP.</a>
+			<a href={import.meta.env.BASE_URL} class="text-xl font-bold tracking-tight">DP.</a>
 			<div class="space-x-8 text-sm font-medium text-slate-600">
-				<a href="/ux-portfolio-drasti/#work" class="hover:text-blue-600 transition-colors">Work</a>
-				<a href="/ux-portfolio-drasti/#about" class="hover:text-blue-600 transition-colors">About</a>
-				<a href="/ux-portfolio-drasti/resume.pdf" class="hover:text-blue-600 transition-colors">Resume</a>
+				<a href={`${import.meta.env.BASE_URL}#work`} class="hover:text-blue-600 transition-colors">Work</a>
+				<a href={`${import.meta.env.BASE_URL}#about`} class="hover:text-blue-600 transition-colors">About</a>
+				<a href={`${import.meta.env.BASE_URL}resume.pdf`} class="hover:text-blue-600 transition-colors">Resume</a>
 			</div>
 		</nav>
 		<slot />
