@@ -3,24 +3,27 @@ import Layout from '../layouts/Layout.astro';
 
 const projects = [
   {
-    title: "Arctic Wolf",
-    subtitle: "Cybersecurity Tooling",
+    title: "Designing Raw Search @ Arctic Wolf",
+    category: "Cybersecurity Tooling",
     description: "Enhancing search to empower customers to run fast & efficient searches.",
-    readTime: "8 min read",
+    industry: "Cybersecurity",
+    readTime: "4 min",
     link: `${import.meta.env.BASE_URL}work/arctic-wolf`
   },
   {
-    title: "Siteability",
-    subtitle: "Accessibility Auditing",
-    description: "Streamlining the auditing process for web accessibility specialists.",
-    readTime: "6 min read",
+    title: "Siteability: Accessibility Auditing Refined",
+    category: "Accessibility Auditing",
+    description: "Streamlining the auditing process for web accessibility specialists to ensure global compliance.",
+    industry: "SaaS / Accessibility",
+    readTime: "6 min",
     link: `${import.meta.env.BASE_URL}work/siteability`
   },
   {
-    title: "Spur",
-    subtitle: "eCommerce Store",
-    description: "Designing a seamless shopping experience for local artisans.",
-    readTime: "5 min read",
+    title: "Spur: Empowering Local Artisans",
+    category: "Content Creation Platform",
+    description: "Designing a storytelling-first eCommerce platform to connect creators with their community.",
+    industry: "eCommerce",
+    readTime: "5 min",
     link: `${import.meta.env.BASE_URL}work/spur`
   }
 ];
@@ -28,53 +31,67 @@ const projects = [
 
 <Layout title="Drasti | Product Designer">
 	<main class="max-w-5xl mx-auto px-6 pt-24 pb-32">
-		<section class="max-w-2xl mb-32">
-			<h1 class="text-5xl font-bold leading-tight mb-6">
+		<section class="max-w-2xl mb-48">
+			<h1 class="text-6xl font-bold leading-tight mb-8">
 				Hi, I'm Drasti 👋
 			</h1>
-			<p class="text-xl text-slate-600 leading-relaxed">
-				Digital Product Designer @ <span class="text-slate-900 font-medium">Arctic Wolf</span> & <span class="text-slate-900 font-medium">Siteability</span>. 
-				Currently studying @ <span class="text-slate-900 font-medium">uWaterloo</span>. 
+			<p class="text-2xl text-slate-600 leading-relaxed">
+				Digital Product Designer @ <span class="text-slate-900 font-medium tracking-tight">Arctic Wolf</span> & <span class="text-slate-900 font-medium tracking-tight">Siteability</span>. 
+				Currently studying @ <span class="text-slate-900 font-medium tracking-tight">uWaterloo</span>. 
 				I build tools that make complex data simple and accessible.
 			</p>
 		</section>
 
-		<section id="work" class="space-y-12">
-			<h2 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-12">Selected Work</h2>
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+		<section id="work" class="space-y-48">
+			<h2 class="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 mb-24">Selected Work</h2>
+			
+			<div class="space-y-48">
 				{projects.map((project) => (
-					<a href={project.link} class="group block space-y-4">
-						<div class="aspect-[16/10] bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 group-hover:border-blue-200 group-hover:bg-slate-100 transition-all duration-300">
-							<!-- Placeholder for project image -->
-							<div class="w-full h-full flex items-center justify-center text-slate-300 font-medium italic">
-								{project.title} Preview
+					<a href={project.link} class="group block">
+						<div class="grid grid-cols-1 gap-12">
+							<div class="aspect-[16/9] bg-slate-50 rounded-[2rem] overflow-hidden border border-slate-100 group-hover:border-blue-200 transition-all duration-500">
+								<!-- Image Placeholder -->
+								<div class="w-full h-full flex items-center justify-center text-slate-300 font-medium italic text-lg">
+									{project.title} Visual
+								</div>
+							</div>
+							
+							<div class="max-w-3xl space-y-6">
+								<span class="inline-block text-blue-600 font-bold tracking-widest uppercase text-xs">
+									{project.category}
+								</span>
+								<h3 class="text-4xl font-bold group-hover:text-blue-600 transition-colors duration-300">
+									{project.title}
+								</h3>
+								<p class="text-xl text-slate-600 leading-relaxed">
+									{project.description}
+								</p>
+								
+								<div class="flex space-x-12 pt-8 border-t border-slate-100">
+									<div>
+										<span class="block text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-2">Industry</span>
+										<span class="text-sm font-semibold text-slate-900">{project.industry}</span>
+									</div>
+									<div>
+										<span class="block text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-2">Read Time</span>
+										<span class="text-sm font-semibold text-slate-900">{project.readTime}</span>
+									</div>
+								</div>
 							</div>
 						</div>
-						<div class="flex justify-between items-start">
-							<div>
-								<h3 class="text-xl font-bold group-hover:text-blue-600 transition-colors">{project.title}</h3>
-								<p class="text-sm text-slate-500 font-medium mb-2">{project.subtitle}</p>
-							</div>
-							<span class="text-xs font-bold uppercase tracking-wider bg-slate-100 px-2 py-1 rounded text-slate-500">
-								{project.readTime}
-							</span>
-						</div>
-						<p class="text-slate-600 leading-relaxed">
-							{project.description}
-						</p>
 					</a>
 				))}
 			</div>
 		</section>
 
-		<section id="contact" class="mt-48 pt-24 border-t border-slate-100">
-			<h2 class="text-3xl font-bold mb-6">Let's Connect</h2>
-			<p class="text-lg text-slate-600 mb-8">
-				I'm always open to discussing new opportunities or design challenges.
+		<section id="contact" class="mt-64 pt-32 border-t border-slate-100">
+			<h2 class="text-4xl font-bold mb-8">Let's Connect</h2>
+			<p class="text-xl text-slate-600 mb-12 max-w-xl leading-relaxed">
+				I'm always open to discussing new opportunities, design challenges, or just chatting about the future of product design.
 			</p>
-			<div class="flex space-x-6">
-				<a href="mailto:drasti.sp@gmail.com" class="text-blue-600 font-bold hover:underline underline-offset-4">Email</a>
-				<a href="https://linkedin.com/in/drastip" class="text-blue-600 font-bold hover:underline underline-offset-4">LinkedIn</a>
+			<div class="flex items-center space-x-12">
+				<a href="mailto:drasti.sp@gmail.com" class="text-xl font-bold text-slate-900 hover:text-blue-600 transition-colors border-b-2 border-slate-900 hover:border-blue-600 pb-1">Email</a>
+				<a href="https://linkedin.com/in/drastip" class="text-xl font-bold text-slate-900 hover:text-blue-600 transition-colors border-b-2 border-slate-900 hover:border-blue-600 pb-1">LinkedIn</a>
 			</div>
 		</section>
 	</main>
