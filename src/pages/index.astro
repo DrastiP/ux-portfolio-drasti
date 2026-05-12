@@ -5,32 +5,32 @@ const projects = [
   {
     title: "Designing Raw Search @ Arctic Wolf",
     category: "Cybersecurity Tooling",
-    description: "Enhancing search to empower customers to run fast & efficient searches.",
+    description: "Enhancing search to empower customers to run fast & efficient searches",
     industry: "Cybersecurity",
     readTime: "4 min",
     link: `${import.meta.env.BASE_URL}work/arctic-wolf`
   },
   {
-    title: "Siteability: Accessibility Auditing Refined",
-    category: "Accessibility Auditing",
-    description: "Streamlining the auditing process for web accessibility specialists to ensure global compliance.",
-    industry: "SaaS / Accessibility",
-    readTime: "6 min",
-    link: `${import.meta.env.BASE_URL}work/siteability`
-  },
-  {
-    title: "Spur: Empowering Local Artisans",
+    title: "Optimizing User Onboarding @ Spur",
     category: "Content Creation Platform",
-    description: "Designing a storytelling-first eCommerce platform to connect creators with their community.",
+    description: "Designing a storytelling-first eCommerce platform to connect creators with their community",
     industry: "eCommerce",
     readTime: "5 min",
     link: `${import.meta.env.BASE_URL}work/spur`
+  },
+  {
+    title: "Siteability: Accessibility Auditing Refined",
+    category: "Accessibility Auditing",
+    description: "Streamlining the auditing process for web accessibility specialists to ensure global compliance",
+    industry: "SaaS / Accessibility",
+    readTime: "6 min",
+    link: `${import.meta.env.BASE_URL}work/siteability`
   }
 ];
 ---
 
 <Layout title="Drasti | Product Designer">
-	<main class="max-w-5xl mx-auto px-6 pt-24 pb-32">
+	<main class="max-w-6xl mx-auto px-6 pt-24 pb-32">
 		<section class="max-w-2xl mb-48">
 			<h1 class="text-6xl font-bold leading-tight mb-8">
 				Hi, I'm Drasti 👋
@@ -42,39 +42,50 @@ const projects = [
 			</p>
 		</section>
 
-		<section id="work" class="space-y-48">
-			<h2 class="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 mb-24">Selected Work</h2>
+		<section id="work" class="relative">
+			<!-- Vertical WORK Label -->
+			<div class="flex flex-col items-center mb-16">
+				<span class="[writing-mode:vertical-lr] rotate-180 text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400 mb-4">Work</span>
+				<div class="w-px h-16 bg-slate-200 relative">
+					<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-2 bg-slate-900 rounded-full"></div>
+				</div>
+			</div>
 			
-			<div class="space-y-48">
+			<div class="space-y-8">
 				{projects.map((project) => (
-					<a href={project.link} class="group block">
-						<div class="grid grid-cols-1 gap-12">
-							<div class="aspect-[16/9] bg-slate-50 rounded-[2rem] overflow-hidden border border-slate-100 group-hover:border-blue-200 transition-all duration-500">
-								<!-- Image Placeholder -->
-								<div class="w-full h-full flex items-center justify-center text-slate-300 font-medium italic text-lg">
+					<a href={project.link} class="group block bg-[#F8F9FB] rounded-[1.5rem] p-8 md:p-12 transition-all duration-300 hover:shadow-sm">
+						<div class="flex flex-col md:flex-row gap-12 items-center">
+							<!-- Project Image (Left) -->
+							<div class="w-full md:w-[40%] aspect-[4/3] bg-white rounded-xl overflow-hidden shadow-sm flex items-center justify-center">
+								<div class="text-slate-300 font-medium italic text-center px-6">
 									{project.title} Visual
 								</div>
 							</div>
 							
-							<div class="max-w-3xl space-y-6">
-								<span class="inline-block text-blue-600 font-bold tracking-widest uppercase text-xs">
+							<!-- Project Info (Right) -->
+							<div class="w-full md:w-[60%] space-y-6">
+								<span class="block text-slate-500 text-sm">
 									{project.category}
 								</span>
-								<h3 class="text-4xl font-bold group-hover:text-blue-600 transition-colors duration-300">
+								<h3 class="text-3xl font-bold text-slate-900 leading-tight">
 									{project.title}
 								</h3>
-								<p class="text-xl text-slate-600 leading-relaxed">
-									{project.description}
-								</p>
 								
-								<div class="flex space-x-12 pt-8 border-t border-slate-100">
-									<div>
-										<span class="block text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-2">Industry</span>
-										<span class="text-sm font-semibold text-slate-900">{project.industry}</span>
-									</div>
-									<div>
-										<span class="block text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-2">Read Time</span>
-										<span class="text-sm font-semibold text-slate-900">{project.readTime}</span>
+								<div class="pt-6 border-t border-slate-200">
+									<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+										<div class="md:col-span-1">
+											<p class="text-[15px] text-slate-600 leading-relaxed">
+												{project.description}
+											</p>
+										</div>
+										<div class="space-y-1">
+											<span class="block text-xs font-bold text-slate-400 uppercase tracking-wider">Industry</span>
+											<span class="text-[15px] font-medium text-slate-800">{project.industry}</span>
+										</div>
+										<div class="space-y-1">
+											<span class="block text-xs font-bold text-slate-400 uppercase tracking-wider">Read Time</span>
+											<span class="text-[15px] font-medium text-slate-800">{project.readTime}</span>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -84,12 +95,12 @@ const projects = [
 			</div>
 		</section>
 
-		<section id="contact" class="mt-64 pt-32 border-t border-slate-100">
+		<section id="contact" class="mt-64 pt-32 border-t border-slate-100 text-center">
 			<h2 class="text-4xl font-bold mb-8">Let's Connect</h2>
-			<p class="text-xl text-slate-600 mb-12 max-w-xl leading-relaxed">
+			<p class="text-xl text-slate-600 mb-12 max-w-xl mx-auto leading-relaxed">
 				I'm always open to discussing new opportunities, design challenges, or just chatting about the future of product design.
 			</p>
-			<div class="flex items-center space-x-12">
+			<div class="flex items-center justify-center space-x-12">
 				<a href="mailto:drasti.sp@gmail.com" class="text-xl font-bold text-slate-900 hover:text-blue-600 transition-colors border-b-2 border-slate-900 hover:border-blue-600 pb-1">Email</a>
 				<a href="https://linkedin.com/in/drastip" class="text-xl font-bold text-slate-900 hover:text-blue-600 transition-colors border-b-2 border-slate-900 hover:border-blue-600 pb-1">LinkedIn</a>
 			</div>
