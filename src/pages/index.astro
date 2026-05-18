@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from '../layouts/Layout.astro';
 import data from '../data/projects.json';
 const { hero, projects } = data;
@@ -7,74 +7,65 @@ const supporting = projects.filter(p => !p.featured).sort((a, b) => a.order - b.
 ---
 
 <Layout title="Drasti | Product Designer">
-	<main class="max-w-6xl mx-auto px-6 pt-24 pb-32">
-		<section class="max-w-2xl mb-48">
-			<h1 class="text-6xl font-bold leading-tight mb-4">Drasti P.</h1>
-			<p class="text-2xl text-slate-600 leading-relaxed">{hero.positioning}</p>
-		</section>
+<main class="max-w-6xl mx-auto px-6 pt-20 pb-32">
+<section class="text-center mb-24">
+<h1 class="text-6xl md:text-7xl font-bold leading-tight mb-6">Hi, I’m Drasti <span aria-hidden>👋</span></h1>
+<p class="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto">{hero.positioning}</p>
+</section>
 
-		<section id="work" class="relative">
-			<!-- Vertical WORK Label -->
-			<div class="flex flex-col items-center mb-16">
-				<span class="[writing-mode:vertical-lr] rotate-180 text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400 mb-4">Work</span>
-				<div class="w-px h-16 bg-slate-200 relative">
-					<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-2 bg-slate-900 rounded-full"></div>
-				</div>
-			</div>
-			
-			<div class="space-y-8">
-				{projects.map((project) => (
-					<a href={project.link} class="group block bg-[#F8F9FB] rounded-[1.5rem] p-8 md:p-12 transition-all duration-300 hover:shadow-sm">
-						<div class="flex flex-col md:flex-row gap-12 items-center">
-							<!-- Project Image (Left) -->
-							<div class="w-full md:w-[40%] aspect-[4/3] bg-white rounded-xl overflow-hidden shadow-sm flex items-center justify-center">
-								<div class="text-slate-300 font-medium italic text-center px-6">
-									{project.title} Visual
-								</div>
-							</div>
-							
-							<!-- Project Info (Right) -->
-							<div class="w-full md:w-[60%] space-y-6">
-								<span class="block text-slate-500 text-sm">
-									{project.category}
-								</span>
-								<h3 class="text-3xl font-bold text-slate-900 leading-tight">
-									{project.title}
-								</h3>
-								
-								<div class="pt-6 border-t border-slate-200">
-									<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-										<div class="md:col-span-1">
-											<p class="text-[15px] text-slate-600 leading-relaxed">
-												{project.description}
-											</p>
-										</div>
-										<div class="space-y-1">
-											<span class="block text-xs font-bold text-slate-400 uppercase tracking-wider">Industry</span>
-											<span class="text-[15px] font-medium text-slate-800">{project.industry}</span>
-										</div>
-										<div class="space-y-1">
-											<span class="block text-xs font-bold text-slate-400 uppercase tracking-wider">Read Time</span>
-											<span class="text-[15px] font-medium text-slate-800">{project.readTime}</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</a>
-				))}
-			</div>
-		</section>
+<section id="work" class="text-center">
+<!-- Centered vertical WORK indicator -->
+<div class="flex flex-col items-center mb-12">
+<span class="[writing-mode:vertical-rl] rotate-180 text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400 mb-4">Design Work</span>
+<div class="w-px h-20 bg-slate-200 relative">
+<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-2 bg-slate-900 rounded-full"></div>
+</div>
+</div>
 
-		<section id="contact" class="mt-64 pt-32 border-t border-slate-100 text-center">
-			<h2 class="text-4xl font-bold mb-8">Let's Connect</h2>
-			<p class="text-xl text-slate-600 mb-12 max-w-xl mx-auto leading-relaxed">
-				I'm always open to discussing new opportunities, design challenges, or just chatting about the future of product design.
-			</p>
-			<div class="flex items-center justify-center space-x-12">
-				<a href="mailto:drasti.sp@gmail.com" class="text-xl font-bold text-slate-900 hover:text-blue-600 transition-colors border-b-2 border-slate-900 hover:border-blue-600 pb-1">Email</a>
-				<a href="https://linkedin.com/in/drastip" class="text-xl font-bold text-slate-900 hover:text-blue-600 transition-colors border-b-2 border-slate-900 hover:border-blue-600 pb-1">LinkedIn</a>
-			</div>
-		</section>
-	</main>
+<!-- Large rounded container like screenshot -->
+<div class="mx-auto max-w-[1200px] bg-slate-50 rounded-3xl py-12 px-6 md:px-12">
+<div class="max-w-5xl mx-auto space-y-8">
+<!-- Featured (2 columns) -->
+<div class="grid gap-8 md:grid-cols-2">
+{featured.map((project) => (
+<a href={`${import.meta.env.BASE_URL}work/${project.id}`} class="block bg-white rounded-2xl p-10 hover:shadow-sm transition-shadow duration-200">
+<div class="flex flex-col md:flex-row gap-8 items-center">
+<div class="w-full md:w-[45%] aspect-[4/3] bg-slate-100 rounded-lg flex items-center justify-center">{project.title} Visual</div>
+<div class="w-full md:w-[55%]">
+<h3 class="text-4xl font-bold text-slate-900 leading-tight">{project.title}</h3>
+<p class="text-base text-slate-600 mt-4">{project.system}</p>
+<p class="text-sm text-slate-700 mt-6">{project.role}</p>
+</div>
+</div>
+</a>
+))}
+</div>
+
+<!-- Supporting (smaller cards) -->
+<div class="mt-8 grid gap-6 md:grid-cols-3">
+{supporting.map((project) => (
+<a href={`${import.meta.env.BASE_URL}work/${project.id}`} class="block bg-white rounded-lg p-4">
+<div class="flex items-center gap-4">
+<div class="w-[30%] aspect-[4/3] bg-slate-100 rounded-md flex items-center justify-center text-slate-300">{project.title} Visual</div>
+<div>
+<h4 class="text-lg font-semibold text-slate-900">{project.title}</h4>
+<p class="text-sm text-slate-600 mt-1">{project.system}</p>
+</div>
+</div>
+</a>
+))}
+</div>
+</div>
+</div>
+</section>
+
+<section id="contact" class="mt-20 pt-12 border-t border-slate-100 text-center">
+<h2 class="text-3xl font-bold mb-4">Let's Connect</h2>
+<p class="text-lg text-slate-600 mb-8 max-w-xl mx-auto leading-relaxed">I'm always open to discussing new opportunities or design challenges.</p>
+<div class="flex items-center justify-center space-x-8">
+<a href="mailto:drasti.sp@gmail.com" class="text-base font-bold text-slate-900 border-b-2 border-slate-900 pb-1">Email</a>
+<a href="https://linkedin.com/in/drastip" class="text-base font-bold text-slate-900 border-b-2 border-slate-900 pb-1">LinkedIn</a>
+</div>
+</section>
+</main>
 </Layout>
