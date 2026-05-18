@@ -25,16 +25,32 @@ const supporting = projects.filter(p => !p.featured).sort((a, b) => a.order - b.
 <!-- Large rounded container like screenshot -->
 <div class="mx-auto max-w-[1200px] bg-slate-50 rounded-3xl py-12 px-6 md:px-12">
 <div class="max-w-5xl mx-auto space-y-8">
-<!-- Featured (2 columns) -->
-<div class="grid gap-8 md:grid-cols-2">
+<!-- Featured (stacked, wide cards like screenshot) -->
+<div class="space-y-8">
 {featured.map((project) => (
-<a href={`${import.meta.env.BASE_URL}work/${project.id}`} class="block bg-white rounded-2xl p-10 hover:shadow-sm transition-shadow duration-200">
-<div class="flex flex-col md:flex-row gap-8 items-center">
-<div class="w-full md:w-[45%] aspect-[4/3] bg-slate-100 rounded-lg flex items-center justify-center">{project.title} Visual</div>
-<div class="w-full md:w-[55%]">
-<h3 class="text-4xl font-bold text-slate-900 leading-tight">{project.title}</h3>
-<p class="text-base text-slate-600 mt-4">{project.system}</p>
-<p class="text-sm text-slate-700 mt-6">{project.role}</p>
+<a href={`${import.meta.env.BASE_URL}work/${project.id}`} class="block bg-slate-50 rounded-2xl p-6 md:p-8">
+<div class="max-w-5xl mx-auto bg-white rounded-lg overflow-hidden flex flex-col md:flex-row items-stretch">
+<div class="md:w-1/3 p-6 flex items-center justify-center bg-slate-100">
+<div class="w-full aspect-[4/3] flex items-center justify-center text-slate-300">{project.title} Visual</div>
+</div>
+<div class="flex-1 p-6 md:p-8">
+<span class="block text-slate-500 text-sm mb-2">{project.category}</span>
+<h3 class="text-2xl md:text-3xl font-bold text-slate-900 mb-4">{project.title}</h3>
+<div class="border-t border-slate-200 pt-6">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="md:col-span-1">
+<p class="text-[15px] text-slate-600 leading-relaxed">{project.system}</p>
+</div>
+<div class="space-y-1">
+<span class="block text-xs font-bold text-slate-400 uppercase tracking-wider">Industry</span>
+<span class="text-[15px] font-medium text-slate-800">{project.industry}</span>
+</div>
+<div class="space-y-1">
+<span class="block text-xs font-bold text-slate-400 uppercase tracking-wider">Read Time</span>
+<span class="text-[15px] font-medium text-slate-800">{project.readTime}</span>
+</div>
+</div>
+</div>
 </div>
 </div>
 </a>
