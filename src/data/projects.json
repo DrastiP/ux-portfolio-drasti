@@ -1,0 +1,40 @@
+{
+  "hero": {
+    "name": "Drasti P.",
+    "positioning": "Product Designer working on enterprise systems, workflow-heavy products, and operational tooling."
+  },
+  "projects": [
+    {
+      "id": "ir-dashboard",
+      "featured": true,
+      "order": 1,
+      "title": "IR Dashboard",
+      "system": "Incident response dashboard for tracking cases, timelines, and team workload.",
+      "role": "Designed the information architecture, dashboard layouts, and interaction patterns; produced high-fidelity screens and specs for engineers."
+    },
+    {
+      "id": "ir-planner",
+      "featured": true,
+      "order": 2,
+      "title": "IR Planner",
+      "system": "Planning tool for scheduling, assigning, and tracking investigation tasks across teams.",
+      "role": "Designed task flows, calendar and assignment UI, and prototypes used by engineers for implementation."
+    },
+    {
+      "id": "zighra",
+      "featured": false,
+      "order": 3,
+      "title": "Zighra",
+      "system": "Fraud-detection integration adding behavioral signals to authentication flows.",
+      "role": "Designed integration screens and onboarding flows for customer engineers."
+    },
+    {
+      "id": "proto3000",
+      "featured": false,
+      "order": 4,
+      "title": "Proto3000",
+      "system": "Clickable prototypes for testing interaction patterns and micro-interactions.",
+      "role": "Built prototypes and validated UI details with product and engineering stakeholders."
+    }
+  ]
+}

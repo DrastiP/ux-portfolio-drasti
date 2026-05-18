@@ -1,45 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
-const projects = [
-  {
-    title: "Designing Raw Search @ Arctic Wolf",
-    category: "Cybersecurity Tooling",
-    description: "Enhancing search to empower customers to run fast & efficient searches",
-    industry: "Cybersecurity",
-    readTime: "4 min",
-    link: `${import.meta.env.BASE_URL}work/arctic-wolf`
-  },
-  {
-    title: "Optimizing User Onboarding @ Spur",
-    category: "Content Creation Platform",
-    description: "Designing a storytelling-first eCommerce platform to connect creators with their community",
-    industry: "eCommerce",
-    readTime: "5 min",
-    link: `${import.meta.env.BASE_URL}work/spur`
-  },
-  {
-    title: "Siteability: Accessibility Auditing Refined",
-    category: "Accessibility Auditing",
-    description: "Streamlining the auditing process for web accessibility specialists to ensure global compliance",
-    industry: "SaaS / Accessibility",
-    readTime: "6 min",
-    link: `${import.meta.env.BASE_URL}work/siteability`
-  }
-];
+import data from '../data/projects.json';
+const { hero, projects } = data;
+const featured = projects.filter(p => p.featured).sort((a, b) => a.order - b.order);
+const supporting = projects.filter(p => !p.featured).sort((a, b) => a.order - b.order);
 ---
 
 <Layout title="Drasti | Product Designer">
 	<main class="max-w-6xl mx-auto px-6 pt-24 pb-32">
 		<section class="max-w-2xl mb-48">
-			<h1 class="text-6xl font-bold leading-tight mb-8">
-				Hi, I'm Drasti 👋
-			</h1>
-			<p class="text-2xl text-slate-600 leading-relaxed">
-				Digital Product Designer @ <span class="text-slate-900 font-medium tracking-tight">Arctic Wolf</span> & <span class="text-slate-900 font-medium tracking-tight">Siteability</span>. 
-				Currently studying @ <span class="text-slate-900 font-medium tracking-tight">uWaterloo</span>. 
-				I build tools that make complex data simple and accessible.
-			</p>
+			<h1 class="text-6xl font-bold leading-tight mb-4">Drasti P.</h1>
+			<p class="text-2xl text-slate-600 leading-relaxed">{hero.positioning}</p>
 		</section>
 
 		<section id="work" class="relative">
