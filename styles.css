@@ -11,6 +11,7 @@
     --text-secondary: #71717a;
     --accent-bg: #f5f5f7;
     --border-color: #e5e5e5;
+    --grid-color: rgba(0, 0, 0, 0.03); /* Very faint 3% opacity grid */
     --container-max-width: 1200px;
     --transition-speed: 0.3s;
 }
@@ -73,7 +74,11 @@ body {
 
 /* Hero Section */
 .hero {
-    padding: 8rem 0 6rem;
+    padding: 12rem 0 10rem;
+    background-image: 
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 50px 50px; /* Crisp architectural grid size */
 }
 
 .hero-title {
