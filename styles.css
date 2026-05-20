@@ -182,17 +182,17 @@ body {
     position: relative;
     border-radius: 1.5rem;
     overflow: hidden;
-    padding: 1rem;
+    padding: 1.5rem; /* Increased padding to prevent clipping */
     background-color: transparent;
     transition: all var(--transition-speed);
 }
 
 .project-card.featured {
-    padding: 0;
+    /* Removed padding: 0 to maintain consistent safe space */
 }
 
 .project-card.featured:hover {
-    background-color: transparent;
+    background-color: var(--accent-blue);
     transform: translateY(-8px);
 }
 
