@@ -109,7 +109,13 @@ body {
     position: relative;
     border-radius: 1.5rem;
     overflow: hidden;
+    padding: 1rem;
+    background-color: transparent;
     transition: transform var(--transition-speed);
+}
+
+.project-card:hover {
+    background-color: var(--accent-bg);
 }
 
 .project-link {
