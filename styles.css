@@ -96,6 +96,15 @@ body {
     line-height: 1.1;
     letter-spacing: -0.04em;
     max-width: 1000px;
+    margin-bottom: 1.5rem;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    max-width: 800px;
+    line-height: 1.4;
 }
 
 .highlight {
