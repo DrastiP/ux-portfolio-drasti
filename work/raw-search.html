@@ -23,8 +23,8 @@
 
     <main class="container">
         <section class="case-study-hero">
-            <h1 class="case-study-title">Raw Search Data Visualization</h1>
-            <p class="case-study-subtitle">Designing a powerful, intuitive interface for searching through billions of security logs in real-time.</p>
+            <h1 class="case-study-title">Raw Log Search Data Visualization</h1>
+            <p class="case-study-subtitle">Enhancing usability and accuracy for cybersecurity investigations by redesigning the unprocessed data search experience.</p>
             
             <div class="metadata-grid">
                 <div class="metadata-item">
@@ -33,7 +33,7 @@
                 </div>
                 <div class="metadata-item">
                     <h3>Timeline</h3>
-                    <p>5 months · 2023</p>
+                    <p>Early 2023</p>
                 </div>
                 <div class="metadata-item">
                     <h3>Team</h3>
@@ -44,48 +44,84 @@
                     <p>Arctic Wolf</p>
                 </div>
             </div>
+            <img src="../assets/images/Raw Log Search Visuals/1. main.png" alt="Raw Log Search Main Interface" class="image-placeholder-large" style="background: none; object-fit: contain;">
         </section>
 
         <article class="case-study-content">
             <section class="content-section">
                 <span class="section-label">01 — Context</span>
-                <h2 class="section-title">Searching the Void</h2>
-                <p>Security investigations often require digging into "Raw Search"—the massive repository of every log entry collected across an organization's network. The existing interface was technical and required complex query language knowledge, making it inaccessible to less experienced users.</p>
+                <h2 class="section-title">Project Context</h2>
+                <p>Arctic Wolf Networks offers cybersecurity services to businesses, including Raw Log Search, a product currently grappling with usability issues. Our project aims to enhance customer satisfaction and retention for Raw Log Search by investigating design solutions that improve the user experience.</p>
+                <h3>What is a Raw Log Search?</h3>
+                <p>A raw log is an unprocessed file with event records, encompassing data like errors, access logs, and debugging info. The Raw Log Search tool helps customers sift through this data using keywords or preset examples, enhancing query accuracy.</p>
+                <div class="quote-block">
+                    “Raw Log Search allows customers to look at their unprocessed data — none of this data is enriched so it’s a giant text file.”
+                    <br><span style="font-size: 1rem; color: var(--text-secondary);">Marcus Russell, Senior Product Owner @ Arctic Wolf</span>
+                </div>
             </section>
 
             <section class="content-section">
                 <span class="section-label">02 — The problem</span>
-                <h2 class="section-title">Information Overload</h2>
-                <p>When searching through billions of logs, users were often overwhelmed by the volume of data. The challenge was to create an interface that provided both a "bird's-eye view" of trends and the ability to "drill down" into specific, microscopic details without losing orientation.</p>
-                <div class="image-placeholder-large"></div>
+                <h2 class="section-title">Problem Definition</h2>
+                <p>The Raw Log Search is plagued by a number of issues, including poor usability, a lack of user knowledge concerning the most efficient search methods, and the need to access multiple products. These factors all contribute to a significant level of friction.</p>
+                <h3>Problem areas</h3>
+                <ul>
+                    <li><strong>Low Usage Rate:</strong> Not many customers currently use this tool.</li>
+                    <li><strong>Hidden Accessibility:</strong> Hidden within multiple tabs, making it hard to find.</li>
+                    <li><strong>High Costs:</strong> Inefficient research patterns incur unnecessary expenses.</li>
+                </ul>
+                <p class="quote-block">“How might we make the Raw Log search more intuitive to use?”</p>
+                <img src="../assets/images/Raw Log Search Visuals/2. existing design.png" alt="Existing Design Audit" class="image-placeholder-large" style="background: none; object-fit: contain;">
             </section>
 
             <section class="content-section">
-                <span class="section-label">03 — Design Solution</span>
-                <h2 class="section-title">Visual Querying & Log Aggregation</h2>
-                <p>We introduced a visual query builder that allowed users to drag and drop filters, reducing the reliance on technical syntax. Additionally, we implemented a dynamic histogram that visualized log volume over time, helping users quickly identify spikes in activity that might indicate a breach.</p>
-                <div class="quote-block">
-                    "We turned a command-line experience into a visual investigation tool."
+                <span class="section-label">03 — Research</span>
+                <h2 class="section-title">Competitor Analysis</h2>
+                <p>To enhance the usability and functionality, a competition analysis was undertaken focusing on industry leaders like Rapid7 and Crowdstrike. The findings highlighted that Arctic Wolf's Raw Log Search was relatively less developed compared to industry-leading competitors.</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <img src="../assets/images/Raw Log Search Visuals/3. competitor analysis.png" alt="Competitor Analysis 1" class="image-placeholder-large" style="background: none; object-fit: contain; margin: 1rem 0;">
+                    <img src="../assets/images/Raw Log Search Visuals/4. competitor analysis.png" alt="Competitor Analysis 2" class="image-placeholder-large" style="background: none; object-fit: contain; margin: 1rem 0;">
                 </div>
             </section>
 
             <section class="content-section">
-                <span class="section-label">04 — Outcomes</span>
-                <h2 class="section-title">Search at Scale</h2>
-                <div class="outcome-grid">
-                    <div class="outcome-card">
-                        <span class="outcome-stat">Billions</span>
-                        <span class="outcome-label">Logs searchable in seconds</span>
-                    </div>
-                    <div class="outcome-card">
-                        <span class="outcome-stat">40%</span>
-                        <span class="outcome-label">Increase in user adoption</span>
-                    </div>
-                    <div class="outcome-card">
-                        <span class="outcome-stat">Faster</span>
-                        <span class="outcome-label">Investigation speed</span>
-                    </div>
-                </div>
+                <span class="section-label">04 — Ideation</span>
+                <h2 class="section-title">Low-fi Wireframes Iterations</h2>
+                <p>We developed distinct design ideas to address the problem space. Iteration focused on organizing search ribbons and managing technical filter density.</p>
+                <h3>Iteration 1: Unified Ribbon</h3>
+                <p>Features a user-friendly search ribbon organized cohesively in a single row, unlike the original multi-row layout.</p>
+                <img src="../assets/images/Raw Log Search Visuals/5. wireframe A.png" alt="Wireframe Iteration A" class="image-placeholder-large" style="background: none; object-fit: contain;">
+                <h3>Iteration 2: Filter Integration</h3>
+                <p>Concentrated on strategies to integrate diverse technical filters without cluttering the interface.</p>
+                <img src="../assets/images/Raw Log Search Visuals/6. Wireframe B.png" alt="Wireframe Iteration B" class="image-placeholder-large" style="background: none; object-fit: contain;">
+            </section>
+
+            <section class="content-section">
+                <span class="section-label">05 — Design Decisions</span>
+                <h2 class="section-title">Refining the Investigation Tool</h2>
+                <img src="../assets/images/Raw Log Search Visuals/7. design decisions.png" alt="Detailed Design Decisions" class="image-placeholder-large" style="background: none; object-fit: contain;">
+                <ul>
+                    <li><strong>Sub Navigation:</strong> Consistency with other product pages.</li>
+                    <li><strong>Case Sensitivity:</strong> Positioned prominently below search input to reduce missed states.</li>
+                    <li><strong>Adjustable Histogram:</strong> Enables precise navigation to desired results.</li>
+                    <li><strong>Help Documentation:</strong> Integrated guidance for faster results.</li>
+                    <li><strong>Support Text:</strong> Helpful cues for technical input requirements.</li>
+                    <li><strong>Clear Actions:</strong> Distinguishable primary and secondary actions.</li>
+                    <li><strong>Hide Histogram:</strong> Option to declutter the interface when necessary.</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <span class="section-label">06 — Final Design</span>
+                <h2 class="section-title">The Finished Experience</h2>
+                <p>The final solution delivers a high-performance search experience that balances power with ease of use.</p>
+                <img src="../assets/images/Raw Log Search Visuals/8. Final design.png" alt="Final High-Fidelity Design" class="image-placeholder-large" style="background: none; object-fit: contain;">
+            </section>
+
+            <section class="content-section">
+                <span class="section-label">07 — Outcome</span>
+                <h2 class="section-title">Project Reflections</h2>
+                <p>The revised Raw Log Search design was developed in early 2023. This project provided significant learning experiences in terms of working with design systems and successfully executing an end-to-end project at scale.</p>
             </section>
         </article>
     </main>
