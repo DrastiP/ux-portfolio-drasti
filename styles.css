@@ -311,7 +311,20 @@ body {
     aspect-ratio: 16 / 9;
     background-color: var(--accent-bg);
     border-radius: 1.5rem;
-    margin: 3rem 0;
+    margin: 3rem 0 1rem;
+}
+
+figure {
+    margin: 0;
+    padding-bottom: 3rem;
+}
+
+figcaption {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-top: 1rem;
+    font-weight: 500;
 }
 
 .outcome-grid {
