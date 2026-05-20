@@ -116,19 +116,35 @@ body {
     color: var(--text-secondary);
 }
 
-/* Work Grid */
+/* Work Section Layouts */
 .work-section {
     padding-bottom: 8rem;
 }
 
-.work-grid {
+.featured-section {
+    margin-bottom: 6rem;
+}
+
+.featured-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+}
+
+.supporting-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 3rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+}
+
+@media (max-width: 1024px) {
+    .supporting-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 768px) {
-    .work-grid {
+    .supporting-grid {
         grid-template-columns: 1fr;
     }
 }
@@ -140,6 +156,24 @@ body {
     padding: 1rem;
     background-color: transparent;
     transition: all var(--transition-speed);
+}
+
+.project-card.featured {
+    padding: 0;
+}
+
+.project-card.featured .project-image-container {
+    aspect-ratio: 16 / 9;
+    border-radius: 2rem;
+}
+
+.project-card.featured .project-title {
+    font-size: 2.25rem;
+    margin-top: 1rem;
+}
+
+.project-card.featured .project-category {
+    font-size: 1.125rem;
 }
 
 .project-card:hover {
