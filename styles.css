@@ -83,33 +83,56 @@ body {
 
 /* Hero Section */
 .hero {
-    padding: 12rem 0 10rem;
+    padding: 10rem 0 8rem;
     background-image: 
         linear-gradient(var(--grid-color) 1px, transparent 1px),
         linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-    background-size: 50px 50px; /* Crisp architectural grid size */
+    background-size: 50px 50px;
+    text-align: left; /* Left aligned as per reference */
+}
+
+.hero-label-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.hero-line {
+    width: 40px;
+    height: 2px;
+    background-color: var(--accent-blue-dark);
+}
+
+.hero-label {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    color: var(--text-secondary);
 }
 
 .hero-title {
     font-size: clamp(2.5rem, 8vw, 4.5rem);
     font-weight: 800;
-    line-height: 1.1;
+    line-height: 1.05;
     letter-spacing: -0.04em;
-    max-width: 1000px;
-    margin-bottom: 1.5rem;
-}
-
-.hero-subtitle {
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: var(--text-secondary);
-    max-width: 800px;
-    line-height: 1.4;
+    max-width: 1100px;
+    margin-bottom: 2rem;
 }
 
 .highlight {
-    background: linear-gradient(to bottom, transparent 60%, var(--accent-blue) 60%);
-    padding: 0 0.2em;
+    background-color: var(--accent-blue);
+    padding: 0 0.1em;
+    border-radius: 4px;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    max-width: 700px;
+    line-height: 1.6;
 }
 
 .text-secondary {
