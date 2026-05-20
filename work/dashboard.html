@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incident Response Dashboard | Drasti Patel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <a href="../index.html" class="logo">Drasti Patel</a>
+            <nav class="nav-links">
+                <a href="../index.html#work">Work</a>
+                <a href="../index.html#about">About</a>
+                <a href="mailto:drasti.sp@gmail.com">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="case-study-hero">
+            <h1 class="case-study-title">Incident Response Customer Dashboard</h1>
+            <p class="case-study-subtitle">Redesigning the breach experience — from a static web form to a centralized command center that meets customers at the worst moment of their professional lives.</p>
+            
+            <div class="metadata-grid">
+                <div class="metadata-item">
+                    <h3>Role</h3>
+                    <p>Lead Product Designer</p>
+                </div>
+                <div class="metadata-item">
+                    <h3>Timeline</h3>
+                    <p>3 months · 2024</p>
+                </div>
+                <div class="metadata-item">
+                    <h3>Team</h3>
+                    <p>Product · Engineering</p>
+                </div>
+                <div class="metadata-item">
+                    <h3>Org</h3>
+                    <p>Arctic Wolf</p>
+                </div>
+            </div>
+        </section>
+
+        <article class="case-study-content">
+            <section class="content-section">
+                <span class="section-label">01 — Context</span>
+                <h2 class="section-title">Understanding incident response</h2>
+                <p>Arctic Wolf's Incident Response (IR) service supports organizations during two very different moments: active security attacks — ransomware, data breaches, credential theft — and pre-incident readiness, where teams prepare response plans before anything goes wrong.</p>
+                <p>These two states demand radically different emotional and functional experiences from a product. One is a crisis. The other is calm planning. The same interface had to serve both.</p>
+                <div class="image-placeholder-large"></div>
+                <h3>MDR customers</h3>
+                <p>Managed Detection & Response. Full Arctic Wolf subscribers. Already embedded in the platform — IR is one of several services they access. Familiar with the portal experience.</p>
+                <h3>IR-only customers</h3>
+                <p>Incident Response retainer only. Purchased IR as a standalone service. May encounter the portal for the first time during an active incident — the highest-stress moment possible.</p>
+            </section>
+
+            <section class="content-section">
+                <span class="section-label">02 — The problem</span>
+                <h2 class="section-title">A form in the middle of a doomsday event</h2>
+                <p>When a customer experienced an active security incident, this was their experience for requesting help from Arctic Wolf: A static web form and a phone number. No portal. No clear "report a breach" action. No way to manage readiness or update an IR plan.</p>
+                <p>In the middle of a crisis — when systems may be down, every second counts, and adrenaline is running high — the existing flow asked customers to slow down, manually enter information, and figure out the right next step on their own.</p>
+                <div class="quote-block">
+                    During high-stress security incidents, customers are forced to dig through outdated emergency response plans, leaving them overwhelmed and scattered at exactly the moment they need clarity.
+                </div>
+            </section>
+
+            <section class="content-section">
+                <span class="section-label">03 — Research</span>
+                <h2 class="section-title">Three lenses: stakeholders, customers, and the journey</h2>
+                <p>Research spanned internal stakeholder interviews, customer interviews, and journey mapping. Each surfaced a different layer of the problem.</p>
+                <h3>Stakeholder insight</h3>
+                <p>Internal interviews with Arctic Wolf IR responders revealed a gap. When a customer called in a breach, the IR team had to manually gather context — company size, affected systems, IR plan details — before they could act. A structured digital intake would save critical time.</p>
+                <h3>Customer insight</h3>
+                <p>Several customers described the moment they realized they'd been breached as disorienting. They knew Arctic Wolf was their partner — but didn't know how to reach them fast. The web form felt like a dead end, not a lifeline.</p>
+                <div class="image-placeholder-large"></div>
+                <p class="quote-block">"I knew we had a retainer with Arctic Wolf, but when the moment came, I didn't know what to click. I just wanted a big red button."</p>
+            </section>
+
+            <section class="content-section">
+                <span class="section-label">04 — Define</span>
+                <h2 class="section-title">Framing the design challenge</h2>
+                <p>How might we help customers stay oriented and take the right action during a security emergency — while also supporting readiness before an incident happens?</p>
+                <ul>
+                    <li><strong>Initiate fast during an active breach:</strong> No ambiguity about what to do next.</li>
+                    <li><strong>Manage ongoing readiness:</strong> Tabletop exercises and readiness health tracking.</li>
+                    <li><strong>Live IR Plan:</strong> Editable, versioned, and surfaced at the right moments.</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <span class="section-label">05 — Design decisions</span>
+                <h2 class="section-title">Key decisions that shaped the dashboard</h2>
+                <h3>Decision 01 — Make "report a breach" unmissable</h3>
+                <p>The solution: a persistent, prominent CTA with clear contextual framing — present always, but visually calibrated to the customer's current state.</p>
+                <h3>Decision 02 — One surface, two modes</h3>
+                <p>Rather than separate products, the dashboard transitions between modes. Breach mode is urgency-first; readiness mode is planning-oriented.</p>
+                <div class="image-placeholder-large"></div>
+                <h3>Decision 03 — Structured intake to accelerate handoff</h3>
+                <p>The initiation flow guides customers through what information the IR team needs, reducing time-to-first-response and eliminating manual context-gathering.</p>
+            </section>
+
+            <section class="content-section">
+                <span class="section-label">06 — Outcomes</span>
+                <h2 class="section-title">What shipped and what it achieved</h2>
+                <p>A centralized, customer-facing dashboard within the Arctic Wolf Portal — enabling organizations to initiate emergency IR engagements, manage readiness, and update incident response plans.</p>
+                <div class="outcome-grid">
+                    <div class="outcome-card">
+                        <span class="outcome-stat">Faster</span>
+                        <span class="outcome-label">Incident initiation time</span>
+                    </div>
+                    <div class="outcome-card">
+                        <span class="outcome-stat">Clearer</span>
+                        <span class="outcome-label">Team handoffs</span>
+                    </div>
+                    <div class="outcome-card">
+                        <span class="outcome-stat">100%</span>
+                        <span class="outcome-label">Digital plan access</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <span class="section-label">07 — Reflections</span>
+                <h2 class="section-title">What I learned</h2>
+                <p>The biggest shift in this project was recognizing that a customer mid-breach isn't in a state to navigate complexity. The design had to do the thinking for them — not just be usable, but be orienting.</p>
+                <p>Bridging readiness and incident response in a single surface required careful IA work. When two modes share a product, define the transition state explicitly.</p>
+            </section>
+        </article>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="copyright">&copy; 2026 Drasti Patel. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="https://linkedin.com/in/drastip">LinkedIn</a>
+                    <a href="https://twitter.com">Twitter</a>
+                    <a href="mailto:drasti.sp@gmail.com">Email</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
