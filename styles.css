@@ -506,12 +506,12 @@ html:not([data-theme="dark"]) .moon-icon { display: block; }
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 3rem; /* Safe space to make it look framed */
+    padding: 1rem; /* Reduced padding to make image bigger */
 }
 
 .case-study-image {
     max-width: 100%;
-    max-height: 70vh; /* Prevent it from being too tall */
+    max-height: 85vh; /* Increased vertical limit */
     height: auto;
     object-fit: contain;
     border-radius: 0.5rem;
