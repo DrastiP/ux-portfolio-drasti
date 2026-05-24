@@ -40,7 +40,7 @@
             <div class="metadata-grid">
                 <div class="metadata-item">
                     <h3>Role</h3>
-                    <p>Lead Product Designer</p>
+                    <p>Lead Product Designer · UX Service Owner, Incident Response</p>
                 </div>
                 <div class="metadata-item">
                     <h3>Timeline</h3>
@@ -48,11 +48,11 @@
                 </div>
                 <div class="metadata-item">
                     <h3>Team</h3>
-                    <p>Product · Engineering · IR</p>
+                    <p>Product (PM: Gwen), Engineering, IR, Concierge, Triage teams</p>
                 </div>
                 <div class="metadata-item">
                     <h3>Recognition</h3>
-                    <p>IDC Market Note</p>
+                    <p>IDC Market Note #US53353925</p>
                 </div>
             </div>
         </section>
@@ -61,61 +61,71 @@
             <section class="content-section">
                 <span class="section-label">01 — Context</span>
                 <h2 class="section-title">A new product tier with no interface to support it</h2>
-                <p>Arctic Wolf launched the Incident360 Retainer — a tiered IR subscription designed to shift the business toward scalable, self-serve delivery. The retainer exceeded 200% of sales projections, generating $9M ARR within 12 months.</p>
-                <p>But the product had a critical gap: there was no customer-facing interface. Without a dashboard, every entitlement question or readiness request would route to an already-stretched team, creating an operational bottleneck during rapid scaling.</p>
+                <p>Arctic Wolf launched the Incident360 Retainer — a new tiered IR subscription (JumpStart, Incident360, Incident360 Plus) designed to expand market reach and shift the business toward scalable, self-serve delivery. The retainer exceeded 200% of first-year sales projections and generated $9M ARR within 12 months, earning recognition in an IDC Market Note as a category-defining product.</p>
+                <p>But the product had a critical gap: there was no customer-facing interface to support it. Customers who purchased a retainer had no way to see what they'd bought, track unused entitlements, or request readiness activities without going through their CSM or IR team directly. Without a dashboard, every touchpoint request and every "how many sessions do I have left?" question would route back to an already-stretched team — creating an operational bottleneck at the exact moment the business was scaling fast.</p>
                 <div class="image-placeholder-large"></div>
-                <p>The dashboard wasn't just a UI; it was the essential infrastructure that made the retainer viable at scale. We launched both simultaneously to prevent an operational nightmare.</p>
+                <p>The dashboard wasn't a nice-to-have. It was the infrastructure that made the retainer viable at scale. We launched both simultaneously, by design — because launching the retainer without it would have been an operational nightmare.</p>
             </section>
 
             <section class="content-section">
                 <span class="section-label">02 — Customer Problem</span>
                 <h2 class="section-title">Two failure modes: during a crisis, and before one</h2>
-                <p>Before this dashboard, customers in a crisis were directed to a static web form. In high-stress events where systems are compromised, there was no clear "I'm under attack" action and no visibility into Arctic Wolf's next steps.</p>
-                <p>In the readiness phase, the failure was quieter but equally damaging. Customers had no visibility into their entitlements or completion of readiness activities, driving churn and wasted value.</p>
+                <p>Before this dashboard, IR customers had no dedicated interface. Customers experiencing an active security incident were directed to a static web form or a phone number — in the middle of a high-stress, time-critical event where systems may already be compromised. There was no clear "I'm under attack right now" action. There was no way to know what Arctic Wolf would do next.</p>
+                <p>In the readiness phase — before an incident — the failure was quieter but equally damaging. Customers had no visibility into their purchased entitlements, no way to track which readiness activities they'd completed, and no prompt to use what they'd paid for. Left unaddressed, this would drive both churn and wasted retainer value.</p>
                 <div class="quote-block">
-                    My goal was to design for both modes in a single interface: decisive action during a crisis, and clear visibility in the preparation phase.
+                    My goal was to design for both modes in a single interface: decisive action during a crisis, and clear visibility and engagement in the preparation phase.
                 </div>
             </section>
 
             <section class="content-section">
                 <span class="section-label">03 — Approach</span>
                 <h2 class="section-title">Systems first, interface second</h2>
-                <p>With no time for direct customer research, I front-loaded systems research by shadowing Command Center leads and interviewing IR managers. I synthesized these into a cross-product ecosystem map — a wireflow showing how dashboard actions triggered internal processes.</p>
-                <p>This early mapping prevented late-stage surprises and gave stakeholders a shared mental model. The systems research directly shaped design: for example, understanding how data was tracked told us exactly what structured information we could (and couldn't) surface to customers.</p>
+                <p>I was brought in after initial product scoping had begun, which meant there was no time for direct customer research. Rather than design in a vacuum, I front-loaded systems research: shadowing Command Center leads to observe real-time operations, and interviewing IR, Concierge, and Triage managers to understand how backstage workflows actually functioned.</p>
+                <p>I synthesized these findings into a cross-product ecosystem map — a comprehensive wireflow showing exactly how customer actions on the dashboard would trigger internal processes, which teams were involved, and where dependencies existed. In a 3-month sprint with an immovable sales kickoff deadline, this early mapping prevented late-stage surprises and gave every stakeholder — Product, Engineering, IR — a shared mental model before a single screen was designed.</p>
+                <p>This wasn't just process hygiene. The systems research directly shaped design decisions: understanding how the Concierge team tracked touchpoint notes, for example, told us exactly what post-session data we could surface to customers — and what we couldn't, because it wasn't structured data yet.</p>
                 <div class="image-placeholder-large"></div>
             </section>
 
             <section class="content-section">
-                <span class="section-label">04 — Key Decisions</span>
+                <span class="section-label">04 — Key Decisions & Tradeoffs</span>
                 <h2 class="section-title">Balancing customer urgency with operational safety</h2>
                 
-                <h3>Decision 01 — The breach button: maximum visibility, deliberate friction</h3>
-                <p>The "Report a Breach" button dominates the top-right hierarchy to be unmissable during panic. However, since clicking triggers a costly response, I built friction into the next step: a confirmation screen and triage form. This ensures instant access while protecting the backend from accidental triggers.</p>
+                <h3>Decision 1 — The breach button: maximum visibility, deliberate friction</h3>
+                <p>The "Report a Breach" button needed to be unmissable during a chaotic, high-stress event. I positioned it top-right — aligned with standard mental models for global primary actions — and isolated it by keeping all other header widgets left-aligned. The deliberate visual asymmetry and high-contrast red against the dark theme ensured it couldn't be missed in a panic.</p>
+                <p>But clicking it triggers a costly Command Center response. A false alarm has real operational consequences. So I built friction into the next step rather than the button itself: clicking routes to an acknowledgment screen requiring explicit confirmation of an active incident, followed by a triage form. Customers get instant access when they need it; the backend is protected from accidental triggers. FullStory data later validated this: the breach button was the least-interacted element on the page — exactly the outcome we designed for.</p>
                 
-                <h3>Decision 02 — Protecting backend operations</h3>
-                <p>Requesting readiness activities initiates intensive workflows. I designed a two-layer protection system: a confirmation modal and a 48-hour session block to prevent duplicate tickets. Clear system feedback closed the loop for the customer without requiring follow-up.</p>
+                <h3>Decision 2 — Readiness touchpoints: two-layer friction to protect backend operations</h3>
+                <p>Requesting a readiness touchpoint initiates an intensive internal workflow. Early shadowing revealed a real risk: accidental or repeated clicks would flood internal systems with duplicate tickets. I designed a two-layer protection system: an acknowledgment modal forces deliberate confirmation before a ticket fires, and a 48-hour session block prevents duplicate requests while the initial ticket is being processed. Clear system feedback — replacing the button state with a success confirmation — closed the loop for the customer without requiring any follow-up.</p>
+                <p>This is a case where designing for the backstage operation was as important as designing for the customer — the two goals were inseparable.</p>
 
-                <h3>Decision 03 — Driving security behavior via completion psychology</h3>
-                <p>I broke the IR Planner into visible categories (Response Team, Critical Systems, etc.), each tied to a visual progress bar. Transforming documentation into an actionable metric created natural urgency and significantly increased engagement compared to the previous experience.</p>
+                <h3>Decision 3 — IR Planner status: using completion psychology to drive security behavior</h3>
+                <p>Completing the IR Planner is one of the highest-value actions a customer can take — it directly reduces breach impact. But from a customer's perspective, it's documentation work that's easy to deprioritize. Rather than linking to a form, I broke the planner into visible categories — Response Team, Critical Systems, External Providers, Incident Escalation — each tied to a visual progress bar. A 0% bar or an orange incomplete bar creates natural urgency. It turns a security gap into an actionable dashboard metric. Post-launch FullStory data showed customers were significantly more likely to actively engage with and update their IR plans compared to the previous static link experience.</p>
+
+                <h3>Decision 4 — Retainer options: transparency that earns the upsell</h3>
+                <p>The retainer comparison widget serves two goals simultaneously. For customers, it provides immediate clarity on their contractual entitlements — eliminating the need to dig through PDFs or contact their account manager mid-incident. For the business, placing the current tier directly adjacent to the recommended tier visualizes exactly what protection the customer is missing. Leading with genuine utility earns the right to present the upsell. The widget avoids feeling like an advertisement because it answers a real question the customer already has.</p>
                 <div class="image-placeholder-large"></div>
             </section>
 
             <section class="content-section">
-                <span class="section-label">05 — Strategic De-scoping</span>
-                <h2 class="section-title">Killing the "Pizza Tracker"</h2>
-                <p>I chose not to build a real-time incident status widget. First, data architecture relied on manual documentation by analysts mid-breach, making a live UI unreliable. Second, incident response is chaotic and variable, not linear like baking a pizza. A stalled progress bar would cause anxiety rather than confidence.</p>
+                <span class="section-label">05 — What I Chose Not to Build</span>
+                <h2 class="section-title">Killing the pizza tracker</h2>
+                <p>During ideation, there was strong appetite for a real-time incident status widget — essentially a "pizza tracker" for cyber attacks, showing customers exactly which stage their breach response was at as the internal team worked.</p>
+                <p>I killed this for two distinct reasons. First, the data architecture didn't support it: Arctic Wolf's systems were good at capturing automated events, but complex IR milestones — "root cause identified," "threat remediated" — were manually documented by security analysts working active cases. Building a live customer-facing UI on top of manual, unstructured data would have been unreliable and maintenance-heavy, requiring analysts to pause critical mitigation work for data entry.</p>
+                <p>Second, and more fundamentally, a pizza tracker is the wrong mental model for incident response. Pizza baking is linear and predictable. A cyber breach is chaotic and variable. A progress bar stalled at "Forensics" for 48 hours during a complex ransomware case wouldn't inform the customer — it would cause anxiety and erode trust in the product at exactly the moment they needed confidence. The right experience during an active incident is a clear point of contact and a reliable SLA, not a status bar that may not move.</p>
             </section>
 
             <section class="content-section">
                 <span class="section-label">06 — Design System Contribution</span>
                 <h2 class="section-title">Extending Fenrir, not hacking around it</h2>
-                <p>Rather than building one-off UI, I collaborated with the Design Systems Lead to architect new components for the Fenrir system. This ensured consistency and gave other teams reusable patterns, even under a strict 3-month deadline.</p>
+                <p>Several dashboard components — including the retainer comparison table — had no existing pattern in Arctic Wolf's Fenrir design system. The expedient path would have been building one-off UI. Instead, I collaborated with the Design Systems Lead to properly architect and document new components that adhered to system standards. This took more time up front but ensured consistency across product areas and gave other teams reusable patterns for future work.</p>
+                <p>It was one of the harder constraints to manage under a 3-month deadline, but shipping something inconsistent that would need to be fixed later wasn't a real option for a customer-facing product at this scale.</p>
             </section>
 
             <section class="content-section">
                 <span class="section-label">07 — Impact</span>
                 <h2 class="section-title">A category-defining operational success</h2>
-                <p>The Incident360 Retainer exceeded 200% of sales projections and generated $9M ARR. The dashboard was the operational backbone that made this growth possible by enabling self-service and reducing manual handling by the IR team.</p>
+                <p>The Incident360 Retainer exceeded 200% of first-year sales projections and generated $9M ARR within 12 months — recognized in an IDC Market Note as a category-defining product. The dashboard was the operational infrastructure that made that growth viable: without it, every entitlement question, touchpoint request, and incident initiation would have required manual handling by an already-constrained IR team.</p>
+                <p>The $9M ARR reflects the success of the Incident360 Retainer as a business — of which the dashboard was the enabling infrastructure. Without a self-serve interface, every entitlement question and touchpoint request would have required manual CSM or IR team involvement, making the retainer unscalable at the growth rate it achieved. The dashboard made self-service possible, reduced operational burden on the IR team, and gave customers visibility into what they'd purchased — directly addressing churn risk for a brand new product with no prior UI.</p>
                 <div class="outcome-grid">
                     <div class="outcome-card">
                         <span class="outcome-stat">$9M</span>
@@ -130,20 +140,25 @@
                         <span class="outcome-label">Market Note Recognition</span>
                     </div>
                 </div>
+                <p class="quote-block" style="margin-top: 2rem; font-size: 0.875rem; font-style: italic;">
+                    Note: Add FullStory metrics when available — dashboard session frequency, IR Planner completion rate, touchpoint request volume. One specific before/after number would significantly strengthen the direct design impact claim.
+                </p>
             </section>
 
             <section class="content-section">
                 <span class="section-label">08 — What's Next</span>
                 <h2 class="section-title">Iterating on entitlement engagement</h2>
-                <p>Post-launch data showed customers weren't proactively using touchpoints. I designed a contextual notification system that triggers at 9, 6, and 3-month windows to nudge action without creating noise, ensuring customers extract maximum value from their term.</p>
+                <p>Post-launch data revealed a behavioral gap: customers weren't proactively using their touchpoints, risking entitlement waste before their term expired. In response, I designed a contextual notification banner system — currently moving toward production — that surfaces unused touchpoints at three checkpoint windows: 9 months, 6 months, and 3 months remaining in a customer's term.</p>
+                <p>The logic is intentionally precise: the banner only shows when a customer has active, unused entitlements within a valid term window, escalating from a gentle awareness message at 9 months to a direct urgency nudge at 3 months. It doesn't show outside checkpoint windows, after all touchpoints are used, or in the final 30 days when a new request can no longer be fulfilled. The goal is to prompt action without creating noise — nudging customers to extract value from what they've already paid for, before it expires.</p>
             </section>
 
             <section class="content-section">
                 <span class="section-label">09 — Reflection</span>
-                <h2 class="section-title">What I learned</h2>
-                <p><strong>Push for customer access early:</strong> Relying on internal proxies was valuable, but real user testing would have provided more confidence in how customers interpreted summary widgets.</p>
-                <p><strong>Establish metrics before launch:</strong> Defining behavioral metrics upfront would have made capturing the right FullStory data easier from day one.</p>
-                <p><strong>Optimize handoff:</strong> I’d explore tighter engineering collaboration to reduce implementation drift and time spent on late-cycle QA.</p>
+                <h2 class="section-title">What I'd do differently</h2>
+                <p><strong>Push harder for customer access upfront:</strong> I was pulled in after initial scoping and never got direct customer interviews before design started. Internal proxies — PM, IR team, CSM — were valuable, but I'd fight harder for even 3–4 customer conversations early on. Specifically, I'm not fully confident that customers interpret the summary widgets the way I intended. That's a gap that only real user testing would close.</p>
+                <p><strong>Establish measurement criteria before launch:</strong> This was a net-new product with no baseline, which made post-launch impact measurement harder than it needed to be. I'd define the specific behavioral metrics I wanted to track — IR Planner completion rate, touchpoint request volume, time-to-breach-initiation — before shipping, so FullStory was capturing the right things from day one.</p>
+                <p><strong>Create a tighter design-to-dev handoff process:</strong> Engineering implementation diverged from Figma specs in ways that required significant back-and-forth to correct. This was a real time cost on a tight deadline. Going forward, I'd explore using AI-assisted tooling to enable earlier PR review — catching implementation drift before it compounds — rather than waiting for QA cycles at the end.</p>
+                <p><strong>Build design system components earlier:</strong> Waiting until design was largely complete to flag missing Fenrir patterns created pressure at the end of the sprint. Earlier alignment with the Design Systems Lead would have distributed that work more evenly and reduced deadline risk.</p>
             </section>
         </article>
     </main>
