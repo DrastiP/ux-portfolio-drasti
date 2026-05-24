@@ -474,6 +474,11 @@ html:not([data-theme="dark"]) .moon-icon { display: block; }
     color: var(--text-primary);
 }
 
+[data-theme="dark"] .content-section p,
+[data-theme="dark"] .content-section li {
+    color: var(--text-primary) !important;
+}
+
 .quote-block {
     font-size: 1.75rem;
     font-weight: 600;
