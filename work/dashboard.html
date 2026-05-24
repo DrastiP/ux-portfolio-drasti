@@ -34,8 +34,8 @@
 
     <main class="container">
         <section class="case-study-hero">
-            <h1 class="case-study-title">Incident Response Customer Dashboard</h1>
-            <p class="case-study-subtitle">Redesigning the breach experience — from a static web form to a centralized command center that meets customers at the worst moment of their professional lives.</p>
+            <h1 class="case-study-title">IR Dashboard: Designing the Operational Infrastructure for a $9M Product Launch</h1>
+            <p class="case-study-subtitle">How a centralized command center made Arctic Wolf’s new $9M IRR subscription viable at scale and earned recognition as an IDC category-defining product.</p>
             
             <div class="metadata-grid">
                 <div class="metadata-item">
@@ -44,15 +44,15 @@
                 </div>
                 <div class="metadata-item">
                     <h3>Timeline</h3>
-                    <p>3 months · 2024</p>
+                    <p>3 months · Q1 2025</p>
                 </div>
                 <div class="metadata-item">
                     <h3>Team</h3>
-                    <p>Product · Engineering</p>
+                    <p>Product · Engineering · IR</p>
                 </div>
                 <div class="metadata-item">
-                    <h3>Org</h3>
-                    <p>Arctic Wolf</p>
+                    <h3>Recognition</h3>
+                    <p>IDC Market Note</p>
                 </div>
             </div>
         </section>
@@ -60,86 +60,90 @@
         <article class="case-study-content">
             <section class="content-section">
                 <span class="section-label">01 — Context</span>
-                <h2 class="section-title">Understanding incident response</h2>
-                <p>Arctic Wolf's Incident Response (IR) service supports organizations during two very different moments: active security attacks — ransomware, data breaches, credential theft — and pre-incident readiness, where teams prepare response plans before anything goes wrong.</p>
-                <p>These two states demand radically different emotional and functional experiences from a product. One is a crisis. The other is calm planning. The same interface had to serve both.</p>
+                <h2 class="section-title">A new product tier with no interface to support it</h2>
+                <p>Arctic Wolf launched the Incident360 Retainer — a tiered IR subscription designed to shift the business toward scalable, self-serve delivery. The retainer exceeded 200% of sales projections, generating $9M ARR within 12 months.</p>
+                <p>But the product had a critical gap: there was no customer-facing interface. Without a dashboard, every entitlement question or readiness request would route to an already-stretched team, creating an operational bottleneck during rapid scaling.</p>
                 <div class="image-placeholder-large"></div>
-                <h3>MDR customers</h3>
-                <p>Managed Detection & Response. Full Arctic Wolf subscribers. Already embedded in the platform — IR is one of several services they access. Familiar with the portal experience.</p>
-                <h3>IR-only customers</h3>
-                <p>Incident Response retainer only. Purchased IR as a standalone service. May encounter the portal for the first time during an active incident — the highest-stress moment possible.</p>
+                <p>The dashboard wasn't just a UI; it was the essential infrastructure that made the retainer viable at scale. We launched both simultaneously to prevent an operational nightmare.</p>
             </section>
 
             <section class="content-section">
-                <span class="section-label">02 — The problem</span>
-                <h2 class="section-title">A form in the middle of a doomsday event</h2>
-                <p>When a customer experienced an active security incident, this was their experience for requesting help from Arctic Wolf: A static web form and a phone number. No portal. No clear "report a breach" action. No way to manage readiness or update an IR plan.</p>
-                <p>In the middle of a crisis — when systems may be down, every second counts, and adrenaline is running high — the existing flow asked customers to slow down, manually enter information, and figure out the right next step on their own.</p>
+                <span class="section-label">02 — Customer Problem</span>
+                <h2 class="section-title">Two failure modes: during a crisis, and before one</h2>
+                <p>Before this dashboard, customers in a crisis were directed to a static web form. In high-stress events where systems are compromised, there was no clear "I'm under attack" action and no visibility into Arctic Wolf's next steps.</p>
+                <p>In the readiness phase, the failure was quieter but equally damaging. Customers had no visibility into their entitlements or completion of readiness activities, driving churn and wasted value.</p>
                 <div class="quote-block">
-                    During high-stress security incidents, customers are forced to dig through outdated emergency response plans, leaving them overwhelmed and scattered at exactly the moment they need clarity.
+                    My goal was to design for both modes in a single interface: decisive action during a crisis, and clear visibility in the preparation phase.
                 </div>
             </section>
 
             <section class="content-section">
-                <span class="section-label">03 — Research</span>
-                <h2 class="section-title">Three lenses: stakeholders, customers, and the journey</h2>
-                <p>Research spanned internal stakeholder interviews, customer interviews, and journey mapping. Each surfaced a different layer of the problem.</p>
-                <h3>Stakeholder insight</h3>
-                <p>Internal interviews with Arctic Wolf IR responders revealed a gap. When a customer called in a breach, the IR team had to manually gather context — company size, affected systems, IR plan details — before they could act. A structured digital intake would save critical time.</p>
-                <h3>Customer insight</h3>
-                <p>Several customers described the moment they realized they'd been breached as disorienting. They knew Arctic Wolf was their partner — but didn't know how to reach them fast. The web form felt like a dead end, not a lifeline.</p>
+                <span class="section-label">03 — Approach</span>
+                <h2 class="section-title">Systems first, interface second</h2>
+                <p>With no time for direct customer research, I front-loaded systems research by shadowing Command Center leads and interviewing IR managers. I synthesized these into a cross-product ecosystem map — a wireflow showing how dashboard actions triggered internal processes.</p>
+                <p>This early mapping prevented late-stage surprises and gave stakeholders a shared mental model. The systems research directly shaped design: for example, understanding how data was tracked told us exactly what structured information we could (and couldn't) surface to customers.</p>
                 <div class="image-placeholder-large"></div>
-                <p class="quote-block">"I knew we had a retainer with Arctic Wolf, but when the moment came, I didn't know what to click. I just wanted a big red button."</p>
             </section>
 
             <section class="content-section">
-                <span class="section-label">04 — Define</span>
-                <h2 class="section-title">Framing the design challenge</h2>
-                <p>How might we help customers stay oriented and take the right action during a security emergency — while also supporting readiness before an incident happens?</p>
-                <ul>
-                    <li><strong>Initiate fast during an active breach:</strong> No ambiguity about what to do next.</li>
-                    <li><strong>Manage ongoing readiness:</strong> Tabletop exercises and readiness health tracking.</li>
-                    <li><strong>Live IR Plan:</strong> Editable, versioned, and surfaced at the right moments.</li>
-                </ul>
-            </section>
+                <span class="section-label">04 — Key Decisions</span>
+                <h2 class="section-title">Balancing customer urgency with operational safety</h2>
+                
+                <h3>Decision 01 — The breach button: maximum visibility, deliberate friction</h3>
+                <p>The "Report a Breach" button dominates the top-right hierarchy to be unmissable during panic. However, since clicking triggers a costly response, I built friction into the next step: a confirmation screen and triage form. This ensures instant access while protecting the backend from accidental triggers.</p>
+                
+                <h3>Decision 02 — Protecting backend operations</h3>
+                <p>Requesting readiness activities initiates intensive workflows. I designed a two-layer protection system: a confirmation modal and a 48-hour session block to prevent duplicate tickets. Clear system feedback closed the loop for the customer without requiring follow-up.</p>
 
-            <section class="content-section">
-                <span class="section-label">05 — Design decisions</span>
-                <h2 class="section-title">Key decisions that shaped the dashboard</h2>
-                <h3>Decision 01 — Make "report a breach" unmissable</h3>
-                <p>The solution: a persistent, prominent CTA with clear contextual framing — present always, but visually calibrated to the customer's current state.</p>
-                <h3>Decision 02 — One surface, two modes</h3>
-                <p>Rather than separate products, the dashboard transitions between modes. Breach mode is urgency-first; readiness mode is planning-oriented.</p>
+                <h3>Decision 03 — Driving security behavior via completion psychology</h3>
+                <p>I broke the IR Planner into visible categories (Response Team, Critical Systems, etc.), each tied to a visual progress bar. Transforming documentation into an actionable metric created natural urgency and significantly increased engagement compared to the previous experience.</p>
                 <div class="image-placeholder-large"></div>
-                <h3>Decision 03 — Structured intake to accelerate handoff</h3>
-                <p>The initiation flow guides customers through what information the IR team needs, reducing time-to-first-response and eliminating manual context-gathering.</p>
             </section>
 
             <section class="content-section">
-                <span class="section-label">06 — Outcomes</span>
-                <h2 class="section-title">What shipped and what it achieved</h2>
-                <p>A centralized, customer-facing dashboard within the Arctic Wolf Portal — enabling organizations to initiate emergency IR engagements, manage readiness, and update incident response plans.</p>
+                <span class="section-label">05 — Strategic De-scoping</span>
+                <h2 class="section-title">Killing the "Pizza Tracker"</h2>
+                <p>I chose not to build a real-time incident status widget. First, data architecture relied on manual documentation by analysts mid-breach, making a live UI unreliable. Second, incident response is chaotic and variable, not linear like baking a pizza. A stalled progress bar would cause anxiety rather than confidence.</p>
+            </section>
+
+            <section class="content-section">
+                <span class="section-label">06 — Design System Contribution</span>
+                <h2 class="section-title">Extending Fenrir, not hacking around it</h2>
+                <p>Rather than building one-off UI, I collaborated with the Design Systems Lead to architect new components for the Fenrir system. This ensured consistency and gave other teams reusable patterns, even under a strict 3-month deadline.</p>
+            </section>
+
+            <section class="content-section">
+                <span class="section-label">07 — Impact</span>
+                <h2 class="section-title">A category-defining operational success</h2>
+                <p>The Incident360 Retainer exceeded 200% of sales projections and generated $9M ARR. The dashboard was the operational backbone that made this growth possible by enabling self-service and reducing manual handling by the IR team.</p>
                 <div class="outcome-grid">
                     <div class="outcome-card">
-                        <span class="outcome-stat">Faster</span>
-                        <span class="outcome-label">Incident initiation time</span>
+                        <span class="outcome-stat">$9M</span>
+                        <span class="outcome-label">ARR within 12 months</span>
                     </div>
                     <div class="outcome-card">
-                        <span class="outcome-stat">Clearer</span>
-                        <span class="outcome-label">Team handoffs</span>
+                        <span class="outcome-stat">200%</span>
+                        <span class="outcome-label">Of sales projections</span>
                     </div>
                     <div class="outcome-card">
-                        <span class="outcome-stat">100%</span>
-                        <span class="outcome-label">Digital plan access</span>
+                        <span class="outcome-stat">IDC</span>
+                        <span class="outcome-label">Market Note Recognition</span>
                     </div>
                 </div>
             </section>
 
             <section class="content-section">
-                <span class="section-label">07 — Reflections</span>
+                <span class="section-label">08 — What's Next</span>
+                <h2 class="section-title">Iterating on entitlement engagement</h2>
+                <p>Post-launch data showed customers weren't proactively using touchpoints. I designed a contextual notification system that triggers at 9, 6, and 3-month windows to nudge action without creating noise, ensuring customers extract maximum value from their term.</p>
+            </section>
+
+            <section class="content-section">
+                <span class="section-label">09 — Reflection</span>
                 <h2 class="section-title">What I learned</h2>
-                <p>The biggest shift in this project was recognizing that a customer mid-breach isn't in a state to navigate complexity. The design had to do the thinking for them — not just be usable, but be orienting.</p>
-                <p>Bridging readiness and incident response in a single surface required careful IA work. When two modes share a product, define the transition state explicitly.</p>
+                <p><strong>Push for customer access early:</strong> Relying on internal proxies was valuable, but real user testing would have provided more confidence in how customers interpreted summary widgets.</p>
+                <p><strong>Establish metrics before launch:</strong> Defining behavioral metrics upfront would have made capturing the right FullStory data easier from day one.</p>
+                <p><strong>Optimize handoff:</strong> I’d explore tighter engineering collaboration to reduce implementation drift and time spent on late-cycle QA.</p>
             </section>
         </article>
     </main>
