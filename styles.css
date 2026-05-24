@@ -458,7 +458,7 @@ html:not([data-theme="dark"]) .moon-icon { display: block; }
 .content-section p {
     font-size: 1.125rem;
     line-height: 1.7;
-    color: #333;
+    color: var(--text-primary);
     margin-bottom: 1.5rem;
 }
 
@@ -471,7 +471,7 @@ html:not([data-theme="dark"]) .moon-icon { display: block; }
     font-size: 1.125rem;
     line-height: 1.7;
     margin-bottom: 0.75rem;
-    color: #333;
+    color: var(--text-primary);
 }
 
 .quote-block {
