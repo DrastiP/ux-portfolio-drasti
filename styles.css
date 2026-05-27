@@ -552,6 +552,32 @@ figcaption {
     margin-bottom: 0.5rem;
 }
 
+.goal-card {
+    margin: 4rem 0;
+    padding: 2.5rem;
+    border-left: 4px solid var(--accent-blue-dark);
+    background-color: var(--accent-bg);
+    border-radius: 0 1.5rem 1.5rem 0;
+}
+
+.goal-card .goal-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent-blue-dark);
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.goal-card p {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--text-primary);
+    margin: 0 !important;
+}
+
 /* Service Map Component */
 .service-map {
     margin: 4rem 0;
