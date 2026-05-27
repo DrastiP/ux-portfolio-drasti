@@ -104,21 +104,57 @@
 
                 <p>I synthesized these findings into a cross-product ecosystem map, a comprehensive wireflow showing exactly how customer actions on the dashboard would trigger internal processes, which teams were involved, and where dependencies existed. In a 3-month sprint with an immovable sales kickoff deadline, this early mapping prevented late-stage surprises and gave every stakeholder (Product, Engineering, IR) a shared mental model before a single screen was designed.</p>
                 
-                <div class="service-map-feature" style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 2rem; margin: 3rem 0; background-color: var(--accent-bg); padding: 2rem; border-radius: 1.5rem;">
-                    <div class="map-highlight">
-                        <h4 style="margin-bottom: 1rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent-blue-dark);">Zoomed Detail: Touchpoint Logic</h4>
-                        <div style="background: white; border-radius: 0.75rem; overflow: hidden; height: 350px; border: 1px solid var(--border-color);">
-                            <img src="../assets/images/IR Dashboard Flow.svg" alt="Zoomed detail of service map" style="width: 250%; max-width: none; margin-left: -50%; margin-top: -10%; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.05));">
+                <div class="service-map">
+                    <div class="map-lane">
+                        <div class="lane-label">Customer UI</div>
+                        <div class="lane-steps">
+                            <div class="map-node node-accent-red">
+                                <h5>Report Breach</h5>
+                                <p>High-contrast, isolated trigger for active security incidents.</p>
+                            </div>
+                            <div class="map-node node-accent-blue">
+                                <h5>Request Readiness</h5>
+                                <p>Self-serve request for IR planner review or tabletop exercise.</p>
+                            </div>
                         </div>
-                        <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">Focusing on the complex handoff between customer requests and Concierge triage.</p>
                     </div>
-                    <div class="map-full-preview">
-                        <h4 style="margin-bottom: 1rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary);">Full Ecosystem Map</h4>
-                        <a href="../assets/images/IR Dashboard Flow.svg" target="_blank" style="display: block; position: relative; border-radius: 0.75rem; overflow: hidden; border: 1px solid var(--border-color); cursor: zoom-in;">
-                            <img src="../assets/images/IR Dashboard Flow.svg" alt="Full service map preview" style="width: 100%; height: 350px; object-fit: cover; opacity: 0.8;">
-                            <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.8rem;">Click to view full SVG</div>
-                        </a>
-                        <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">A 4-tier map covering User UI, Backend logic, and IR Operations.</p>
+                    
+                    <div class="map-lane">
+                        <div class="lane-label">System Logic</div>
+                        <div class="lane-steps">
+                            <div class="map-node">
+                                <h5>Entitlement Check</h5>
+                                <p>Backend verification of purchased retainer tier and remaining sessions.</p>
+                            </div>
+                            <div class="map-node">
+                                <h5>Duplicate Block</h5>
+                                <p>48-hour logic prevents redundant ticket floods from repeated clicks.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="map-lane">
+                        <div class="lane-label">Operational Infrastructure</div>
+                        <div class="lane-steps">
+                            <div class="map-node node-accent-green">
+                                <h5>Ticket Generation</h5>
+                                <p>Auto-routes structured data to Salesforce and ServiceNow.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="map-lane">
+                        <div class="lane-label">Backstage Teams</div>
+                        <div class="lane-steps">
+                            <div class="map-node">
+                                <h5>Triage & Concierge</h5>
+                                <p>Teams process the request and contact the customer within SLA.</p>
+                            </div>
+                            <div class="map-node">
+                                <h5>IR Analysts</h5>
+                                <p>Assigned to cases based on breach urgency and technical complexity.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

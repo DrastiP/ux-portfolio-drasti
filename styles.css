@@ -552,8 +552,90 @@ figcaption {
     margin-bottom: 0.5rem;
 }
 
-.outcome-label {
-    font-size: 0.875rem;
-    font-weight: 600;
+/* Service Map Component */
+.service-map {
+    margin: 4rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    background-color: var(--accent-bg);
+    padding: 3rem;
+    border-radius: 2rem;
+    overflow-x: auto;
+}
+
+.map-lane {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+.lane-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
     color: var(--text-secondary);
+    padding-right: 1rem;
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.lane-steps {
+    display: flex;
+    gap: 1.5rem;
+    position: relative;
+}
+
+.map-node {
+    background-color: var(--card-bg);
+    padding: 1.25rem;
+    border-radius: 1rem;
+    border: 1px solid var(--border-color);
+    min-width: 200px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    position: relative;
+}
+
+.map-node::after {
+    content: '→';
+    position: absolute;
+    right: -1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    font-weight: 300;
+}
+
+.map-node:last-child::after {
+    display: none;
+}
+
+.map-node h5 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    color: var(--text-primary);
+}
+
+.map-node p {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.node-accent-red { border-top: 4px solid #ef4444; }
+.node-accent-blue { border-top: 4px solid var(--accent-blue-dark); }
+.node-accent-green { border-top: 4px solid #10b981; }
+
+@media (max-width: 768px) {
+    .service-map { padding: 1.5rem; }
+    .map-lane { grid-template-columns: 1fr; gap: 1rem; }
+    .lane-label { border-right: none; border-bottom: 1px solid var(--border-color); padding: 0 0 0.5rem 0; width: 100%; }
+    .lane-steps { flex-direction: column; }
+    .map-node::after { content: '↓'; right: auto; left: 50%; bottom: -1.25rem; top: auto; transform: translateX(-50%); }
 }
