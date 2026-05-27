@@ -90,12 +90,28 @@
             </section>
 
             <section class="content-section">
-                <span class="section-label">03 Approach</span>
-                <h2 class="section-title">Systems first, interface second</h2>
-                <p>I was brought in after initial product scoping had begun, which meant there was no time for direct customer research. Rather than design in a vacuum, I front-loaded systems research: shadowing Command Center leads to observe real-time operations, and interviewing IR, Concierge, and Triage managers to understand how backstage workflows actually functioned.</p>
+                <span class="section-label">03 Groundwork & Discovery</span>
+                <h2 class="section-title">Bridging systems research with user needs</h2>
+                <p>I was brought in after initial product scoping had begun, which meant there was no time for direct customer research. Rather than design in a vacuum, I front-loaded systems research to understand how backstage workflows actually functioned.</p>
+                
+                <div class="research-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0;">
+                    <div class="research-card" style="background-color: var(--accent-bg); padding: 1.5rem; border-radius: 1rem; border-left: 4px solid var(--accent-blue-dark);">
+                        <h4 style="margin-bottom: 0.5rem; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em;">Shadowing</h4>
+                        <p style="font-size: 0.95rem; margin-bottom: 0; line-height: 1.5;">Shadowed Command Center leads to observe real-time incident handling and operational pressure points.</p>
+                    </div>
+                    <div class="research-card" style="background-color: var(--accent-bg); padding: 1.5rem; border-radius: 1rem; border-left: 4px solid var(--accent-blue-dark);">
+                        <h4 style="margin-bottom: 0.5rem; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em;">Stakeholder Interviews</h4>
+                        <p style="font-size: 0.95rem; margin-bottom: 0; line-height: 1.5;">Interviewed IR, Concierge, and Triage managers to map cross-functional dependencies.</p>
+                    </div>
+                </div>
+
                 <p>I synthesized these findings into a cross-product ecosystem map, a comprehensive wireflow showing exactly how customer actions on the dashboard would trigger internal processes, which teams were involved, and where dependencies existed. In a 3-month sprint with an immovable sales kickoff deadline, this early mapping prevented late-stage surprises and gave every stakeholder (Product, Engineering, IR) a shared mental model before a single screen was designed.</p>
-                <p>This wasn't just process hygiene. The systems research directly shaped design decisions: understanding how the Concierge team tracked touchpoint notes, for example, told us exactly what post-session data we could surface to customers, and what we couldn't, because it wasn't structured data yet.</p>
-                <div class="image-placeholder-large"></div>
+                
+                <div class="image-container" style="background-color: transparent; padding: 0; margin-top: 2rem;">
+                    <img src="../assets/images/build problems/reseach layout.png" alt="Research Synthesis and Ecosystem Mapping" class="case-study-image" style="border-radius: 0.75rem; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                </div>
+
+                <p style="margin-top: 2rem;">This wasn't just process hygiene. The systems research directly shaped design decisions: understanding how the Concierge team tracked touchpoint notes, for example, told us exactly what post-session data we could surface to customers, and what we couldn't, because it wasn't structured data yet.</p>
             </section>
 
             <section class="content-section">
