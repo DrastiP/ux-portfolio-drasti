@@ -1,6 +1,7 @@
 (function() {
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
+    // Default to dark if no theme is saved, or if saved theme is 'dark'
+    if (savedTheme !== 'light') {
         document.documentElement.setAttribute('data-theme', 'dark');
     }
 })();
