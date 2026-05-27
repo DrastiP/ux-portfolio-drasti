@@ -231,7 +231,7 @@ html:not([data-theme="dark"]) .moon-icon { display: block; }
 
 .project-card {
     position: relative;
-    border-radius: 1rem;
+    border-radius: 1.5rem;
     overflow: hidden;
     padding: 1.5rem; /* Increased padding to prevent clipping */
     background-color: transparent;
@@ -249,7 +249,7 @@ html:not([data-theme="dark"]) .moon-icon { display: block; }
 
 .project-card.featured .project-image-container {
     aspect-ratio: 4 / 3;
-    border-radius: 0.75rem; /* Reduced from 1.5rem */
+    border-radius: 1.5rem; /* Reverted from 0.75rem */
     background-color: #E2E8F0; /* Soft background for visuals */
     margin-bottom: 1.5rem;
 }
@@ -299,7 +299,7 @@ html:not([data-theme="dark"]) .moon-icon { display: block; }
 .project-image-container {
     background-color: var(--accent-bg);
     aspect-ratio: 4 / 3;
-    border-radius: 0.75rem; /* Reduced from 1.5rem */
+    border-radius: 1.5rem; /* Reverted from 0.75rem */
     overflow: hidden;
     margin-bottom: 1.5rem;
     transition: transform var(--transition-speed);
