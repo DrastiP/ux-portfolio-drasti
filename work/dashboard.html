@@ -166,18 +166,18 @@
                 <span class="section-label">04 Key Decisions & Tradeoffs</span>
                 <h2 class="section-title">Balancing customer urgency with operational safety</h2>
                 
-                <h3>Decision 1 — The breach button: maximum visibility, deliberate friction</h3>
+                <h3>Decision 1: The breach button: maximum visibility, deliberate friction</h3>
                 <p>The "Report a Breach" button needed to be unmissable during a chaotic, high-stress event. I positioned it top-right, aligned with standard mental models for global primary actions, and isolated it by keeping all other header widgets left-aligned. The deliberate visual asymmetry and high-contrast red against the dark theme ensured it couldn't be missed in a panic.</p>
                 <p>But clicking it triggers a costly Command Center response. A false alarm has real operational consequences. So I built friction into the next step rather than the button itself: clicking routes to an acknowledgment screen requiring explicit confirmation of an active incident, followed by a triage form. Customers get instant access when they need it; the backend is protected from accidental triggers. FullStory data later validated this: the breach button was the least-interacted element on the page, exactly the outcome we designed for.</p>
                 
-                <h3>Decision 2 — Readiness touchpoints: two-layer friction to protect backend operations</h3>
+                <h3>Decision 2: Readiness touchpoints: two-layer friction to protect backend operations</h3>
                 <p>Requesting a readiness touchpoint initiates an intensive internal workflow. Early shadowing revealed a real risk: accidental or repeated clicks would flood internal systems with duplicate tickets. I designed a two-layer protection system: an acknowledgment modal forces deliberate confirmation before a ticket fires, and a 48-hour session block prevents duplicate requests while the initial ticket is being processed. Clear system feedback, replacing the button state with a success confirmation, closed the loop for the customer without requiring any follow-up.</p>
                 <p>This is a case where designing for the backstage operation was as important as designing for the customer; the two goals were inseparable.</p>
 
-                <h3>Decision 3 — IR Planner status: using completion psychology to drive security behavior</h3>
+                <h3>Decision 3: IR Planner status: using completion psychology to drive security behavior</h3>
                 <p>Completing the IR Planner is one of the highest-value actions a customer can take; it directly reduces breach impact. But from a customer's perspective, it's documentation work that's easy to deprioritize. Rather than linking to a form, I broke the planner into visible categories (Response Team, Critical Systems, External Providers, Incident Escalation) each tied to a visual progress bar. A 0% bar or an orange incomplete bar creates natural urgency. It turns a security gap into an actionable dashboard metric. Post-launch FullStory data showed customers were significantly more likely to actively engage with and update their IR plans compared to the previous static link experience.</p>
 
-                <h3>Decision 4 — Retainer options: transparency that earns the upsell</h3>
+                <h3>Decision 4: Retainer options: transparency that earns the upsell</h3>
                 <p>The retainer comparison widget serves two goals simultaneously. For customers, it provides immediate clarity on their contractual entitlements — eliminating the need to dig through PDFs or contact their account manager mid-incident. For the business, placing the current tier directly adjacent to the recommended tier visualizes exactly what protection the customer is missing. Leading with genuine utility earns the right to present the upsell. The widget avoids feeling like an advertisement because it answers a real question the customer already has.</p>
                 <div class="image-placeholder-large"></div>
             </section>
