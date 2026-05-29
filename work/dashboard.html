@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -59,7 +59,7 @@
 
         <article class="case-study-content">
             <section class="content-section">
-                <span class="section-label">01 Context</span>
+                <span class="section-label">01 — Context</span>
                 <h2 class="section-title">A new product tier with no interface to support it</h2>
                 <p>Arctic Wolf launched the Incident360 Retainer, a new tiered IR subscription (JumpStart, Incident360, Incident360 Plus) designed to expand market reach and shift the business toward scalable, self-serve delivery. The retainer exceeded 200% of first-year sales projections and generated $9M ARR within 12 months, earning recognition in an IDC Market Note as a category-defining product.</p>
                 <p>But the product had a critical gap: there was no customer-facing interface to support it. Customers who purchased a retainer had no way to see what they'd bought, track unused entitlements, or request readiness activities without going through their CSM or IR team directly. Without a dashboard, every touchpoint request and every "how many sessions do I have left?" question would route back to an already-stretched team, creating an operational bottleneck at the exact moment the business was scaling fast.</p>
@@ -70,7 +70,7 @@
             </section>
 
             <section class="content-section">
-                <span class="section-label">02 Customer Problem</span>
+                <span class="section-label">02 — Customer Problem</span>
                 <h2 class="section-title">Two failure modes: during a crisis, and before one</h2>
                 <p>Before this dashboard, IR customers had no dedicated interface. Customers experiencing an active security incident were directed to a static web form or a phone number, in the middle of a high-stress, time-critical event where systems may already be compromised. There was no clear "I'm under attack right now" action. There was no way to know what Arctic Wolf would do next.</p>
                 <p>In the readiness phase, before an incident, the failure was quieter but equally damaging. Customers had no visibility into their purchased entitlements, no way to track which readiness activities they'd completed, and no prompt to use what they'd paid for. Left unaddressed, this would drive both churn and wasted retainer value.</p>
@@ -88,7 +88,7 @@
             </section>
 
             <section class="content-section">
-                <span class="section-label">03 Groundwork & Discovery</span>
+                <span class="section-label">03 — Groundwork & Discovery</span>
                 <h2 class="section-title">Bridging systems research with user needs</h2>
                 <p>I was brought in after initial product scoping had begun, which meant there was no time for direct customer research. Rather than design in a vacuum, I front-loaded systems research to understand how backstage workflows actually functioned.</p>
                 
@@ -163,7 +163,7 @@
             </section>
 
             <section class="content-section">
-                <span class="section-label">04 Key Decisions & Tradeoffs</span>
+                <span class="section-label">04 — Key Decisions & Tradeoffs</span>
                 <h2 class="section-title">Balancing customer urgency with operational safety</h2>
                 
                 <h3>Decision 1: The breach button: maximum visibility, deliberate friction</h3>
@@ -183,7 +183,7 @@
             </section>
 
             <section class="content-section">
-                <span class="section-label">05 What I Chose Not to Build</span>
+                <span class="section-label">05 — What I Chose Not to Build</span>
                 <h2 class="section-title">Killing the pizza tracker</h2>
                 <p>During ideation, there was strong appetite for a real-time incident status widget, essentially a "pizza tracker" for cyber attacks, showing customers exactly which stage their breach response was at as the internal team worked.</p>
                 <p>I killed this for two distinct reasons. First, the data architecture didn't support it: Arctic Wolf's systems were good at capturing automated events, but complex IR milestones (such as "root cause identified" and "threat remediated") were manually documented by security analysts working active cases. Building a live customer-facing UI on top of manual, unstructured data would have been unreliable and maintenance-heavy, requiring analysts to pause critical mitigation work for data entry.</p>
@@ -191,14 +191,14 @@
             </section>
 
             <section class="content-section">
-                <span class="section-label">06 Design System Contribution</span>
+                <span class="section-label">06 — Design System Contribution</span>
                 <h2 class="section-title">Extending Fenrir, not hacking around it</h2>
                 <p>Several dashboard components, including the retainer comparison table, had no existing pattern in Arctic Wolf's Fenrir design system. The expedient path would have been building one-off UI. Instead, I collaborated with the Design Systems Lead to properly architect and document new components that adhered to system standards. This took more time up front but ensured consistency across product areas and gave other teams reusable patterns for future work.</p>
                 <p>It was one of the harder constraints to manage under a 3-month deadline, but shipping something inconsistent that would need to be fixed later wasn't a real option for a customer-facing product at this scale.</p>
             </section>
 
             <section class="content-section">
-                <span class="section-label">07 Impact</span>
+                <span class="section-label">07 — Impact</span>
                 <h2 class="section-title">A category-defining operational success</h2>
                 <p>The Incident360 Retainer exceeded 200% of first-year sales projections, generating $9M ARR within 12 months. The dashboard was the essential operational infrastructure that made this rapid growth scalable. By shifting touchpoint requests and entitlement tracking to a self-serve model, we eliminated manual overhead for the overstretched IR and CSM teams, successfully mitigating customer churn risk from day one.</p>
                 <div class="outcome-grid">
@@ -218,14 +218,14 @@
             </section>
 
             <section class="content-section">
-                <span class="section-label">08 What's Next</span>
+                <span class="section-label">08 — What's Next</span>
                 <h2 class="section-title">Iterating on entitlement engagement</h2>
                 <p>Post-launch data revealed a behavioral gap: customers weren't proactively using their touchpoints, risking entitlement waste before their term expired. In response, I designed a contextual notification banner system, currently moving toward production, that surfaces unused touchpoints at three checkpoint windows (9 months, 6 months, and 3 months remaining in a customer's term).</p>
                 <p>The logic is intentionally precise: the banner only shows when a customer has active, unused entitlements within a valid term window, escalating from a gentle awareness message at 9 months to a direct urgency nudge at 3 months. It doesn't show outside checkpoint windows, after all touchpoints are used, or in the final 30 days when a new request can no longer be fulfilled. The goal is to prompt action without creating noise, nudging customers to extract value from what they've already paid for, before it expires.</p>
             </section>
 
             <section class="content-section">
-                <span class="section-label">09 Reflection</span>
+                <span class="section-label">09 — Reflection</span>
                 <h2 class="section-title">What I'd do differently</h2>
                 
                 <p><strong>Overhaul Front-loaded Data & Discovery:</strong> I’d fight for direct customer interviews earlier in the process to validate summary widget interpretations, and define behavioral metrics (like IR Planner completion rates) before shipping to ensure day-one data capture was actionable.</p>
@@ -249,4 +249,3 @@
     </footer>
 </body>
 </html>
-
