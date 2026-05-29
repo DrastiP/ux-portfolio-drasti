@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Incident Response Planner | Drasti Patel</title>
+    <title>IR Planner Redesign | Drasti Patel</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -34,8 +34,8 @@
 
     <main class="container">
         <section class="case-study-hero">
-            <h1 class="case-study-title">Incident Response Planner</h1>
-            <p class="case-study-subtitle">A proactive readiness tool designed to help security teams build, test, and maintain their incident response plans before a crisis occurs.</p>
+            <h1 class="case-study-title">IR Planner Redesign: Complexity to Clarity</h1>
+            <p class="case-study-subtitle">Migrating Arctic Wolf’s legacy IR Planner into a Unified Portal under strict parity constraints and a high-velocity 4-month timeline.</p>
             
             <div class="metadata-grid">
                 <div class="metadata-item">
@@ -44,11 +44,11 @@
                 </div>
                 <div class="metadata-item">
                     <h3>Timeline</h3>
-                    <p>4 months · 2024</p>
+                    <p>4 months (Sep 2025 – Jan 2026)</p>
                 </div>
                 <div class="metadata-item">
                     <h3>Team</h3>
-                    <p>IR Readiness · Product</p>
+                    <p>India-based Dev Team (Async-first)</p>
                 </div>
                 <div class="metadata-item">
                     <h3>Org</h3>
@@ -60,42 +60,56 @@
         <article class="case-study-content">
             <section class="content-section">
                 <span class="section-label">01 — Context</span>
-                <h2 class="section-title">Preparation is half the battle</h2>
-                <p>While the IR Dashboard handles active crises, the IR Planner is where the heavy lifting happens during the "calm" periods. Most organizations have an IR plan, but it's often a dusty PDF in a folder that no one has looked at in a year.</p>
-                <p>The goal was to transform these static documents into a dynamic, interactive tool that guides users through the complexity of cybersecurity readiness.</p>
+                <h2 class="section-title">The Redesign Overview</h2>
+                <p>This project started with a constraint most designers would have dreaded: four months, full feature parity, no additions, no removals. The ask was to migrate Arctic Wolf's IR Planner out of a legacy standalone app and into their Unified Portal.</p>
+                <p>What I want to walk you through today isn't just what we built — it's the decisions we made, the things we deliberately chose not to build, and what shipping under real constraints taught me about design leadership.</p>
+                <p>The outcome: a 22% usability improvement measured by SUS scores, plus 41% increase in customer satisfaction and 36% growth in feature adoption post-launch. I'll come back to how we measured those, but I want to earn those numbers first by showing you the decisions behind them.</p>
             </section>
 
             <section class="content-section">
-                <span class="section-label">02 — The problem</span>
-                <h2 class="section-title">The "Checklist" trap</h2>
-                <p>Existing readiness tools often feel like endless checklists. Users experience "planning fatigue" and lose sight of why they are doing the work. During an actual incident, these checklist-based plans often fail because they lack context and clear ownership.</p>
+                <span class="section-label">02 — The Architecture Problem</span>
+                <h2 class="section-title">A broken, fragmented flow</h2>
+                <p>The core problem was architectural. Arctic Wolf's IR Planner lived on a completely separate, legacy portal. Customers who used the Unified Portal every day had to fully context-switch — leave the platform, navigate to a different app, log in again — just to access their incident readiness information.</p>
+                <p>This created two problems simultaneously. From a user perspective: broken flow, inconsistent design patterns, no continuity. From a business perspective: Arctic Wolf was maintaining two separate infrastructures with two separate codebases.</p>
+                <p>The survey validated what we already suspected — 47% of customers had their IR plans insufficiently filled out. Fragmentation and friction were a big part of why.</p>
                 <div class="image-placeholder-large"></div>
             </section>
 
             <section class="content-section">
-                <span class="section-label">03 — Design Solution</span>
-                <h2 class="section-title">Guided Readiness</h2>
-                <p>We moved away from the checklist model toward a "Guided Readiness" approach. The tool breaks down massive plans into manageable modules, using progressive disclosure to keep users focused on one area at a time (e.g., Communication Strategy, Technical Recovery, Legal Compliance).</p>
-                <div class="quote-block">
-                    "We didn't just want to digitize the PDF. We wanted to build a tool that actually improves the quality of the response."
+                <span class="section-label">03 — Constraints That Shaped Everything</span>
+                <h2 class="section-title">Design as a forcing function</h2>
+                <p>Three constraints defined the entire project. First: <strong>lift-and-shift</strong>. Full feature parity, nothing added, nothing removed. Any new scope was a hard no — and this constraint was the most important design forcing function we had.</p>
+                <p>Second: <strong>four months</strong>. Design, build, QA, and launch. Not a lot of runway.</p>
+                <p>Third: <strong>a new development team based in India</strong>. We'd never worked together. Everything had to be async-first — crystal clear specs, tight documentation, deliberate communication rhythms.</p>
+                <div class="goal-card">
+                    <span class="goal-label">Strategy</span>
+                    <p>These weren't obstacles. They were the frame that made every decision sharper.</p>
                 </div>
             </section>
 
             <section class="content-section">
-                <span class="section-label">04 — Outcomes</span>
+                <span class="section-label">04 — Research: The Adoption Gap</span>
+                <h2 class="section-title">Less overwhelming than Excel</h2>
+                <p>Six months before the project kicked off, the team ran a survey of 57 customers. Only 47% had their IR plans sufficiently filled out. 25% had barely started.</p>
+                <p>Here's the important nuance: when we dug into the interviews, the barrier wasn't time or resources — it was friction. Customers understood why the tool mattered. The ones who finished explicitly said they did it so their employees would know what to do in a breach. The motivation was there. The experience was getting in the way.</p>
+                <p>The five customer interviews also revealed something useful about the baseline — before Arctic Wolf, customers were working from Excel spreadsheets, Word docs, and handwritten plans. They described our IR Planner as 'less overwhelming.' That's our bar. Less overwhelming than an Excel template. That told us simplicity and structure were the priority — not feature richness.</p>
+            </section>
+
+            <section class="content-section">
+                <span class="section-label">05 — Outcomes</span>
                 <h2 class="section-title">Measurable Readiness</h2>
                 <div class="outcome-grid">
                     <div class="outcome-card">
-                        <span class="outcome-stat">85%</span>
-                        <span class="outcome-label">Plan completion rate</span>
+                        <span class="outcome-stat">22%</span>
+                        <span class="outcome-label">Usability improvement (SUS)</span>
                     </div>
                     <div class="outcome-card">
-                        <span class="outcome-stat">2x</span>
-                        <span class="outcome-label">Update frequency</span>
+                        <span class="outcome-stat">41%</span>
+                        <span class="outcome-label">Increase in satisfaction</span>
                     </div>
                     <div class="outcome-card">
-                        <span class="outcome-stat">Clearer</span>
-                        <span class="outcome-label">Role accountability</span>
+                        <span class="outcome-stat">36%</span>
+                        <span class="outcome-label">Growth in adoption</span>
                     </div>
                 </div>
             </section>
