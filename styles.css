@@ -176,6 +176,7 @@ html:not([data-theme="dark"]) .moon-icon { display: block; }
     background-color: var(--accent-blue);
     padding: 0 0.1em;
     border-radius: 4px;
+    opacity: 0.8;
 }
 
 .hero-subtitle {
