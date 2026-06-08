@@ -54,6 +54,27 @@ body {
     padding: 0 2rem;
 }
 
+/* WIP Banner */
+.wip-banner {
+    background-color: #fef08a;
+    color: #854d0e;
+    padding: 0.75rem 0;
+    font-weight: 700;
+    text-align: center;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid #facc15;
+    z-index: 1000;
+    position: relative;
+}
+
+[data-theme="dark"] .wip-banner {
+    background-color: #713f12;
+    color: #fef08a;
+    border-bottom: 1px solid #854d0e;
+}
+
 /* Navbar */
 .navbar {
     padding: 2.5rem 0;
