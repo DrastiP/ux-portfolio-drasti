@@ -35,12 +35,44 @@
     <main>
         <section class="hero">
             <div class="container">
-                <div class="hero-label-container">
-                    <div class="hero-line"></div>
-                    <span class="hero-label">Product Designer</span>
+                <style>
+                    @keyframes terminal-blink { 50% { opacity: 0; } }
+                    .terminal-window { display: inline-block; background: #0d1117; border-radius: 10px; overflow: hidden; margin-bottom: 2.5rem; box-shadow: 0 4px 24px rgba(0,0,0,0.18); border: 1px solid rgba(255,255,255,0.08); }
+                    .terminal-bar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: #1c2128; border-bottom: 1px solid rgba(255,255,255,0.06); }
+                    .terminal-bar span { width: 10px; height: 10px; border-radius: 50%; }
+                    .terminal-bar .t-path { font-family: monospace; font-size: 11px; color: rgba(255,255,255,0.3); margin-left: 6px; letter-spacing: 0.04em; }
+                    .terminal-body { padding: 14px 18px; font-family: monospace; font-size: 13px; line-height: 1.8; }
+                    .t-prompt { color: #22c55e; }
+                    .t-cmd { color: #e2e8f0; }
+                    .t-out { color: rgba(255,255,255,0.45); }
+                    .t-val { color: #3b82f6; }
+                    .t-cursor { display: inline-block; width: 8px; height: 14px; background: #3b82f6; vertical-align: -2px; animation: terminal-blink 1s step-end infinite; margin-left: 2px; }
+                    .hero-meta { display: flex; align-items: center; gap: 12px; margin-top: 2rem; flex-wrap: wrap; }
+                    .hero-meta-tag { font-family: monospace; font-size: 11px; color: var(--text-secondary); background: var(--accent-bg); border: 1px solid var(--border-color, rgba(0,0,0,0.1)); border-radius: 6px; padding: 4px 10px; letter-spacing: 0.04em; }
+                </style>
+
+                <div class="terminal-window">
+                    <div class="terminal-bar">
+                        <span style="background:#ff5f57;"></span>
+                        <span style="background:#febc2e;"></span>
+                        <span style="background:#28c840;"></span>
+                        <span class="t-path">~/drasti/product-design</span>
+                    </div>
+                    <div class="terminal-body">
+                        <div><span class="t-prompt">❯</span> <span class="t-cmd">whoami</span></div>
+                        <div><span class="t-out">→</span> <span class="t-val">Drasti Patel</span> <span class="t-out">// Product Designer</span></div>
+                        <div><span class="t-prompt">❯</span> <span class="t-cmd">status</span><span class="t-cursor"></span></div>
+                    </div>
                 </div>
+
                 <h1 class="hero-title">I turn messy, undefined problems into products people <span class="highlight">actually understand.</span></h1>
                 <p class="hero-subtitle">Grounded in research. Comfortable with ambiguity.</p>
+
+                <div class="hero-meta">
+                    <span class="hero-meta-tag">B2B · Enterprise</span>
+                    <span class="hero-meta-tag">Cybersecurity</span>
+                    <span class="hero-meta-tag">Currently @ Arctic Wolf</span>
+                </div>
             </div>
         </section>
 
@@ -102,7 +134,7 @@
                     <article class="project-card">
                         <a href="work/raw-search.html" class="project-link">
                             <div class="project-image-container">
-                                <div class="project-placeholder"></div>
+                                <img src="assets/images/raw-log-search-thumbnail.png" alt="Raw Log Search" class="project-thumbnail">
                             </div>
                             <div class="project-content">
                                 <h2 class="project-title" style="font-size: 1.25rem;">Raw Log Search</h2>
