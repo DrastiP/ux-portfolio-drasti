@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="https://drastiux.design/styles.css">
     <script src="https://drastiux.design/theme.js"></script>
     <style>
+        :root { --accent-blue-dark: #1d4ed8; --ghost-num-opacity: 0.07; --cs-blue: #1d4ed8; --border-color: rgba(0,0,0,0.1); }
+        html.dark, body.dark, [data-theme="dark"] { --accent-blue-dark: #3b82f6; --ghost-num-opacity: 0.2; --cs-blue: #3b82f6; --border-color: rgba(255,255,255,0.1); }
+        @media (prefers-color-scheme: dark) { :root { --accent-blue-dark: #3b82f6; --ghost-num-opacity: 0.2; --cs-blue: #3b82f6; --border-color: rgba(255,255,255,0.1); } }
+        .cs-label { color: var(--cs-blue, #1d4ed8) !important; }
         .image-container { display: block !important; }
         .case-study-image { display: block; width: 100%; height: auto; border-radius: 0.75rem; }
         .image-caption { display: block; text-align: center; margin-top: 1rem; font-size: 0.875rem; color: var(--text-secondary); }
@@ -17,11 +21,35 @@
         .img-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; margin: 2rem 0; }
         .img-grid-2 > div, .img-grid-3 > div { min-width: 0; overflow: hidden; }
         .img-grid-2 img, .img-grid-3 img { width: 100%; height: auto; display: block; border-radius: 0.5rem; }
-        .img-cap, .img-grid-2 .img-cap, .img-grid-3 .img-cap { text-align: center; margin-top: 0.75rem; font-size: 0.65rem; color: var(--text-secondary); opacity: 0.7; word-break: break-word; font-style: italic; letter-spacing: 0.01em; }
+        .img-cap, .img-grid-2 .img-cap, .img-grid-3 .img-cap { text-align: center; margin-top: 1rem; font-size: 0.55rem; color: var(--text-secondary); word-break: break-word; font-style: normal; letter-spacing: 0.08em; text-transform: uppercase; }
         .widget-img { max-width: 680px; width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 0.75rem; }
-        .img-cap-center { text-align: center; margin-top: 0.75rem; font-size: 0.65rem; color: var(--text-secondary); opacity: 0.7; font-style: italic; letter-spacing: 0.01em; }
+        .img-cap-center { text-align: center; margin-top: 1rem; font-size: 0.65rem; color: var(--text-secondary); font-style: normal; letter-spacing: 0.08em; text-transform: uppercase; }
         .case-study-content { counter-reset: fig; }
-        .img-cap-center::before, .img-grid-2 .img-cap::before, .img-grid-3 .img-cap::before, .img-cap::before { counter-increment: fig; content: counter(fig) ". "; font-style: normal; }
+        .img-cap-center::before, .img-grid-2 .img-cap::before, .img-grid-3 .img-cap::before, .img-cap::before { counter-increment: fig; content: "Figure " counter(fig) ". "; }
+
+        /* Hero showcase card */
+        .hero-showcase {
+            position: relative;
+            margin: 0 0 7rem 0;
+            padding: 3rem;
+            background: radial-gradient(ellipse 90% 70% at 50% 30%, rgba(26,107,154,0.22) 0%, rgba(10,18,32,0.7) 55%, transparent 100%);
+            border-radius: 1.75rem;
+            border: 1px solid rgba(26,107,154,0.18);
+            overflow: hidden;
+        }
+        /* Dark mode: give the card a solid backing so it doesn't vanish into the page */
+        html.dark .hero-showcase,
+        body.dark .hero-showcase,
+        [data-theme="dark"] .hero-showcase {
+            background: radial-gradient(ellipse 90% 70% at 50% 30%, rgba(26,107,154,0.38) 0%, rgba(8,16,30,0.98) 60%, rgba(6,12,24,1) 100%);
+            border-color: rgba(26,107,154,0.38);
+        }
+        @media (prefers-color-scheme: dark) {
+            .hero-showcase {
+                background: radial-gradient(ellipse 90% 70% at 50% 30%, rgba(26,107,154,0.38) 0%, rgba(8,16,30,0.98) 60%, rgba(6,12,24,1) 100%);
+                border-color: rgba(26,107,154,0.38);
+            }
+        }
     </style>
 </head>
 <body>
@@ -48,9 +76,9 @@
 
     <main class="container">
         <section class="case-study-hero">
-            <p class="case-study-tags" style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-secondary); margin-bottom: 1.5rem;">Customer Facing &nbsp;·&nbsp; Enterprise &nbsp;·&nbsp; Cybersecurity &nbsp;·&nbsp; Data-Heavy B2B Dashboards</p>
+            <p class="case-study-tags" style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-secondary); margin-bottom: 1.5rem;">Enterprise &nbsp;·&nbsp; B2B Dashboard &nbsp;-&nbsp; Cybersecurity &nbsp;·&nbsp; Customer Facing</p>
             <h1 class="case-study-title">IR Dashboard: Designing the Operational Infrastructure for a $9M Product Launch</h1>
-            <p class="case-study-subtitle">A specialized B2B platform designed to help organizations manage their cyber-security readiness and rapidly respond to active cyber threats.</p>
+            <p class="case-study-subtitle">Designed the operational infrastructure for a $9M B2B security product, turning a bare-bones legacy dashboard into a self-serve platform for enterprise cyber readiness and incident response.</p>
 
             <div class="metadata-grid">
                 <div class="metadata-item">
@@ -73,15 +101,7 @@
         </section>
 
         <!-- FINAL DASHBOARD HERO IMAGE -->
-        <div style="
-            position: relative;
-            margin: 0 0 7rem 0;
-            padding: 3.5rem 3rem 3rem 3rem;
-            background: radial-gradient(ellipse 90% 70% at 50% 30%, rgba(26,107,154,0.22) 0%, rgba(10,18,32,0.7) 55%, transparent 100%);
-            border-radius: 1.75rem;
-            border: 1px solid rgba(26,107,154,0.18);
-            overflow: hidden;
-        ">
+        <div class="hero-showcase">
             <!-- top glow line -->
             <div style="position: absolute; top: 0; left: 10%; right: 10%; height: 1px; background: linear-gradient(90deg, transparent, rgba(99,179,237,0.5), transparent); pointer-events: none;"></div>
             <!-- corner accents -->
@@ -95,11 +115,11 @@
                 width: 100%;
                 height: auto;
                 border-radius: 0.875rem;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.15), 0 8px 24px rgba(0,0,0,0.3), 0 24px 64px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.06);
+                box-shadow: 0 2px 4px rgba(0,0,0,0.15), 0 8px 24px rgba(0,0,0,0.3), 0 24px 64px rgba(0,0,0,0.45), 0 0 0 1px rgba(0,0,0,0.08);
             ">
         </div>
 
-        <article class="case-study-content">
+        <article class="case-study-content" style="max-width: 780px; margin-left: auto; margin-right: auto;">
 
             <!-- 01 CONTEXT --><section class="content-section" id="s01">
                 <span class="section-label">01 — Context</span>
@@ -114,23 +134,23 @@
                 <span class="section-label">02 — The Problem</span>
                 <h2 class="section-title">Three compounding failures in the legacy dashboard</h2>
 
-                <div style="display: flex; flex-direction: column; gap: 0; margin: 2.5rem 0; border: 1px solid var(--border-color, rgba(255,255,255,0.1)); border-radius: 1rem; overflow: hidden;">
-                    <div style="display: grid; grid-template-columns: 2.5rem 1fr; gap: 1.5rem; align-items: start; padding: 1.5rem 2rem; border-bottom: 1px solid var(--border-color, rgba(255,255,255,0.08));">
-                        <span style="font-size: 0.75rem; font-weight: 700; color: var(--accent-blue-dark, #3b82f6); background: rgba(59,130,246,0.12); border-radius: 0.375rem; padding: 0.25rem 0.4rem; text-align: center; line-height: 1.4; letter-spacing: 0.04em;">01</span>
+                <div style="display: flex; flex-direction: column; gap: 0; margin: 2.5rem 0; border: 1px solid var(--border-color, rgba(0,0,0,0.1)); border-radius: 1rem; overflow: hidden;">
+                    <div style="display: grid; grid-template-columns: 2.5rem 1fr; gap: 1.5rem; align-items: start; padding: 1.5rem 2rem; border-bottom: 1px solid var(--border-color, rgba(0,0,0,0.08));">
+                        <span style="font-size: 0.75rem; font-weight: 700; color: #fff; background: var(--accent-blue-dark, #3b82f6); border-radius: 0.375rem; padding: 0.25rem 0.4rem; text-align: center; line-height: 1.4; letter-spacing: 0.04em;">01</span>
                         <div>
                             <h4 style="margin: 0 0 0.35rem 0; font-size: 1rem; color: var(--text-primary);">No Self-Service Option</h4>
                             <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">Routine requests were routed through CSMs and IR specialists — wasting specialized time and creating an unsustainable operational bottleneck at scale.</p>
                         </div>
                     </div>
-                    <div style="display: grid; grid-template-columns: 2.5rem 1fr; gap: 1.5rem; align-items: start; padding: 1.5rem 2rem; border-bottom: 1px solid var(--border-color, rgba(255,255,255,0.08));">
-                        <span style="font-size: 0.75rem; font-weight: 700; color: var(--accent-blue-dark, #3b82f6); background: rgba(59,130,246,0.12); border-radius: 0.375rem; padding: 0.25rem 0.4rem; text-align: center; line-height: 1.4; letter-spacing: 0.04em;">02</span>
+                    <div style="display: grid; grid-template-columns: 2.5rem 1fr; gap: 1.5rem; align-items: start; padding: 1.5rem 2rem; border-bottom: 1px solid var(--border-color, rgba(0,0,0,0.08));">
+                        <span style="font-size: 0.75rem; font-weight: 700; color: #fff; background: var(--accent-blue-dark, #3b82f6); border-radius: 0.375rem; padding: 0.25rem 0.4rem; text-align: center; line-height: 1.4; letter-spacing: 0.04em;">02</span>
                         <div>
                             <h4 style="margin: 0 0 0.35rem 0; font-size: 1rem; color: var(--text-primary);">High Cognitive Load in a Crisis</h4>
                             <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">Dense formatting and no visual hierarchy failed users at exactly the moment clarity mattered most — an active security breach.</p>
                         </div>
                     </div>
                     <div style="display: grid; grid-template-columns: 2.5rem 1fr; gap: 1.5rem; align-items: start; padding: 1.5rem 2rem;">
-                        <span style="font-size: 0.75rem; font-weight: 700; color: var(--accent-blue-dark, #3b82f6); background: rgba(59,130,246,0.12); border-radius: 0.375rem; padding: 0.25rem 0.4rem; text-align: center; line-height: 1.4; letter-spacing: 0.04em;">03</span>
+                        <span style="font-size: 0.75rem; font-weight: 700; color: #fff; background: var(--accent-blue-dark, #3b82f6); border-radius: 0.375rem; padding: 0.25rem 0.4rem; text-align: center; line-height: 1.4; letter-spacing: 0.04em;">03</span>
                         <div>
                             <h4 style="margin: 0 0 0.35rem 0; font-size: 1rem; color: var(--text-primary);">Bare-Bones Functionality</h4>
                             <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">The legacy interface functioned like a static landing page — not an operational workspace where customers could manage their security posture.</p>
@@ -147,27 +167,39 @@
                 <h3 style="margin-top: 4rem;">Hypothesis</h3>
                 <p>I framed our core design challenge around three distinct pillars:</p>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin: 2rem 0 0 0;">
-                    <div style="background: var(--accent-bg); border-radius: 1rem; padding: 1.5rem; border-top: 2px solid var(--accent-blue-dark);">
-                        <p style="font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-blue-dark); margin: 0 0 0.75rem 0;">Readiness</p>
-                        <p style="font-size: 0.95rem; font-weight: 500; line-height: 1.55; color: var(--text-primary); margin: 0;">How might we guide users through incident readiness milestones?</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; margin: 2rem 0 0 0; border: 1px solid var(--border-color, rgba(0,0,0,0.1)); border-radius: 1rem; overflow: hidden;">
+                    <div style="padding: 2rem 1.75rem; position: relative; border-right: 1px solid var(--border-color, rgba(0,0,0,0.1));">
+                        <span style="position: absolute; top: 1.25rem; right: 1.5rem; font-size: 2.5rem; font-weight: 800; color: var(--accent-blue-dark, #3b82f6); opacity: var(--ghost-num-opacity, 0.1); line-height: 1;">01</span>
+                        <p class="cs-label" style="font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 1rem 0;">Readiness</p>
+                        <p style="font-size: 1rem; font-weight: 400; line-height: 1.6; color: var(--text-primary); margin: 0; font-style: italic; opacity: 0.85;">"How might we guide users through incident readiness milestones?"</p>
                     </div>
-                    <div style="background: var(--accent-bg); border-radius: 1rem; padding: 1.5rem; border-top: 2px solid var(--accent-blue-dark);">
-                        <p style="font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-blue-dark); margin: 0 0 0.75rem 0;">Self-Service</p>
-                        <p style="font-size: 0.95rem; font-weight: 500; line-height: 1.55; color: var(--text-primary); margin: 0;">How might we let customers autonomously manage their retainer entitlements?</p>
+                    <div style="padding: 2rem 1.75rem; position: relative; border-right: 1px solid var(--border-color, rgba(0,0,0,0.1));">
+                        <span style="position: absolute; top: 1.25rem; right: 1.5rem; font-size: 2.5rem; font-weight: 800; color: var(--accent-blue-dark, #3b82f6); opacity: var(--ghost-num-opacity, 0.1); line-height: 1;">02</span>
+                        <p class="cs-label" style="font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 1rem 0;">Self-Service</p>
+                        <p style="font-size: 1rem; font-weight: 400; line-height: 1.6; color: var(--text-primary); margin: 0; font-style: italic; opacity: 0.85;">"How might we let customers autonomously manage their retainer entitlements?"</p>
                     </div>
-                    <div style="background: var(--accent-bg); border-radius: 1rem; padding: 1.5rem; border-top: 2px solid var(--accent-blue-dark);">
-                        <p style="font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-blue-dark); margin: 0 0 0.75rem 0;">Crisis Response</p>
-                        <p style="font-size: 0.95rem; font-weight: 500; line-height: 1.55; color: var(--text-primary); margin: 0;">How might we keep emergency escalations instantly accessible during an active breach?</p>
+                    <div style="padding: 2rem 1.75rem; position: relative;">
+                        <span style="position: absolute; top: 1.25rem; right: 1.5rem; font-size: 2.5rem; font-weight: 800; color: var(--accent-blue-dark, #3b82f6); opacity: var(--ghost-num-opacity, 0.1); line-height: 1;">03</span>
+                        <p class="cs-label" style="font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 1rem 0;">Crisis Response</p>
+                        <p style="font-size: 1rem; font-weight: 400; line-height: 1.6; color: var(--text-primary); margin: 0; font-style: italic; opacity: 0.85;">"How might we keep emergency escalations instantly accessible during an active breach?"</p>
                     </div>
                 </div>
 
                 <h3 style="margin-top: 4rem;">Project Goals</h3>
-                <ul style="list-style: none; padding: 0; margin: 1.5rem 0 0 0; display: flex; flex-direction: column; gap: 0.75rem;">
-                    <li style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 1rem; line-height: 1.5;"><span style="color: var(--accent-blue-dark); font-weight: 700; flex-shrink: 0;">→</span> Encourages customers to fill out their IR Planners</li>
-                    <li style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 1rem; line-height: 1.5;"><span style="color: var(--accent-blue-dark); font-weight: 700; flex-shrink: 0;">→</span> Allow customers to manage their Retainer entitlements</li>
-                    <li style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 1rem; line-height: 1.5;"><span style="color: var(--accent-blue-dark); font-weight: 700; flex-shrink: 0;">→</span> Ensure the dashboard is easy to navigate in high-stress situations (aka customer undergoing an active breach)</li>
-                </ul>
+                <div style="margin: 1.5rem 0 0 0; border: 1px solid var(--border-color, rgba(0,0,0,0.1)); border-radius: 1rem; overflow: hidden;">
+                    <div style="display: grid; grid-template-columns: 2rem 1fr; gap: 1.25rem; align-items: center; padding: 1.25rem 1.75rem; border-bottom: 1px solid var(--border-color, rgba(0,0,0,0.08));">
+                        <span style="font-size: 0.7rem; font-weight: 700; color: #fff; background: var(--accent-blue-dark, #3b82f6); border-radius: 0.375rem; padding: 0.2rem 0.4rem; text-align: center; line-height: 1.4; letter-spacing: 0.04em;">01</span>
+                        <p style="margin: 0; font-size: 0.95rem; line-height: 1.5; color: var(--text-primary);">Encourage customers to complete their IR Planners</p>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 2rem 1fr; gap: 1.25rem; align-items: center; padding: 1.25rem 1.75rem; border-bottom: 1px solid var(--border-color, rgba(0,0,0,0.08));">
+                        <span style="font-size: 0.7rem; font-weight: 700; color: #fff; background: var(--accent-blue-dark, #3b82f6); border-radius: 0.375rem; padding: 0.2rem 0.4rem; text-align: center; line-height: 1.4; letter-spacing: 0.04em;">02</span>
+                        <p style="margin: 0; font-size: 0.95rem; line-height: 1.5; color: var(--text-primary);">Allow customers to manage their Retainer entitlements</p>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 2rem 1fr; gap: 1.25rem; align-items: center; padding: 1.25rem 1.75rem;">
+                        <span style="font-size: 0.7rem; font-weight: 700; color: #fff; background: var(--accent-blue-dark, #3b82f6); border-radius: 0.375rem; padding: 0.2rem 0.4rem; text-align: center; line-height: 1.4; letter-spacing: 0.04em;">03</span>
+                        <p style="margin: 0; font-size: 0.95rem; line-height: 1.5; color: var(--text-primary);">Ensure the dashboard is easy to navigate under high stress — including during an active breach</p>
+                    </div>
+                </div>
             </section>
 
             <!-- 03 DISCOVERY & RESEARCH --><section class="content-section" id="s03">
@@ -210,39 +242,54 @@
                 <h2 class="section-title">Dashboard Layout Explorations</h2>
                 <p>Before diving into individual widget designs, I stepped back to explore different layout directions. My main priority was figuring out how the information should be grouped and structured to make the dashboard as intuitive as possible, so I tested three distinct concepts to see what worked best.</p>
 
-                <div style="display: flex; flex-direction: column; gap: 3rem; margin: 3rem 0;">
+                <div style="display: flex; flex-direction: column; gap: 1rem; margin: 3rem 0;">
 
                     <!-- Exploration 1 -->
-                    <div>
-                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem;">
-                            <h4 style="margin: 0; font-size: 1.05rem;">Exploration 1: Flat Equal-Weight Grid</h4>
-                            <span style="font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #fff; background: #c0392b; padding: 0.3rem 0.85rem; border-radius: 2rem; white-space: nowrap; flex-shrink: 0;">Ruled Out</span>
+                    <div style="display: grid; grid-template-columns: 1fr 1.2fr; border: 1px solid var(--border-color, rgba(0,0,0,0.1)); border-radius: 1rem; overflow: hidden; align-items: stretch;">
+                        <div style="padding: 1.75rem 2rem; display: flex; flex-direction: column; justify-content: center; gap: 0.75rem;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+                                <span style="font-size: 0.55rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-secondary); opacity: 0.6;">Exploration 1</span>
+                                <span style="font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #7a5200; background: #f6c94e; padding: 0.2rem 0.7rem; border-radius: 2rem; white-space: nowrap;">Not Chosen</span>
+                            </div>
+                            <h4 style="margin: 0; font-size: 0.95rem; line-height: 1.4;">Flat Equal-Weight Grid</h4>
+                            <p style="font-size: 0.85rem; line-height: 1.65; color: var(--text-secondary); margin: 0;">This concept used a uniform grid where all widgets were the same size. While simple and easy to build, it removed visual hierarchy, making important elements like the IR Planner blend in with less critical data.</p>
+                            <p style="font-size: 0.82rem; line-height: 1.6; color: var(--text-secondary); margin: 0; padding-top: 0.25rem; border-top: 1px solid var(--border-color, rgba(0,0,0,0.08));"><strong style="color: var(--text-primary); font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.06em;">Reasoning — </strong>Increased cognitive load; doesn't support quick, high-priority decision-making.</p>
                         </div>
-                        <p style="font-size: 0.95rem; line-height: 1.65; color: var(--text-secondary); margin: 0 0 0.75rem 0;">This concept used a uniform grid where all widgets were the same size. While simple and easy to build, it removed visual hierarchy, making important elements like the IR Planner and self-serve widgets blend in with less critical data.</p>
-                        <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-secondary); margin: 0 0 1.5rem 0;"><strong style="color: var(--text-primary);">Reasoning:</strong> This increased cognitive load, so it was ruled out since it doesn't support quick, high-priority decision-making in a dashboard.</p>
-                        <img src="../assets/images/IR Dashboard Case Study/5 image. wireframe version one.jpg" alt="Wireframe Exploration 1 — Flat Equal-Weight Grid" style="width: 100%; height: auto; display: block; border-radius: 0.75rem;">
+                        <div style="border-left: 1px solid var(--border-color, rgba(0,0,0,0.1)); background: rgba(128,128,128,0.04); display: flex; align-items: center; justify-content: center; padding: 1.25rem;">
+                            <img src="../assets/images/IR Dashboard Case Study/5 image. wireframe version one.jpg" alt="Wireframe Exploration 1 — Flat Equal-Weight Grid" style="width: 100%; height: auto; display: block; border-radius: 0.5rem;">
+                        </div>
                     </div>
 
                     <!-- Exploration 2 -->
-                    <div>
-                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem;">
-                            <h4 style="margin: 0; font-size: 1.05rem;">Exploration 2: Tabbed Navigation</h4>
-                            <span style="font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #7a5200; background: #f6c94e; padding: 0.3rem 0.85rem; border-radius: 2rem; white-space: nowrap; flex-shrink: 0;">Not Chosen</span>
+                    <div style="display: grid; grid-template-columns: 1fr 1.2fr; border: 1px solid var(--border-color, rgba(0,0,0,0.1)); border-radius: 1rem; overflow: hidden; align-items: stretch;">
+                        <div style="padding: 1.75rem 2rem; display: flex; flex-direction: column; justify-content: center; gap: 0.75rem;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+                                <span style="font-size: 0.55rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-secondary); opacity: 0.6;">Exploration 2</span>
+                                <span style="font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #7a5200; background: #f6c94e; padding: 0.2rem 0.7rem; border-radius: 2rem; white-space: nowrap;">Not Chosen</span>
+                            </div>
+                            <h4 style="margin: 0; font-size: 0.95rem; line-height: 1.4;">Tabbed Navigation</h4>
+                            <p style="font-size: 0.85rem; line-height: 1.65; color: var(--text-secondary); margin: 0;">Split the dashboard into separate tabs (Runbooks, Touchpoints), giving each area space to scale. However, it created an "out of sight, out of mind" problem — critical information hidden when users switch tabs.</p>
+                            <p style="font-size: 0.82rem; line-height: 1.6; color: var(--text-secondary); margin: 0; padding-top: 0.25rem; border-top: 1px solid var(--border-color, rgba(0,0,0,0.08));"><strong style="color: var(--text-primary); font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.06em;">Reasoning — </strong>Tabs suit static data, not monitoring dashboards requiring an always-visible overview.</p>
                         </div>
-                        <p style="font-size: 0.95rem; line-height: 1.65; color: var(--text-secondary); margin: 0 0 0.75rem 0;">This approach split the dashboard into separate tabs (Runbooks, Touchpoints), giving each area space to scale while keeping things organized. However, it created an "out of sight, out of mind" problem, with critical information hidden when users switch tabs, forcing constant back-and-forth navigation.</p>
-                        <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-secondary); margin: 0 0 1.5rem 0;"><strong style="color: var(--text-primary);">Reasoning:</strong> Tabs work better for static data, not monitoring dashboards that require an always-visible big picture.</p>
-                        <img src="../assets/images/IR Dashboard Case Study/6 image. wireframe version two.jpg" alt="Wireframe Exploration 2 — Tabbed Navigation" style="width: 100%; height: auto; display: block; border-radius: 0.75rem;">
+                        <div style="border-left: 1px solid var(--border-color, rgba(0,0,0,0.1)); background: rgba(128,128,128,0.04); display: flex; align-items: center; justify-content: center; padding: 1.25rem;">
+                            <img src="../assets/images/IR Dashboard Case Study/6 image. wireframe version two.jpg" alt="Wireframe Exploration 2 — Tabbed Navigation" style="width: 100%; height: auto; display: block; border-radius: 0.5rem;">
+                        </div>
                     </div>
 
                     <!-- Exploration 3 -->
-                    <div>
-                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem;">
-                            <h4 style="margin: 0; font-size: 1.05rem;">Exploration 3: Overview + Work Area Layout</h4>
-                            <span style="font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #fff; background: #1a7a4a; padding: 0.3rem 0.85rem; border-radius: 2rem; white-space: nowrap; flex-shrink: 0;">Selected</span>
+                    <div style="display: grid; grid-template-columns: 1fr 1.2fr; border: 1px solid rgba(26,107,154,0.35); border-radius: 1rem; overflow: hidden; align-items: stretch;">
+                        <div style="padding: 1.75rem 2rem; display: flex; flex-direction: column; justify-content: center; gap: 0.75rem;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+                                <span style="font-size: 0.55rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-secondary); opacity: 0.6;">Exploration 3</span>
+                                <span style="font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #fff; background: #1a7a4a; padding: 0.2rem 0.7rem; border-radius: 2rem; white-space: nowrap;">Selected</span>
+                            </div>
+                            <h4 style="margin: 0; font-size: 0.95rem; line-height: 1.4;">Overview + Work Area Layout</h4>
+                            <p style="font-size: 0.85rem; line-height: 1.65; color: var(--text-secondary); margin: 0;">Shows a quick synthesis of retainer details alongside the main work area in a single view. Keeps key information visible at all times and reduces navigation between sections to understand status or context.</p>
+                            <p style="font-size: 0.82rem; line-height: 1.6; color: var(--text-secondary); margin: 0; padding-top: 0.25rem; border-top: 1px solid var(--border-color, rgba(0,0,0,0.08));"><strong style="color: var(--text-primary); font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.06em;">Reasoning — </strong>The only approach that delivered the clarity and hierarchy needed for fast decision-making.</p>
                         </div>
-                        <p style="font-size: 0.95rem; line-height: 1.65; color: var(--text-secondary); margin: 0 0 0.75rem 0;">This concept uses a dashboard layout that shows a quick synthesis of retainer details alongside the main work area in a single view. It keeps key information visible at all times and reduces the need for navigation between sections to understand status or context.</p>
-                        <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-secondary); margin: 0 0 1.5rem 0;"><strong style="color: var(--text-primary);">Reasoning:</strong> Requires tight layout discipline to avoid overcrowding, but it was the only approach that delivered the clarity we needed.</p>
-                        <img src="../assets/images/IR Dashboard Case Study/7 image. wireframe version three.jpg" alt="Wireframe Exploration 3 — Overview + Work Area (Selected)" style="width: 100%; height: auto; display: block; border-radius: 0.75rem;">
+                        <div style="border-left: 1px solid rgba(26,107,154,0.35); background: rgba(26,107,154,0.04); display: flex; align-items: center; justify-content: center; padding: 1.25rem;">
+                            <img src="../assets/images/IR Dashboard Case Study/7 image. wireframe version three.jpg" alt="Wireframe Exploration 3 — Overview + Work Area (Selected)" style="width: 100%; height: auto; display: block; border-radius: 0.5rem;">
+                        </div>
                     </div>
 
                 </div>
@@ -332,7 +379,7 @@
                     </div>
                 </div>
 
-                <div style="border: 1px solid var(--border-color, rgba(255,255,255,0.1)); border-radius: 1rem; padding: 1.75rem 2rem; margin: 2rem 0;">
+                <div style="border: 1px solid var(--border-color, rgba(0,0,0,0.1)); border-radius: 1rem; padding: 1.75rem 2rem; margin: 2rem 0;">
                     <p style="font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary); margin: 0 0 1.25rem 0;">Why V1 was cut</p>
                     <div style="display: flex; flex-direction: column; gap: 0.875rem;">
                         <div style="display: flex; align-items: flex-start; gap: 0.875rem;">
@@ -429,37 +476,8 @@
                 <p>The final "Report a Breach" widget effectively solves the crisis paradox. By leveraging strict right-alignment and emergency color contrast in a premium top-row location, the widget remains instantly readable and highly accessible when a customer is under attack, without aggressively shouting over the daily self-serve tools below it.</p>
             </section>
 
-            <!-- 07 WHAT WE DID NOT SHIP --><section class="content-section" id="s07">
-                <span class="section-label">07 — What We Didn't Ship</span>
-                <h2 class="section-title">Killing the "Pizza Tracker"</h2>
-                <p>Stakeholders initially requested a "pizza tracker" widget for real-time incident tracking. While it seemed like a massive win for user visibility, engineering discovery revealed the backend couldn't guarantee real-time accuracy.</p>
-
-                <div class="goal-card">
-                    <span class="goal-label">The Call</span>
-                    <p>I made the call to cut the feature entirely. During an active cyber crisis, delayed data shatters customer trust. I advocated for prioritizing a rock-solid, reliable experience over shipping a well-intentioned but technically brittle feature.</p>
-                </div>
-            </section>
-
-            <!-- 08 VALIDATION --><section class="content-section" id="s08">
-                <span class="section-label">08 — Validation & Alignment</span>
-                <h2 class="section-title">Rapid internal validation under a strict deadline</h2>
-                <p>Due to the strict 3-month launch constraint, formal external usability testing wasn't feasible. To mitigate risk and maintain velocity, I utilized a rapid internal validation strategy:</p>
-
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0;">
-                    <div style="background: var(--accent-bg); border-radius: 1rem; padding: 1.75rem;">
-                        <h4 style="margin-bottom: 0.75rem; font-size: 0.95rem;">CSMs as User Proxies</h4>
-                        <p style="font-size: 0.95rem; line-height: 1.6; margin: 0; color: var(--text-secondary);">I ran rigorous design reviews with Product, Marketing, and Customer Success, leveraging CSMs to validate the layouts against known customer behaviors.</p>
-                    </div>
-                    <div style="background: var(--accent-bg); border-radius: 1rem; padding: 1.75rem;">
-                        <h4 style="margin-bottom: 0.75rem; font-size: 0.95rem;">Workflow Testing</h4>
-                        <p style="font-size: 0.95rem; line-height: 1.6; margin: 0; color: var(--text-secondary);">I internally tested the high-fidelity prototypes to ensure the new self-serve interactions were completely frictionless.</p>
-                    </div>
-                </div>
-                <p>This approach validated the mechanics of the dashboard and secured total cross-functional consensus, clearing a fast, confident path to development.</p>
-            </section>
-
-            <!-- 09 FINAL SOLUTION --><section class="content-section" id="s09">
-                <span class="section-label">09 — The Final Solution</span>
+            <!-- 07 FINAL SOLUTION --><section class="content-section" id="s07">
+                <span class="section-label">07 — The Final Solution</span>
                 <h2 class="section-title">A Unified Experience</h2>
                 <p>When you pull back and look at the final dashboard, the spatial layout really pays off. The goal was never just to make the legacy dashboard "look better" — it was about giving enterprise customers a place to actually work and manage their security posture autonomously. Ultimately, we took a fragmented legacy interface and transformed it into a cohesive, production-ready product using our internal design system.</p>
 
@@ -469,8 +487,8 @@
                 </div>
             </section>
 
-            <!-- 10 OUTCOMES --><section class="content-section" id="s10">
-                <span class="section-label">10 — Outcomes</span>
+            <!-- 08 OUTCOMES --><section class="content-section" id="s08">
+                <span class="section-label">08 — Outcomes</span>
                 <h2 class="section-title">The Business & User Impact</h2>
                 <p>The launch of the Incident360 Retainer was a massive commercial success, driving immense sales and receiving overwhelmingly positive feedback from customers who loved the new self-serve capabilities.</p>
 
@@ -509,8 +527,8 @@
                 </div>
             </section>
 
-            <!-- 11 REFLECTIONS --><section class="content-section" id="s11">
-                <span class="section-label">11 — Reflections</span>
+            <!-- 09 REFLECTIONS --><section class="content-section" id="s09">
+                <span class="section-label">09 — Reflections</span>
                 <h2 class="section-title">Reflections as a Lead Designer</h2>
 
                 <div style="display: flex; flex-direction: column; gap: 1.5rem;">
@@ -544,7 +562,7 @@
         <style>
             .dn-item { display: flex; align-items: center; gap: 10px; cursor: pointer; justify-content: flex-end; }
             .dn-label {
-                font-size: 0.7rem; font-weight: 500; letter-spacing: 0.04em;
+                font-size: 0.55rem; font-weight: 500; letter-spacing: 0.04em;
                 color: #fff; background: rgba(15,20,30,0.85);
                 padding: 3px 8px; border-radius: 4px;
                 white-space: nowrap; pointer-events: none;
@@ -555,13 +573,23 @@
             .dn-item:hover .dn-label { opacity: 1; transform: translateX(0); }
             .dn-dot {
                 width: 6px; height: 6px; border-radius: 50%;
-                background: rgba(255,255,255,0.2);
+                background: rgba(0,0,0,0.25);
                 transition: background 0.2s, width 0.2s, height 0.2s;
                 flex-shrink: 0;
             }
-            .dn-item.done .dn-dot { background: rgba(99,179,237,0.4); }
-            .dn-item.active .dn-dot { width: 9px; height: 9px; background: #63b3ed; }
-            .dn-item:hover .dn-dot { background: rgba(99,179,237,0.7); }
+            .dn-item.done .dn-dot { background: rgba(29,78,216,0.45); }
+            .dn-item.active .dn-dot { width: 9px; height: 9px; background: #1d4ed8; }
+            .dn-item:hover .dn-dot { background: rgba(29,78,216,0.7); }
+            html.dark .dn-dot, body.dark .dn-dot { background: rgba(255,255,255,0.2); }
+            html.dark .dn-item.done .dn-dot, body.dark .dn-item.done .dn-dot { background: rgba(99,179,237,0.4); }
+            html.dark .dn-item.active .dn-dot, body.dark .dn-item.active .dn-dot { background: #63b3ed; }
+            html.dark .dn-item:hover .dn-dot, body.dark .dn-item:hover .dn-dot { background: rgba(99,179,237,0.7); }
+            @media (prefers-color-scheme: dark) {
+                .dn-dot { background: rgba(255,255,255,0.2); }
+                .dn-item.done .dn-dot { background: rgba(99,179,237,0.4); }
+                .dn-item.active .dn-dot { background: #63b3ed; }
+                .dn-item:hover .dn-dot { background: rgba(99,179,237,0.7); }
+            }
         </style>
         <div class="dn-item" data-target="s01"><span class="dn-label">01 — Context</span><span class="dn-dot"></span></div>
         <div class="dn-item" data-target="s02"><span class="dn-label">02 — Problem</span><span class="dn-dot"></span></div>
@@ -569,11 +597,9 @@
         <div class="dn-item" data-target="s04"><span class="dn-label">04 — Ideation</span><span class="dn-dot"></span></div>
         <div class="dn-item" data-target="s05"><span class="dn-label">05 — Layout</span><span class="dn-dot"></span></div>
         <div class="dn-item" data-target="s06"><span class="dn-label">06 — Widgets</span><span class="dn-dot"></span></div>
-        <div class="dn-item" data-target="s07"><span class="dn-label">07 — Cuts</span><span class="dn-dot"></span></div>
-        <div class="dn-item" data-target="s08"><span class="dn-label">08 — Validation</span><span class="dn-dot"></span></div>
-        <div class="dn-item" data-target="s09"><span class="dn-label">09 — Solution</span><span class="dn-dot"></span></div>
-        <div class="dn-item" data-target="s10"><span class="dn-label">10 — Outcomes</span><span class="dn-dot"></span></div>
-        <div class="dn-item" data-target="s11"><span class="dn-label">11 — Reflections</span><span class="dn-dot"></span></div>
+        <div class="dn-item" data-target="s07"><span class="dn-label">07 — Solution</span><span class="dn-dot"></span></div>
+        <div class="dn-item" data-target="s08"><span class="dn-label">08 — Outcomes</span><span class="dn-dot"></span></div>
+        <div class="dn-item" data-target="s09"><span class="dn-label">09 — Reflections</span><span class="dn-dot"></span></div>
     </nav>
     <script>
         (function() {
@@ -620,15 +646,13 @@
             <div class="footer-content">
                 <p class="copyright">&copy; 2026 Drasti Patel. All rights reserved.</p>
                 <div class="footer-links">
-                    <a href="https://linkedin.com/in/drastip">LinkedIn</a>
-                    <a href="https://twitter.com">Twitter</a>
-                    <a href="mailto:drasti.sp@gmail.com">Email</a>
+                    <a href="https://www.linkedin.com/in/drasti/">LinkedIn</a>
+                    <a href="mailto:drastipatel705@gmail.com">Email</a>
                 </div>
             </div>
         </div>
     </footer>
 </body>
 </html>
-
 
 

@@ -609,6 +609,52 @@ figcaption {
     margin: 0 !important;
 }
 
+.data-pill {
+    font-weight: 700;
+    color: var(--text-primary);
+    background-color: var(--accent-blue);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.text-highlight {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.callout-quote {
+    font-size: 1.25rem;
+    font-weight: 600;
+    font-style: italic;
+    color: var(--text-primary);
+    border-left: 3px solid var(--accent-blue-dark);
+    padding-left: 1.5rem;
+    margin: 2.5rem 0;
+    line-height: 1.6;
+}
+
+.key-insight {
+    background-color: var(--accent-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin: 2rem 0;
+}
+
+.key-insight h4 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+}
+
+.key-insight p {
+    font-size: 1.125rem !important;
+    font-weight: 600;
+    margin-bottom: 0 !important;
+}
+
 /* Service Map Component */
 .service-map {
     margin: 4rem 0;
