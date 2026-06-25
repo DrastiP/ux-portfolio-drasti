@@ -283,8 +283,9 @@ html:not([data-theme="dark"]) .moon-icon { display: block; }
 
 .project-card.featured .project-info-header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.625rem;
     margin-bottom: 0.75rem;
 }
 
@@ -296,7 +297,8 @@ html:not([data-theme="dark"]) .moon-icon { display: block; }
 
 .project-meta-tags {
     display: flex;
-    gap: 0.5rem;
+    flex-wrap: wrap;
+    gap: 0.4rem;
 }
 
 .tag {
@@ -304,10 +306,11 @@ html:not([data-theme="dark"]) .moon-icon { display: block; }
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    padding: 2px 6px;
+    padding: 3px 8px;
     border: 1px solid var(--border-color);
-    border-radius: 2px;
+    border-radius: 4px;
     color: var(--text-secondary);
+    white-space: nowrap;
 }
 
 .project-description {
