@@ -10,6 +10,33 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="styles.css?v=1.3">
     <script src="theme.js"></script>
+    <style>
+        .wip-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.92);
+            color: #92400e;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            padding: 5px 11px;
+            border-radius: 999px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+        }
+        .wip-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #f59e0b;
+            animation: wip-blink 1.4s ease-in-out infinite;
+        }
+        @keyframes wip-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.15; } }
+    </style>
 </head>
 <body>
     <header class="navbar">
@@ -69,14 +96,12 @@
 
                         <article class="project-card featured">
                             <a href="work/planner.html" class="project-link">
-                                <div class="project-image-container" style="background-color: #FEE2E2;">
+                                <div class="project-image-container" style="background-color: #FEE2E2; position: relative;">
+                                    <div class="wip-badge"><span class="wip-dot"></span>Work in Progress</div>
                                     <img src="assets/images/IR_Planner_Thumbnail.png" alt="IR Planner" class="project-thumbnail">
                                 </div>
                                 <div class="project-info-header">
-                                    <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
-                                        <h2 class="project-title">Incident Response Planner</h2>
-                                        <span class="tag" style="background: #fef3c7; border-color: #fcd34d; color: #92400e;">WIP</span>
-                                    </div>
+                                    <h2 class="project-title">Incident Response Planner</h2>
                                     <p class="project-company" style="margin: -0.25rem 0 0; font-size: 0.85rem; font-weight: 600; color: var(--text-secondary);">Arctic Wolf</p>
                                     <div class="project-meta-tags">
                                         <span class="tag">UX Research</span>
