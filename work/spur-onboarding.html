@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spur Onboarding | Drasti Patel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="https://drastiux.design/styles.css?v=1.3">
+    <script src="https://drastiux.design/theme.js"></script>
+    <style>
+        :root { --accent-blue-dark: #1d4ed8; --ghost-num-opacity: 0.07; --cs-blue: #1d4ed8; --border-color: rgba(0,0,0,0.1); }
+        html.dark, body.dark, [data-theme="dark"] { --accent-blue-dark: #3b82f6; --ghost-num-opacity: 0.2; --cs-blue: #3b82f6; --border-color: rgba(255,255,255,0.1); }
+        @media (prefers-color-scheme: dark) { :root { --accent-blue-dark: #3b82f6; --ghost-num-opacity: 0.2; --cs-blue: #3b82f6; --border-color: rgba(255,255,255,0.1); } }
+        .cs-label { color: var(--cs-blue, #1d4ed8) !important; }
+        .image-container { display: block !important; }
+        .case-study-image { display: block; width: 100%; height: auto; border-radius: 0.75rem; }
+        .image-caption { display: block; text-align: center; margin-top: 1rem; font-size: 0.875rem; color: var(--text-secondary); }
+        .img-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 3rem 0; }
+        .img-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; margin: 2rem 0; }
+        .img-grid-2 > div, .img-grid-3 > div { min-width: 0; overflow: hidden; }
+        .img-grid-2 img, .img-grid-3 img { width: 100%; height: auto; display: block; border-radius: 0.5rem; }
+        .img-cap, .img-grid-2 .img-cap, .img-grid-3 .img-cap { text-align: center; margin-top: 1rem; font-size: 0.65rem !important; color: var(--text-secondary); word-break: break-word; font-style: normal; letter-spacing: 0.08em; text-transform: uppercase; }
+        .widget-img { max-width: 680px; width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 0.75rem; }
+        .img-cap-center { text-align: center; margin-top: 1rem; font-size: 0.65rem !important; color: var(--text-secondary); font-style: normal; letter-spacing: 0.08em; text-transform: uppercase; }
+        .case-study-content { counter-reset: fig; }
+        .case-study-hero { padding-bottom: 1rem; }
+        .metadata-grid { margin-bottom: 1.5rem; }
+        .content-section { margin-bottom: 3.5rem; }
+        .content-section > p:last-child, .content-section > div:last-child { margin-bottom: 0; }
+        .img-cap-center::before, .img-grid-2 .img-cap::before, .img-grid-3 .img-cap::before, .img-cap::before { counter-increment: fig; content: "Figure " counter(fig) ". "; }
+
+        /* Hero showcase card */
+        .hero-showcase {
+            position: relative;
+            margin: 0 0 7rem 0;
+            padding: 3rem;
+            background: radial-gradient(ellipse 90% 70% at 50% 30%, rgba(26,107,154,0.22) 0%, rgba(10,18,32,0.7) 55%, transparent 100%);
+            border-radius: 1.75rem;
+            border: 1px solid rgba(26,107,154,0.18);
+            overflow: hidden;
+        }
+        html.dark .hero-showcase,
+        body.dark .hero-showcase,
+        [data-theme="dark"] .hero-showcase {
+            background: radial-gradient(ellipse 90% 70% at 50% 30%, rgba(26,107,154,0.38) 0%, rgba(8,16,30,0.98) 60%, rgba(6,12,24,1) 100%);
+            border-color: rgba(26,107,154,0.38);
+        }
+        @media (prefers-color-scheme: dark) {
+            .hero-showcase {
+                background: radial-gradient(ellipse 90% 70% at 50% 30%, rgba(26,107,154,0.38) 0%, rgba(8,16,30,0.98) 60%, rgba(6,12,24,1) 100%);
+                border-color: rgba(26,107,154,0.38);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <a href="../" class="logo">Drasti Patel</a>
+            <div class="nav-right">
+                <nav class="nav-links">
+                    <a href="../#work">Work</a>
+                    <a href="../about.html">About</a>
+                </nav>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 18v1m9-11h1M3 12H1m15.364-6.364l.707-.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
+                    </svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="case-study-hero">
+            <p class="case-study-tags" style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-secondary); margin-bottom: 1.5rem;">Consumer &nbsp;·&nbsp; Onboarding &nbsp;·&nbsp; Web &amp; Mobile &nbsp;·&nbsp; Conversion</p>
+            <h1 class="case-study-title">Spur Onboarding: Registration That Converts &amp; Retains</h1>
+            <p class="case-study-subtitle">Redesigned the registration onboarding flow for Spur, a content creation platform, to alleviate confusion between the two user types and boost sign-up conversion.</p>
+
+            <div class="metadata-grid">
+                <div class="metadata-item">
+                    <h3>Role</h3>
+                    <p>Product Designer</p>
+                </div>
+                <div class="metadata-item">
+                    <h3>Timeline</h3>
+                    <p>Fall 2021</p>
+                </div>
+                <div class="metadata-item">
+                    <h3>Company</h3>
+                    <p>Zighra · Spur team</p>
+                </div>
+                <div class="metadata-item">
+                    <h3>Focus</h3>
+                    <p>Onboarding &amp; conversion</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- HERO IMAGE -->
+        <div style="margin: 0 0 2.5rem 0;">
+            <img src="https://cdn.prod.website-files.com/65aaf2a406c2f8d0fa1a5320/65aaf2a406c2f8d0fa1a546b_Image.png" alt="Spur Onboarding final design" style="
+                display: block;
+                width: 100%;
+                height: auto;
+                border-radius: 1.25rem;
+            ">
+        </div>
+
+        <article class="case-study-content" style="max-width: 780px; margin-left: auto; margin-right: auto;">
+
+            <!-- 01 CONTEXT --><section class="content-section" id="s01">
+                <span class="section-label">01 Context</span>
+                <h2 class="section-title">Project Overview &amp; Context</h2>
+                <p>Zighra is a company that specializes in behavioral biometrics and AI-driven solutions to enhance privacy and security in digital interactions. My team at Zighra was focused on building a decentralized content creation platform called Spur to explore this technology and enhance user security and privacy.</p>
+                <p>During my time at Zighra I was part of the Spur team. Spur is a content creation platform aimed to empower creators by giving them the space to share their content and services, host events, and connect with like-minded individuals to build a community. The platform also has a strong focus on education, with many creators offering services like tutoring and music lessons.</p>
+            </section>
+
+            <!-- 02 THE PROBLEM --><section class="content-section" id="s02">
+                <span class="section-label">02 The Problem</span>
+                <h2 class="section-title">A Long and Confusing Onboarding Journey</h2>
+                <p>Spur's original onboarding flow was severely broken, it was a long and confusing journey. The team initiated a redesign due to these three existing problems within the interface.</p>
+
+                <div style="display: flex; flex-direction: column; gap: 0; margin: 2.5rem 0; border: 1px solid var(--border-color, rgba(0,0,0,0.1)); border-radius: 1rem; overflow: hidden;">
+                    <div style="display: grid; grid-template-columns: 2.5rem 1fr; gap: 1.5rem; align-items: start; padding: 1.5rem 2rem; border-bottom: 1px solid var(--border-color, rgba(0,0,0,0.08));">
+                        <span style="font-size: 0.75rem; font-weight: 700; color: #fff; background: var(--accent-blue-dark, #3b82f6); border-radius: 0.375rem; padding: 0.25rem 0.4rem; text-align: center; line-height: 1.4; letter-spacing: 0.04em;">01</span>
+                        <div>
+                            <h4 style="margin: 0 0 0.35rem 0; font-size: 1rem; color: var(--text-primary);">User Type Uncertainty During Onboarding</h4>
+                            <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">New users didn't know what user type they identified with during onboarding. New users were misidentifying themselves and this led to tons of user complaints and a high drop off rate at onboarding.</p>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 2.5rem 1fr; gap: 1.5rem; align-items: start; padding: 1.5rem 2rem; border-bottom: 1px solid var(--border-color, rgba(0,0,0,0.08));">
+                        <span style="font-size: 0.75rem; font-weight: 700; color: #fff; background: var(--accent-blue-dark, #3b82f6); border-radius: 0.375rem; padding: 0.25rem 0.4rem; text-align: center; line-height: 1.4; letter-spacing: 0.04em;">02</span>
+                        <div>
+                            <h4 style="margin: 0 0 0.35rem 0; font-size: 1rem; color: var(--text-primary);">Vague User-Type Terminology</h4>
+                            <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">Initially the two main user types were called "Business" as in Creator and "User" as in Learner. However, the existing terminology is vague and inconsistent.</p>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 2.5rem 1fr; gap: 1.5rem; align-items: start; padding: 1.5rem 2rem;">
+                        <span style="font-size: 0.75rem; font-weight: 700; color: #fff; background: var(--accent-blue-dark, #3b82f6); border-radius: 0.375rem; padding: 0.25rem 0.4rem; text-align: center; line-height: 1.4; letter-spacing: 0.04em;">03</span>
+                        <div>
+                            <h4 style="margin: 0 0 0.35rem 0; font-size: 1rem; color: var(--text-primary);">Difficulty Navigating to the Sign Up Page</h4>
+                            <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">The Creator sign up page is intertwined with the rest of the sign in flow.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 4rem;">Distinct User Categories</h3>
+                <p>New users faced confusion when deciding whether to sign up as a "Creator" or a "Learner." An example of a Creator is a teacher, whereas a Learner represents a student. The distinction between these two account types was not clear to users.</p>
+                <p>In order to gain insights into the Creator and Learner user categories, we pinpointed the following proto-personas.</p>
+
+                <div style="margin: 2rem 0;">
+                    <img src="https://cdn.prod.website-files.com/65aaf2a406c2f8d0fa1a5320/65aaf2a406c2f8d0fa1a546a_proto-persona-1.png" alt="Proto-personas for the Creator and Learner user categories" style="width: 100%; height: auto; display: block; border-radius: 0.75rem;">
+                    <p class="img-cap-center">Proto-personas developed to understand the Creator and Learner user categories.</p>
+                </div>
+
+                <h3 style="margin-top: 4rem;">Problem Statement</h3>
+                <div class="goal-card">
+                    <span class="goal-label">The question we aimed to answer</span>
+                    <p>"How might we alleviate the confusion between the two user types throughout the sign-up onboarding process?"</p>
+                </div>
+
+                <h3 style="margin-top: 4rem;">Project Goals</h3>
+                <p>Spur's primary goal in the new user onboarding is to enhance user comprehension during sign-up. To gauge how well this goal is met in the new design, we'll assess the following tasks' success rates.</p>
+                <div style="margin: 1.5rem 0 0 0; border: 1px solid var(--border-color, rgba(0,0,0,0.1)); border-radius: 1rem; overflow: hidden;">
+                    <div style="display: grid; grid-template-columns: 2rem 1fr; gap: 1.25rem; align-items: center; padding: 1.25rem 1.75rem; border-bottom: 1px solid var(--border-color, rgba(0,0,0,0.08));">
+                        <span style="font-size: 0.7rem; font-weight: 700; color: #fff; background: var(--accent-blue-dark, #3b82f6); border-radius: 0.375rem; padding: 0.2rem 0.4rem; text-align: center; line-height: 1.4; letter-spacing: 0.04em;">01</span>
+                        <p style="margin: 0; font-size: 0.95rem; line-height: 1.5; color: var(--text-primary);"><strong>Navigate from Landing Page to Sign Up Page:</strong> Are new and existing users able to successfully navigate to the Sign Up / Log In page?</p>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 2rem 1fr; gap: 1.25rem; align-items: center; padding: 1.25rem 1.75rem; border-bottom: 1px solid var(--border-color, rgba(0,0,0,0.08));">
+                        <span style="font-size: 0.7rem; font-weight: 700; color: #fff; background: var(--accent-blue-dark, #3b82f6); border-radius: 0.375rem; padding: 0.2rem 0.4rem; text-align: center; line-height: 1.4; letter-spacing: 0.04em;">02</span>
+                        <p style="margin: 0; font-size: 0.95rem; line-height: 1.5; color: var(--text-primary);"><strong>Select Desired User Type:</strong> Are new users able to correctly identify themselves between a Creator and a Learner?</p>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 2rem 1fr; gap: 1.25rem; align-items: center; padding: 1.25rem 1.75rem;">
+                        <span style="font-size: 0.7rem; font-weight: 700; color: #fff; background: var(--accent-blue-dark, #3b82f6); border-radius: 0.375rem; padding: 0.2rem 0.4rem; text-align: center; line-height: 1.4; letter-spacing: 0.04em;">03</span>
+                        <p style="margin: 0; font-size: 0.95rem; line-height: 1.5; color: var(--text-primary);"><strong>Complete Sign Up / Log In Form:</strong> Are new and existing users able to complete the Sign Up / Log In flow completely?</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 03 RESEARCH --><section class="content-section" id="s03">
+                <span class="section-label">03 Research</span>
+                <h2 class="section-title">Understanding the Broken Flow</h2>
+
+                <h3>Current Design</h3>
+                <p>The original onboarding page of Spur is displayed below, highlighting the main friction points that contribute to the broken onboarding flow.</p>
+
+                <div style="margin: 2rem 0;">
+                    <img src="https://cdn.prod.website-files.com/65aaf2a406c2f8d0fa1a5320/65aaf2a406c2f8d0fa1a546c_Group-33015-1.png" alt="Current design with annotated friction points" style="width: 100%; height: auto; display: block; border-radius: 0.75rem;">
+                    <p class="img-cap-center">The original onboarding page with its main friction points annotated.</p>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 0; margin: 2.5rem 0; border: 1px solid var(--border-color, rgba(0,0,0,0.1)); border-radius: 1rem; overflow: hidden;">
+                    <div style="display: grid; grid-template-columns: 2.5rem 1fr; gap: 1.5rem; align-items: start; padding: 1.5rem 2rem; border-bottom: 1px solid var(--border-color, rgba(0,0,0,0.08));">
+                        <span style="font-size: 0.75rem; font-weight: 700; color: #fff; background: var(--accent-blue-dark, #3b82f6); border-radius: 0.375rem; padding: 0.25rem 0.4rem; text-align: center; line-height: 1.4; letter-spacing: 0.04em;">01</span>
+                        <div>
+                            <h4 style="margin: 0 0 0.35rem 0; font-size: 1rem; color: var(--text-primary);">First Friction Point</h4>
+                            <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">The most significant friction point is related to creating a new account. To create a new account, a registrant must first navigate to the "user" tab and then click the "create an account" button, which is not the primary action on this page. The use of both "Login" and "Create account" buttons as primary and secondary actions is causing confusion.</p>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 2.5rem 1fr; gap: 1.5rem; align-items: start; padding: 1.5rem 2rem; border-bottom: 1px solid var(--border-color, rgba(0,0,0,0.08));">
+                        <span style="font-size: 0.75rem; font-weight: 700; color: #fff; background: var(--accent-blue-dark, #3b82f6); border-radius: 0.375rem; padding: 0.25rem 0.4rem; text-align: center; line-height: 1.4; letter-spacing: 0.04em;">02</span>
+                        <div>
+                            <h4 style="margin: 0 0 0.35rem 0; font-size: 1rem; color: var(--text-primary);">Second Friction Point</h4>
+                            <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">Vague user-type terminology: the "user" and "business" user types are shown without any context, definition or examples.</p>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 2.5rem 1fr; gap: 1.5rem; align-items: start; padding: 1.5rem 2rem;">
+                        <span style="font-size: 0.75rem; font-weight: 700; color: #fff; background: var(--accent-blue-dark, #3b82f6); border-radius: 0.375rem; padding: 0.25rem 0.4rem; text-align: center; line-height: 1.4; letter-spacing: 0.04em;">03</span>
+                        <div>
+                            <h4 style="margin: 0 0 0.35rem 0; font-size: 1rem; color: var(--text-primary);">Third Friction Point</h4>
+                            <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">Limited entry points: an opportunity to increase entry points by incorporating sign-up entry points from the login page.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 4rem;">Heat Map of Current Design</h3>
+                <p>Using Hotjar, we tracked the user movement of 212 users in a 5-day experiment. The heat map provided insight into where users were clicking within the current login page and how frequently areas of the page were visited.</p>
+                <p>This heatmap validated our team's assumption that people were becoming confused between the two distinct user types. Despite having significantly more business/creator users than user/learner users at this stage, the heat map presented conflicting results. The "business/creator" user type had <strong>80% fewer clicks</strong> compared to the "user/learner" user type, which raised concerns.</p>
+
+                <div style="margin: 2rem 0;">
+                    <img src="https://cdn.prod.website-files.com/65aaf2a406c2f8d0fa1a5320/65aaf2a406c2f8d0fa1a546d_heatmap-8385396-click-desktop-(2)-2.png" alt="Hotjar heat map of the current login page" style="width: 100%; height: auto; display: block; border-radius: 0.75rem;">
+                    <p class="img-cap-center">Hotjar heat map tracking 212 users over a 5-day experiment on the current login page.</p>
+                </div>
+
+                <h3 style="margin-top: 4rem;">Current Sign Up &amp; Login Flow</h3>
+                <p>After thorough user testing and research of the user flow, it was found that users are unsure if they are signing up to create and share content or signing up to use and consume the content.</p>
+                <p>Another key finding within the registration flow was the sign-up process for the Learner user type. In the current design, these Learner users have to enter the login flow to sign up and create an account, which is a completely unexpected and terribly confusing user experience.</p>
+
+                <div style="margin: 2rem 0;">
+                    <img src="https://cdn.prod.website-files.com/65aaf2a406c2f8d0fa1a5320/65aaf2a406c2f8d0fa1a546f_current%20flow.png" alt="Current sign up and login flow diagram" style="width: 100%; height: auto; display: block; border-radius: 0.75rem;">
+                    <p class="img-cap-center">The current sign up and login flow, mapping where users get lost.</p>
+                </div>
+
+                <div class="goal-card">
+                    <span class="goal-label">Key insight</span>
+                    <p>"The problem lies in users not knowing what they are signing up for, coupled with the challenging navigation in the current sign-up flow"</p>
+                </div>
+
+                <h3 style="margin-top: 4rem;">Competitive Analysis</h3>
+                <p>To identify best practices for the Spur onboarding redesign, a competitive analysis was conducted.</p>
+                <p><strong>Outcome:</strong> A common design pattern I observed was that each company prominently executed a short, quick sign up flow with enough explanation to prevent confusion for the user. I also noticed that most platforms separated the user types from the landing page.</p>
+
+                <div style="margin: 2rem 0;">
+                    <img src="https://cdn.prod.website-files.com/65aaf2a406c2f8d0fa1a5320/65aaf2a406c2f8d0fa1a546e_comp-matix-1.png" alt="Competitive analysis matrix" style="width: 100%; height: auto; display: block; border-radius: 0.75rem;">
+                    <p class="img-cap-center">Competitive analysis matrix of onboarding patterns across comparable platforms.</p>
+                </div>
+
+                <h3 style="margin-top: 4rem;">User Survey</h3>
+                <p>Although UX writing was not part of the project's scope, the company wanted to conduct an experiment to explore which phrase would be the most appropriate to replace the overly general term "User". <strong>72% of active users chose the phrase "Learner"</strong> over the excessively wide term "User" to represent the customer user type.</p>
+
+                <div style="margin: 2rem 0;">
+                    <img src="https://cdn.prod.website-files.com/65aaf2a406c2f8d0fa1a5320/65aaf2a406c2f8d0fa1a5470_pie.png" alt="User survey results, 72% chose Learner" class="widget-img">
+                    <p class="img-cap-center">Survey results: 72% of active users chose "Learner" to represent the customer user type.</p>
+                </div>
+            </section>
+
+            <!-- 04 IDEATION --><section class="content-section" id="s04">
+                <span class="section-label">04 Ideation</span>
+                <h2 class="section-title">Low-fi Wireframe Iterations</h2>
+                <p>After my team specified the key features that needed to be included on the sign-up page, we developed three distinct design ideas to address the problem space, based on our research findings.</p>
+
+                <div style="display: flex; flex-direction: column; gap: 2.5rem; margin: 3rem 0;">
+                    <div>
+                        <img src="https://cdn.prod.website-files.com/65aaf2a406c2f8d0fa1a5320/65aaf2a406c2f8d0fa1a5475_1.png" alt="Wireframe 1" style="width: 100%; height: auto; display: block; border-radius: 0.75rem;">
+                        <p class="img-cap-center">Wireframe 1, with the elements that worked and the ones that didn't.</p>
+                    </div>
+                    <div>
+                        <img src="https://cdn.prod.website-files.com/65aaf2a406c2f8d0fa1a5320/65aaf2a406c2f8d0fa1a5478_2.png" alt="Wireframe 2" style="width: 100%; height: auto; display: block; border-radius: 0.75rem;">
+                        <p class="img-cap-center">Wireframe 2, exploring a different structure for user type selection.</p>
+                    </div>
+                    <div>
+                        <img src="https://cdn.prod.website-files.com/65aaf2a406c2f8d0fa1a5320/65aaf2a406c2f8d0fa1a547b_wireframe-3-1.png" alt="Wireframe 3" style="width: 100%; height: auto; display: block; border-radius: 0.75rem;">
+                        <p class="img-cap-center">Wireframe 3, the direction that informed the final design.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 05 DESIGN DECISIONS --><section class="content-section" id="s05">
+                <span class="section-label">05 Design Decisions</span>
+                <h2 class="section-title">Three Decisions That Fixed the Flow</h2>
+
+                <div style="display: flex; flex-direction: column; gap: 0; margin: 2.5rem 0; border: 1px solid var(--border-color, rgba(0,0,0,0.1)); border-radius: 1rem; overflow: hidden;">
+                    <div style="display: grid; grid-template-columns: 2.5rem 1fr; gap: 1.5rem; align-items: start; padding: 1.5rem 2rem; border-bottom: 1px solid var(--border-color, rgba(0,0,0,0.08));">
+                        <span style="font-size: 0.75rem; font-weight: 700; color: #fff; background: var(--accent-blue-dark, #3b82f6); border-radius: 0.375rem; padding: 0.25rem 0.4rem; text-align: center; line-height: 1.4; letter-spacing: 0.04em;">01</span>
+                        <div>
+                            <h4 style="margin: 0 0 0.35rem 0; font-size: 1rem; color: var(--text-primary);">Improve User Flow</h4>
+                            <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">The fundamental action of creating an account is split into its own page. This allows the important action to be visible throughout the whole login/sign-up flow, rather than being hidden in the initially complicated navigation system. In order to improve the user onboarding KPI, it was important to separate the sign up and sign in pages to streamline user registration.</p>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 2.5rem 1fr; gap: 1.5rem; align-items: start; padding: 1.5rem 2rem; border-bottom: 1px solid var(--border-color, rgba(0,0,0,0.08));">
+                        <span style="font-size: 0.75rem; font-weight: 700; color: #fff; background: var(--accent-blue-dark, #3b82f6); border-radius: 0.375rem; padding: 0.25rem 0.4rem; text-align: center; line-height: 1.4; letter-spacing: 0.04em;">02</span>
+                        <div>
+                            <h4 style="margin: 0 0 0.35rem 0; font-size: 1rem; color: var(--text-primary);">Providing Context</h4>
+                            <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">The updated design effectively addresses the previous design's challenge of high mental effort by incorporating supporting text, icons, and tooltip functions. These elements collectively enhance user support by providing clearer definitions and examples for different personas.</p>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 2.5rem 1fr; gap: 1.5rem; align-items: start; padding: 1.5rem 2rem;">
+                        <span style="font-size: 0.75rem; font-weight: 700; color: #fff; background: var(--accent-blue-dark, #3b82f6); border-radius: 0.375rem; padding: 0.25rem 0.4rem; text-align: center; line-height: 1.4; letter-spacing: 0.04em;">03</span>
+                        <div>
+                            <h4 style="margin: 0 0 0.35rem 0; font-size: 1rem; color: var(--text-primary);">Increase Entry Points</h4>
+                            <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">Another improvement area was to establish intuitive entry and exit points in the registration interface. This design enables users to sign in from the sign-up page if they already have an account, and likewise, create an account from the login page. These navigation points will boost new onboarding conversion rates for visitors.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin: 2rem 0;">
+                    <img src="https://cdn.prod.website-files.com/65aaf2a406c2f8d0fa1a5320/65aaf2a406c2f8d0fa1a547e_image-127.png" alt="Design decisions annotated on the new sign up page" style="width: 100%; height: auto; display: block; border-radius: 0.75rem;">
+                    <p class="img-cap-center">The three design decisions applied to the new registration interface.</p>
+                </div>
+            </section>
+
+            <!-- 06 FINAL DESIGN --><section class="content-section" id="s06">
+                <span class="section-label">06 The Final Solution</span>
+                <h2 class="section-title">Final Web &amp; Mobile Design</h2>
+
+                <div style="margin: 2rem 0;">
+                    <img src="https://cdn.prod.website-files.com/65aaf2a406c2f8d0fa1a5320/65aaf2a406c2f8d0fa1a547f_Screen-%5BCHANGE-ME%5D.png" alt="Final web design of the Spur sign up page" style="width: 100%; height: auto; display: block; border-radius: 0.75rem;">
+                    <p class="img-cap-center">The final web design, with account creation split into its own clear page.</p>
+                </div>
+
+                <div style="margin: 2rem 0;">
+                    <img src="https://cdn.prod.website-files.com/65aaf2a406c2f8d0fa1a5320/65aaf2a406c2f8d0fa1a5480_23.png" alt="Final web design, additional view" style="width: 100%; height: auto; display: block; border-radius: 0.75rem;">
+                    <p class="img-cap-center">Supporting text, icons, and tooltips give each user type clear context.</p>
+                </div>
+
+                <h3 style="margin-top: 4rem;">Final Mobile Design</h3>
+                <div class="img-grid-3">
+                    <div>
+                        <img src="https://cdn.prod.website-files.com/65aaf2a406c2f8d0fa1a5320/65aaf2a406c2f8d0fa1a5481_Group-4851.png" alt="Final mobile design, screen 1">
+                    </div>
+                    <div>
+                        <img src="https://cdn.prod.website-files.com/65aaf2a406c2f8d0fa1a5320/65aaf2a406c2f8d0fa1a5482_Group-4853.png" alt="Final mobile design, screen 2">
+                    </div>
+                    <div>
+                        <img src="https://cdn.prod.website-files.com/65aaf2a406c2f8d0fa1a5320/65aaf2a406c2f8d0fa1a5483_Group-4853-(1)-1.png" alt="Final mobile design, screen 3">
+                    </div>
+                </div>
+                <p class="img-cap-center" style="margin-top: 0;">The final mobile design of the registration onboarding flow.</p>
+            </section>
+
+            <!-- 07 TESTING & IMPACT --><section class="content-section" id="s07">
+                <span class="section-label">07 Testing &amp; Impact</span>
+                <h2 class="section-title">Validating the Redesign</h2>
+                <p>A remote, moderated usability study based on tasks was conducted with 8 participants to assess the task success rate disparity between the old and new designs. The percentage of users accomplishing tasks successfully in this study is recorded as the success rate. This binary study illustrates a favorable increase in the Task Success Rate for the new design.</p>
+
+                <div class="outcome-grid">
+                    <div class="outcome-card">
+                        <span class="outcome-stat">+29%</span>
+                        <span class="outcome-label">Task 1 · Navigate to Sign Up</span>
+                    </div>
+                    <div class="outcome-card">
+                        <span class="outcome-stat">+23%</span>
+                        <span class="outcome-label">Task 2 · Select User Type</span>
+                    </div>
+                    <div class="outcome-card">
+                        <span class="outcome-stat">+13%</span>
+                        <span class="outcome-label">Task 3 · Complete the Flow</span>
+                    </div>
+                </div>
+
+                <div class="img-grid-2" style="margin-top: 3rem;">
+                    <div>
+                        <img src="https://cdn.prod.website-files.com/65aaf2a406c2f8d0fa1a5320/65aaf2a406c2f8d0fa1a5488_a.png" alt="Task success rate chart, old design">
+                        <p class="img-cap">Task success rates in the old design.</p>
+                    </div>
+                    <div>
+                        <img src="https://cdn.prod.website-files.com/65aaf2a406c2f8d0fa1a5320/65aaf2a406c2f8d0fa1a5489_b.png" alt="Task success rate chart, new design">
+                        <p class="img-cap">Task success rates in the new design.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 08 REFLECTIONS --><section class="content-section" id="s08">
+                <span class="section-label">08 Reflections</span>
+                <h2 class="section-title">Learnings &amp; Outcomes</h2>
+
+                <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    <div style="background: var(--accent-bg); border-radius: 1rem; padding: 2rem;">
+                        <h4 style="margin-bottom: 0.75rem;">Embracing Ambiguity</h4>
+                        <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.65;">The success of the prototyping and user testing phases created great momentum for prioritizing the onboarding redesign for development. But, due to changes in Spur's roadmap, this project was put on the backlog for the development and design team. Nonetheless, this project taught me a lot about embracing ambiguity, asking the right questions, and how to build products for a rapidly expanding user base, all while still delivering impact.</p>
+                    </div>
+                </div>
+            </section>
+
+        </article>
+    </main>
+
+    <!-- DOT NAV TOC -->
+    <nav id="dot-nav" aria-label="Page sections" style="
+        position: fixed;
+        right: 28px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        z-index: 100;
+        opacity: 0;
+        transition: opacity 0.3s;
+    ">
+        <style>
+            .dn-item { display: flex; align-items: center; gap: 10px; cursor: pointer; justify-content: flex-end; }
+            .dn-label {
+                font-size: 0.55rem; font-weight: 500; letter-spacing: 0.04em;
+                color: #fff; background: rgba(15,20,30,0.85);
+                padding: 3px 8px; border-radius: 4px;
+                white-space: nowrap; pointer-events: none;
+                opacity: 0; transform: translateX(6px);
+                transition: opacity 0.18s, transform 0.18s;
+                border: 1px solid rgba(255,255,255,0.1);
+            }
+            .dn-item:hover .dn-label { opacity: 1; transform: translateX(0); }
+            .dn-dot {
+                width: 6px; height: 6px; border-radius: 50%;
+                background: rgba(0,0,0,0.55);
+                transition: background 0.2s, width 0.2s, height 0.2s;
+                flex-shrink: 0;
+            }
+            .dn-item.done .dn-dot { background: rgba(29,78,216,0.45); }
+            .dn-item.active .dn-dot { width: 9px; height: 9px; background: #1d4ed8; }
+            .dn-item:hover .dn-dot { background: rgba(29,78,216,0.7); }
+            html:not(.dark) .dn-dot { background: rgba(0,0,0,0.55) !important; }
+            html:not(.dark) .dn-item.done .dn-dot { background: rgba(29,78,216,0.45) !important; }
+            html:not(.dark) .dn-item.active .dn-dot { background: #1d4ed8 !important; }
+            html:not(.dark) .dn-item:hover .dn-dot { background: rgba(29,78,216,0.7) !important; }
+            html.dark .dn-dot, body.dark .dn-dot { background: rgba(255,255,255,0.3) !important; }
+            html.dark .dn-item.done .dn-dot, body.dark .dn-item.done .dn-dot { background: rgba(99,179,237,0.4) !important; }
+            html.dark .dn-item.active .dn-dot, body.dark .dn-item.active .dn-dot { background: #63b3ed !important; }
+            html.dark .dn-item:hover .dn-dot, body.dark .dn-item:hover .dn-dot { background: rgba(99,179,237,0.7) !important; }
+            @media (prefers-color-scheme: dark) {
+                .dn-dot { background: rgba(255,255,255,0.3); }
+                .dn-item.done .dn-dot { background: rgba(99,179,237,0.4); }
+                .dn-item.active .dn-dot { background: #63b3ed; }
+                .dn-item:hover .dn-dot { background: rgba(99,179,237,0.7); }
+            }
+        </style>
+        <div class="dn-item" data-target="s01"><span class="dn-label">01 Context</span><span class="dn-dot"></span></div>
+        <div class="dn-item" data-target="s02"><span class="dn-label">02 Problem</span><span class="dn-dot"></span></div>
+        <div class="dn-item" data-target="s03"><span class="dn-label">03 Research</span><span class="dn-dot"></span></div>
+        <div class="dn-item" data-target="s04"><span class="dn-label">04 Ideation</span><span class="dn-dot"></span></div>
+        <div class="dn-item" data-target="s05"><span class="dn-label">05 Decisions</span><span class="dn-dot"></span></div>
+        <div class="dn-item" data-target="s06"><span class="dn-label">06 Solution</span><span class="dn-dot"></span></div>
+        <div class="dn-item" data-target="s07"><span class="dn-label">07 Impact</span><span class="dn-dot"></span></div>
+        <div class="dn-item" data-target="s08"><span class="dn-label">08 Reflections</span><span class="dn-dot"></span></div>
+    </nav>
+    <script>
+        (function() {
+            var nav = document.getElementById('dot-nav');
+            var items = Array.from(nav.querySelectorAll('.dn-item'));
+            var sections = items.map(function(i) { return document.getElementById(i.dataset.target); });
+            var activeIdx = -1;
+
+            function update() {
+                var mid = window.innerHeight * 0.45;
+                var best = -1;
+                sections.forEach(function(s, i) {
+                    if (!s) return;
+                    var rect = s.getBoundingClientRect();
+                    if (rect.top <= mid) best = i;
+                });
+                if (best === activeIdx) return;
+                activeIdx = best;
+                items.forEach(function(item, i) {
+                    item.classList.toggle('active', i === best);
+                    item.classList.toggle('done', i < best);
+                });
+            }
+
+            function showNav() {
+                nav.style.opacity = window.scrollY > 200 ? '1' : '0';
+            }
+
+            items.forEach(function(item) {
+                item.addEventListener('click', function() {
+                    var target = document.getElementById(item.dataset.target);
+                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            });
+
+            window.addEventListener('scroll', function() { update(); showNav(); }, { passive: true });
+            update();
+            showNav();
+        })();
+    </script>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="copyright">&copy; 2026 Drasti Patel. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="https://www.linkedin.com/in/drasti/">LinkedIn</a>
+                    <a href="mailto:drastipatel705@gmail.com">Email</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
