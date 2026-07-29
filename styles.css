@@ -659,6 +659,64 @@ body.cs figcaption {
 .cs-figrow-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
 .cs-figrow figure { margin: 0; }
 
+/* ---------- inline data figures ---------- */
+/* Inlined rather than linked as an <img> so the chart inherits the page's
+   typefaces and tokens. Slate carries the neutral bars; signal marks the
+   one finding. Every bar is directly labelled, so identity is never
+   colour-alone. */
+.cs-chart {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+.cs-chart .c-key,
+.cs-chart .c-tick,
+.cs-chart .c-pct,
+.cs-chart .c-note {
+    font-family: var(--cs-mono);
+    fill: var(--cs-muted);
+}
+.cs-chart .c-key  { font-size: 15px; letter-spacing: .14em; text-transform: uppercase; }
+.cs-chart .c-tick { font-size: 14px; }
+.cs-chart .c-pct  { font-size: 14px; }
+.cs-chart .c-note { font-size: 14px; letter-spacing: .12em; text-transform: uppercase; fill: var(--cs-signal); }
+.cs-chart .c-note-tick { stroke: var(--cs-signal); stroke-width: 2; }
+
+.cs-chart .c-grid line { stroke: var(--cs-rule); stroke-width: 1; }
+.cs-chart .c-base { stroke: var(--cs-ink); stroke-width: 1.5; }
+
+.cs-chart .c-bars rect { fill: var(--slate); }
+.cs-chart .c-bars rect.is-signal { fill: var(--cs-signal); }
+
+.cs-chart .c-val {
+    font-family: var(--cs-display);
+    font-weight: 700;
+    font-size: 25px;
+    fill: var(--cs-ink);
+}
+.cs-chart .c-val .is-signal { fill: var(--cs-signal); }
+
+.cs-chart .c-rule line { stroke: var(--cs-rule); stroke-width: 2; }
+.cs-chart .c-rule line.is-signal { stroke: var(--cs-signal); }
+
+.cs-chart .c-cat {
+    font-family: var(--cs-body);
+    font-size: 17px;
+    fill: var(--cs-ink);
+}
+.cs-chart .c-cat .is-signal,
+.cs-chart .c-pct .is-signal { fill: var(--cs-signal); }
+
+@media (max-width: 700px) {
+    .cs-chart .c-key  { font-size: 19px; }
+    .cs-chart .c-cat  { font-size: 21px; }
+    .cs-chart .c-tick,
+    .cs-chart .c-pct,
+    .cs-chart .c-note { font-size: 18px; }
+    .cs-chart .c-val  { font-size: 30px; }
+}
+
 /* ---------- numbered list ---------- */
 .cs-list { list-style: none; padding: 0; margin: 0; }
 .cs-list li {
