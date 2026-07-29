@@ -1,174 +1,309 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raw Search Data Visualization | Drasti Patel</title>
+    <title>Raw Log Search &mdash; Case Study | Drasti Patel</title>
+    <meta name="description" content="Enhancing usability and accuracy for cybersecurity investigations by redesigning Arctic Wolf's unprocessed data search experience.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-    <link rel="stylesheet" href="../styles.css?v=1.3">
+    <link rel="stylesheet" href="../styles.css?v=2.0">
     <script src="../theme.js"></script>
 </head>
-<body>
-    <header class="navbar">
+<body class="cs">
+
+    <div class="topbar">
         <div class="container">
-            <a href="../" class="logo">Drasti Patel</a>
+            <a class="mark" href="../">Drasti Patel</a>
             <div class="nav-right">
-                <nav class="nav-links">
-                    <a href="../#work">Work</a>
+                <nav class="nav">
+                    <a href="../#work" class="is-active">Work</a>
                     <a href="../about.html">About</a>
                 </nav>
                 <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 18v1m9-11h1M3 12H1m15.364-6.364l.707-.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
                     </svg>
-                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                     </svg>
                 </button>
             </div>
         </div>
-    </header>
+    </div>
 
-    <main class="container">
-        <section class="case-study-hero">
-            <h1 class="case-study-title">Raw Log Search Data Visualization</h1>
-            <p class="case-study-subtitle">Enhancing usability and accuracy for cybersecurity investigations by redesigning the unprocessed data search experience.</p>
-            
-            <div class="metadata-grid">
-                <div class="metadata-item">
-                    <h3>Role</h3>
-                    <p>Lead Designer</p>
+    <div class="cs-topbar">
+        <div class="container">
+            <div class="cs-mark"><b>Case study</b> / Arctic Wolf</div>
+            <div class="cs-mark">Visual Design &middot; Big Data</div>
+        </div>
+    </div>
+
+    <header class="cs-hero">
+        <div class="container">
+            <div class="cs-hero-split">
+                <div class="cs-headline">
+                    <p class="cs-eyebrow">Raw Log Search</p>
+                    <h1>Making a giant text file searchable</h1>
+                    <p class="cs-deck">Enhancing usability and accuracy for cybersecurity investigations by redesigning the unprocessed data search experience.</p>
                 </div>
-                <div class="metadata-item">
-                    <h3>Timeline</h3>
-                    <p>Early 2023</p>
-                </div>
-                <div class="metadata-item">
-                    <h3>Team</h3>
-                    <p>Search & Data · Eng</p>
-                </div>
-                <div class="metadata-item">
-                    <h3>Org</h3>
-                    <p>Arctic Wolf</p>
+                <div class="cs-hero-shot">
+                    <img src="../assets/images/Raw Log Search Visuals/1. main.png" alt="The redesigned Raw Log Search interface">
                 </div>
             </div>
-            <figure>
-                <img src="../assets/images/Raw Log Search Visuals/1. main.png" alt="Raw Log Search Main Interface" class="image-placeholder-large" style="background: none; object-fit: contain;">
-                <figcaption>Visual Artifact 1: The redesigned Raw Log Search main interface</figcaption>
-            </figure>
-        </section>
 
-        <article class="case-study-content">
-            <section class="content-section">
-                <span class="section-label">01 — Context</span>
-                <h2 class="section-title">Project Context</h2>
-                <p>Arctic Wolf Networks offers cybersecurity services to businesses, including Raw Log Search, a product currently grappling with usability issues. Our project aims to enhance customer satisfaction and retention for Raw Log Search by investigating design solutions that improve the user experience.</p>
-                <h3>What is a Raw Log Search?</h3>
-                <p>A raw log is an unprocessed file with event records, encompassing data like errors, access logs, and debugging info. The Raw Log Search tool helps customers sift through this data using keywords or preset examples, enhancing query accuracy.</p>
-                <div class="quote-block">
-                    “Raw Log Search allows customers to look at their unprocessed data — none of this data is enriched so it’s a giant text file.”
-                    <br><span style="font-size: 1rem; color: var(--text-secondary);">Marcus Russell, Senior Product Owner @ Arctic Wolf</span>
+            <dl class="cs-meta">
+                <div><dt>Role</dt><dd>Lead Designer</dd></div>
+                <div><dt>Timeline</dt><dd>Early 2023</dd></div>
+                <div><dt>Team</dt><dd>Search &amp; Data, Engineering</dd></div>
+                <div><dt>Org</dt><dd>Arctic Wolf</dd></div>
+            </dl>
+
+            <div class="cs-pao">
+                <div>
+                    <h3>Problem</h3>
+                    <p>Raw Log Search was hidden behind multiple tabs, hard to use, and inefficient search patterns were costing the business money.</p>
                 </div>
-            </section>
-
-            <section class="content-section">
-                <span class="section-label">02 — The problem</span>
-                <h2 class="section-title">Problem Definition</h2>
-                <p>The Raw Log Search is plagued by a number of issues, including poor usability, a lack of user knowledge concerning the most efficient search methods, and the need to access multiple products. These factors all contribute to a significant level of friction.</p>
-                <h3>Problem areas</h3>
-                <ul>
-                    <li><strong>Low Usage Rate:</strong> Not many customers currently use this tool.</li>
-                    <li><strong>Hidden Accessibility:</strong> Hidden within multiple tabs, making it hard to find.</li>
-                    <li><strong>High Costs:</strong> Inefficient research patterns incur unnecessary expenses.</li>
-                </ul>
-                <p class="quote-block">“How might we make the Raw Log search more intuitive to use?”</p>
-                <figure>
-                    <img src="../assets/images/Raw Log Search Visuals/2. existing design.png" alt="Existing Design Audit" class="image-placeholder-large" style="background: none; object-fit: contain;">
-                    <figcaption>Visual Artifact 2: Audit of the existing Raw Log Search design and its usability issues</figcaption>
-                </figure>
-            </section>
-
-            <section class="content-section">
-                <span class="section-label">03 — Research</span>
-                <h2 class="section-title">Competitor Analysis</h2>
-                <p>To enhance the usability and functionality, a competition analysis was undertaken focusing on industry leaders like Rapid7 and Crowdstrike. The findings highlighted that Arctic Wolf's Raw Log Search was relatively less developed compared to industry-leading competitors.</p>
-                <figure>
-                    <img src="../assets/images/Raw Log Search Visuals/3. competitor analysis.png" alt="Competitor Analysis 1" class="image-placeholder-large" style="background: none; object-fit: contain; margin: 1rem 0;">
-                    <figcaption>Visual Artifact 3: Competitor analysis of industry standard interfaces (Part 1)</figcaption>
-                </figure>
-                <figure>
-                    <img src="../assets/images/Raw Log Search Visuals/4. competitor analysis.png" alt="Competitor Analysis 2" class="image-placeholder-large" style="background: none; object-fit: contain; margin: 1rem 0;">
-                    <figcaption>Visual Artifact 4: Competitor analysis of industry standard interfaces (Part 2)</figcaption>
-                </figure>
-            </section>
-
-            <section class="content-section">
-                <span class="section-label">04 — Ideation</span>
-                <h2 class="section-title">Low-fi Wireframes Iterations</h2>
-                <p>We developed distinct design ideas to address the problem space. Iteration focused on organizing search ribbons and managing technical filter density.</p>
-                <h3>Iteration 1: Unified Ribbon</h3>
-                <p>Features a user-friendly search ribbon organized cohesively in a single row, unlike the original multi-row layout.</p>
-                <figure>
-                    <img src="../assets/images/Raw Log Search Visuals/5. wireframe A.png" alt="Wireframe Iteration A" class="image-placeholder-large" style="background: none; object-fit: contain;">
-                    <figcaption>Visual Artifact 5: Wireframe Iteration A - Focusing on a unified search ribbon</figcaption>
-                </figure>
-                <h3>Iteration 2: Filter Integration</h3>
-                <p>Concentrated on strategies to integrate diverse technical filters without cluttering the interface.</p>
-                <figure>
-                    <img src="../assets/images/Raw Log Search Visuals/6. Wireframe B.png" alt="Wireframe Iteration B" class="image-placeholder-large" style="background: none; object-fit: contain;">
-                    <figcaption>Visual Artifact 6: Wireframe Iteration B - Exploring filter density and layout</figcaption>
-                </figure>
-            </section>
-
-            <section class="content-section">
-                <span class="section-label">05 — Design Decisions</span>
-                <h2 class="section-title">Refining the Investigation Tool</h2>
-                <figure>
-                    <img src="../assets/images/Raw Log Search Visuals/7. design decisions.png" alt="Detailed Design Decisions" class="image-placeholder-large" style="background: none; object-fit: contain;">
-                    <figcaption>Visual Artifact 7: Key design decisions for the final interface</figcaption>
-                </figure>
-                <ol style="font-size: 1.125rem; line-height: 1.7; margin-bottom: 1.5rem; padding-left: 1.5rem;">
-                    <li style="margin-bottom: 0.75rem;"><strong>Sub Navigation:</strong> Consistency with other product pages.</li>
-                    <li style="margin-bottom: 0.75rem;"><strong>Case Sensitivity:</strong> Positioned prominently below search input to reduce missed states.</li>
-                    <li style="margin-bottom: 0.75rem;"><strong>Adjustable Histogram:</strong> Enables precise navigation to desired results.</li>
-                    <li style="margin-bottom: 0.75rem;"><strong>Help Documentation:</strong> Integrated guidance for faster results.</li>
-                    <li style="margin-bottom: 0.75rem;"><strong>Support Text:</strong> Helpful cues for technical input requirements.</li>
-                    <li style="margin-bottom: 0.75rem;"><strong>Clear Actions:</strong> Distinguishable primary and secondary actions.</li>
-                    <li style="margin-bottom: 0.75rem;"><strong>Hide Histogram:</strong> Option to declutter the interface when necessary.</li>
-                </ol>
-            </section>
-
-            <section class="content-section">
-                <span class="section-label">06 — Final Design</span>
-                <h2 class="section-title">The Finished Experience</h2>
-                <p>The final solution delivers a high-performance search experience that balances power with ease of use.</p>
-                <figure>
-                    <img src="../assets/images/Raw Log Search Visuals/8. Final design.png" alt="Final High-Fidelity Design" class="image-placeholder-large" style="background: none; object-fit: contain;">
-                    <figcaption>Visual Artifact 8: The final high-fidelity design for Raw Log Search</figcaption>
-                </figure>
-            </section>
-
-            <section class="content-section">
-                <span class="section-label">07 — Outcome</span>
-                <h2 class="section-title">Project Reflections</h2>
-                <p>The revised Raw Log Search design was developed in early 2023. This project provided significant learning experiences in terms of working with design systems and successfully executing an end-to-end project at scale.</p>
-            </section>
-        </article>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <p class="copyright">&copy; 2026 Drasti Patel. All rights reserved.</p>
-                <div class="footer-links">
-                    <a href="https://www.linkedin.com/in/drasti/">LinkedIn</a>
-                    <a href="mailto:drastipatel705@gmail.com">Email</a>
+                <div>
+                    <h3>Approach</h3>
+                    <p>An audit of the existing tool, a competitor analysis against Rapid7 and CrowdStrike, and two wireframe directions tested against filter density.</p>
+                </div>
+                <div>
+                    <h3>Outcome</h3>
+                    <p>A high-performance search experience built on the internal design system, developed in early 2023.</p>
                 </div>
             </div>
         </div>
+    </header>
+
+    <div class="container">
+        <div class="cs-shell">
+
+            <div class="cs-rail">
+                <nav aria-label="Sections">
+                    <a href="#context">01 Context</a>
+                    <a href="#problem">02 The problem</a>
+                    <a href="#research">03 Research</a>
+                    <a href="#ideation">04 Ideation</a>
+                    <a href="#decisions">05 Decisions</a>
+                    <a href="#final">06 Final design</a>
+                    <a href="#outcome">07 Outcome</a>
+                </nav>
+            </div>
+
+            <main class="cs-doc">
+
+                <!-- 01 -->
+                <section class="cs-sec" id="context">
+                    <span class="cs-eyebrow">01 &mdash; Context</span>
+
+                    <p>Arctic Wolf offers cybersecurity services to businesses, including Raw Log Search, a product grappling with usability issues. The project aimed to improve customer satisfaction and retention for Raw Log Search by investigating design solutions that improve the user experience.</p>
+
+                    <h3>What is a raw log search?</h3>
+                    <p>A raw log is an unprocessed file with event records, encompassing data like errors, access logs, and debugging info. The Raw Log Search tool helps customers sift through this data using keywords or preset examples, enhancing query accuracy.</p>
+
+                    <div class="cs-pull">
+                        <blockquote>&ldquo;Raw Log Search allows customers to look at their unprocessed data &mdash; none of this data is enriched so it's a giant text file.&rdquo;</blockquote>
+                        <p class="cs-attr">Marcus Russell &middot; Senior Product Owner, Arctic Wolf</p>
+                    </div>
+                </section>
+
+                <!-- 02 -->
+                <section class="cs-sec" id="problem">
+                    <span class="cs-eyebrow">02 &mdash; The problem</span>
+                    <h2>Three sources of friction</h2>
+
+                    <p>Raw Log Search was plagued by poor usability, a lack of user knowledge concerning the most efficient search methods, and the need to access multiple products. Together these added up to a significant level of friction.</p>
+
+                    <ul class="cs-list">
+                        <li>
+                            <span class="cs-n">01</span>
+                            <span class="cs-q">Low usage rate
+                                <small>Not many customers used the tool at all, despite it being the only route to unprocessed data.</small>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="cs-n">02</span>
+                            <span class="cs-q">Hidden accessibility
+                                <small>Buried within multiple tabs, which made the tool hard to find for anyone who did not already know where it lived.</small>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="cs-n">03</span>
+                            <span class="cs-q">High costs
+                                <small>Inefficient search patterns incurred unnecessary expense on every query run against the raw data.</small>
+                            </span>
+                        </li>
+                    </ul>
+
+                    <div class="cs-reveal">
+                        <p class="cs-lead">Which turned the brief into a single question.</p>
+                        <p class="cs-quote">How might we make Raw Log Search more intuitive to use?</p>
+                    </div>
+
+                    <figure class="cs-wide">
+                        <img src="../assets/images/Raw Log Search Visuals/2. existing design.png" alt="Audit of the existing Raw Log Search design and its usability issues" loading="lazy">
+                        <figcaption>An audit of the existing design and the usability issues it carried.</figcaption>
+                    </figure>
+                </section>
+
+                <!-- 03 -->
+                <section class="cs-sec" id="research">
+                    <span class="cs-eyebrow">03 &mdash; Research</span>
+                    <h2>Competitor analysis</h2>
+
+                    <div class="cs-method"><span class="cs-what">Competitive audit</span><span class="cs-n">Rapid7, CrowdStrike</span></div>
+
+                    <p>To enhance usability and functionality, a competitive analysis was undertaken focusing on industry leaders. The findings highlighted that Arctic Wolf's Raw Log Search was relatively less developed than the industry-leading equivalents.</p>
+
+                    <figure class="cs-wide">
+                        <img src="../assets/images/Raw Log Search Visuals/3. competitor analysis.png" alt="Competitor analysis of industry standard search interfaces, part one" loading="lazy">
+                        <figcaption>Competitor analysis of industry standard interfaces, part one.</figcaption>
+                    </figure>
+
+                    <figure class="cs-wide">
+                        <img src="../assets/images/Raw Log Search Visuals/4. competitor analysis.png" alt="Competitor analysis of industry standard search interfaces, part two" loading="lazy">
+                        <figcaption>Competitor analysis of industry standard interfaces, part two.</figcaption>
+                    </figure>
+                </section>
+
+                <!-- 04 -->
+                <section class="cs-sec" id="ideation">
+                    <span class="cs-eyebrow">04 &mdash; Ideation</span>
+                    <h2>Two wireframe directions</h2>
+
+                    <p>We developed distinct design ideas to address the problem space. Iteration focused on organizing search ribbons and managing technical filter density.</p>
+
+                    <div class="cs-explore">
+                        <div>
+                            <div class="cs-explore-head">
+                                <span class="cs-idx">Iteration 01</span>
+                                <span class="cs-verdict">Unified ribbon</span>
+                            </div>
+                            <h3>One row instead of many</h3>
+                            <p>A user-friendly search ribbon organized cohesively into a single row, unlike the original multi-row layout.</p>
+                            <p class="cs-why">Reduces the vertical scanning cost before a query is even typed.</p>
+                        </div>
+                        <figure>
+                            <img src="../assets/images/Raw Log Search Visuals/5. wireframe A.png" alt="Wireframe iteration A, focusing on a unified search ribbon" loading="lazy">
+                        </figure>
+                    </div>
+
+                    <div class="cs-explore">
+                        <div>
+                            <div class="cs-explore-head">
+                                <span class="cs-idx">Iteration 02</span>
+                                <span class="cs-verdict">Filter integration</span>
+                            </div>
+                            <h3>Density without clutter</h3>
+                            <p>Concentrated on strategies to integrate diverse technical filters without cluttering the interface.</p>
+                            <p class="cs-why">Filters are the power of the tool; hiding them costs accuracy, showing them all costs clarity.</p>
+                        </div>
+                        <figure>
+                            <img src="../assets/images/Raw Log Search Visuals/6. Wireframe B.png" alt="Wireframe iteration B, exploring filter density and layout" loading="lazy">
+                        </figure>
+                    </div>
+                </section>
+
+                <!-- 05 -->
+                <section class="cs-sec" id="decisions">
+                    <span class="cs-eyebrow">05 &mdash; Design decisions</span>
+                    <h2>Refining the investigation tool</h2>
+
+                    <figure class="cs-wide">
+                        <img src="../assets/images/Raw Log Search Visuals/7. design decisions.png" alt="Key design decisions annotated on the final interface" loading="lazy">
+                        <figcaption>The key decisions, annotated on the final interface.</figcaption>
+                    </figure>
+
+                    <dl class="cs-spec">
+                        <dt>Sub navigation</dt>
+                        <dd class="cs-fixed">Consistency with the other product pages, so the tool stops being a place you have to know about.</dd>
+
+                        <dt>Case sensitivity</dt>
+                        <dd>Positioned prominently below the search input to reduce missed states.</dd>
+
+                        <dt>Histogram</dt>
+                        <dd>Adjustable, enabling precise navigation to the desired results.</dd>
+
+                        <dt>Documentation</dt>
+                        <dd>Integrated guidance, so learning the query syntax happens in place rather than in another tab.</dd>
+
+                        <dt>Support text</dt>
+                        <dd>Helpful cues for technical input requirements.</dd>
+
+                        <dt>Actions</dt>
+                        <dd>Clearly distinguishable primary and secondary actions.</dd>
+
+                        <dt>Declutter</dt>
+                        <dd>An option to hide the histogram when it is not needed.</dd>
+                    </dl>
+                </section>
+
+                <!-- 06 -->
+                <section class="cs-sec" id="final">
+                    <span class="cs-eyebrow">06 &mdash; Final design</span>
+                    <h2>The finished experience</h2>
+
+                    <p>The final solution delivers a high-performance search experience that balances power with ease of use.</p>
+
+                    <figure class="cs-wide">
+                        <img src="../assets/images/Raw Log Search Visuals/8. Final design.png" alt="The final high-fidelity design for Raw Log Search" loading="lazy">
+                        <figcaption>The final high-fidelity design for Raw Log Search.</figcaption>
+                    </figure>
+                </section>
+
+                <!-- 07 -->
+                <section class="cs-sec" id="outcome">
+                    <span class="cs-eyebrow">07 &mdash; Outcome</span>
+
+                    <div class="cs-close">
+                        <h2>Reflections</h2>
+                        <p>The revised Raw Log Search design was developed in early 2023. The project was a significant learning experience in working within a design system and executing an end-to-end project at scale.</p>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="cs-next">
+            <span class="cs-eyebrow">Next case study</span>
+            <p style="margin:.5rem 0 0"><a href="spur-onboarding.html">Spur Onboarding <span aria-hidden="true">&rarr;</span></a></p>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container">
+            <span class="copy">&copy; 2026 Drasti Patel. All rights reserved.</span>
+            <span class="links">
+                <a href="https://www.linkedin.com/in/drasti/">LinkedIn</a>
+                <a href="mailto:drastipatel705@gmail.com">Email</a>
+            </span>
+        </div>
     </footer>
+
+    <script>
+        // Highlight the rail link for the section currently in view.
+        (function () {
+            var links = Array.prototype.slice.call(document.querySelectorAll('.cs-rail a'));
+            if (!links.length || !('IntersectionObserver' in window)) return;
+            var map = {};
+            links.forEach(function (a) {
+                var el = document.querySelector(a.getAttribute('href'));
+                if (el) map[el.id] = a;
+            });
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (!entry.isIntersecting) return;
+                    links.forEach(function (a) { a.classList.remove('is-active'); });
+                    if (map[entry.target.id]) map[entry.target.id].classList.add('is-active');
+                });
+            }, { rootMargin: '-20% 0px -70% 0px' });
+            Object.keys(map).forEach(function (id) { observer.observe(document.getElementById(id)); });
+        })();
+    </script>
 </body>
 </html>

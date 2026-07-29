@@ -1,653 +1,475 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Incident Response Dashboard | Drasti Patel</title>
+    <title>IR Dashboard &mdash; Case Study | Drasti Patel</title>
+    <meta name="description" content="Designing the operational infrastructure for a $9M B2B security product launch at Arctic Wolf.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-    <link rel="stylesheet" href="https://drastiux.design/styles.css?v=1.3">
-    <script src="https://drastiux.design/theme.js"></script>
-    <style>
-        :root { --accent-blue-dark: #1d4ed8; --ghost-num-opacity: 0.07; --cs-blue: #1d4ed8; --border-color: rgba(0,0,0,0.1); }
-        html.dark, body.dark, [data-theme="dark"] { --accent-blue-dark: #3b82f6; --ghost-num-opacity: 0.2; --cs-blue: #3b82f6; --border-color: rgba(255,255,255,0.1); }
-        @media (prefers-color-scheme: dark) { :root { --accent-blue-dark: #3b82f6; --ghost-num-opacity: 0.2; --cs-blue: #3b82f6; --border-color: rgba(255,255,255,0.1); } }
-        .cs-label { color: var(--cs-blue, #1d4ed8) !important; }
-        .image-container { display: block !important; }
-        .case-study-image { display: block; width: 100%; height: auto; border-radius: 0.75rem; }
-        .image-caption { display: block; text-align: center; margin-top: 1rem; font-size: 0.875rem; color: var(--text-secondary); }
-        .img-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 3rem 0; }
-        .img-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; margin: 2rem 0; }
-        .img-grid-2 > div, .img-grid-3 > div { min-width: 0; overflow: hidden; }
-        .img-grid-2 img, .img-grid-3 img { width: 100%; height: auto; display: block; border-radius: 0.5rem; }
-        .img-cap, .img-grid-2 .img-cap, .img-grid-3 .img-cap { text-align: center; margin-top: 1rem; font-size: 0.65rem !important; color: var(--text-secondary); word-break: break-word; font-style: normal; letter-spacing: 0.08em; text-transform: uppercase; }
-        .widget-img { max-width: 680px; width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 0.75rem; }
-        .img-cap-center { text-align: center; margin-top: 1rem; font-size: 0.65rem !important; color: var(--text-secondary); font-style: normal; letter-spacing: 0.08em; text-transform: uppercase; }
-        .case-study-content { counter-reset: fig; }
-        .img-cap-center::before, .img-grid-2 .img-cap::before, .img-grid-3 .img-cap::before, .img-cap::before { counter-increment: fig; content: "Figure " counter(fig) ". "; }
-
-        /* Hero showcase card */
-        .hero-showcase {
-            position: relative;
-            margin: 0 0 7rem 0;
-            padding: 3rem;
-            background: radial-gradient(ellipse 90% 70% at 50% 30%, rgba(26,107,154,0.22) 0%, rgba(10,18,32,0.7) 55%, transparent 100%);
-            border-radius: 1.75rem;
-            border: 1px solid rgba(26,107,154,0.18);
-            overflow: hidden;
-        }
-        /* Dark mode: give the card a solid backing so it doesn't vanish into the page */
-        html.dark .hero-showcase,
-        body.dark .hero-showcase,
-        [data-theme="dark"] .hero-showcase {
-            background: radial-gradient(ellipse 90% 70% at 50% 30%, rgba(26,107,154,0.38) 0%, rgba(8,16,30,0.98) 60%, rgba(6,12,24,1) 100%);
-            border-color: rgba(26,107,154,0.38);
-        }
-        @media (prefers-color-scheme: dark) {
-            .hero-showcase {
-                background: radial-gradient(ellipse 90% 70% at 50% 30%, rgba(26,107,154,0.38) 0%, rgba(8,16,30,0.98) 60%, rgba(6,12,24,1) 100%);
-                border-color: rgba(26,107,154,0.38);
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="../styles.css?v=2.0">
+    <script src="../theme.js"></script>
 </head>
-<body>
-    <header class="navbar">
+<body class="cs">
+
+    <div class="topbar">
         <div class="container">
-            <a href="../" class="logo">Drasti Patel</a>
+            <a class="mark" href="../">Drasti Patel</a>
             <div class="nav-right">
-                <nav class="nav-links">
-                    <a href="../#work">Work</a>
+                <nav class="nav">
+                    <a href="../#work" class="is-active">Work</a>
                     <a href="../about.html">About</a>
                 </nav>
                 <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 18v1m9-11h1M3 12H1m15.364-6.364l.707-.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
                     </svg>
-                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                     </svg>
                 </button>
             </div>
         </div>
+    </div>
+
+    <div class="cs-topbar">
+        <div class="container">
+            <div class="cs-mark"><b>Case study</b> / Arctic Wolf</div>
+            <div class="cs-mark">Incident Response &middot; Enterprise SaaS</div>
+        </div>
+    </div>
+
+    <header class="cs-hero">
+        <div class="container">
+            <div class="cs-hero-split">
+                <div class="cs-headline">
+                    <p class="cs-eyebrow">IR Dashboard</p>
+                    <h1>Designing the operational infrastructure for a $9M launch</h1>
+                    <p class="cs-deck">A bare-bones legacy dashboard became the self-serve workspace for enterprise cyber readiness and incident response.</p>
+                </div>
+                <div class="cs-hero-shot">
+                    <img src="../assets/images/IR Dashboard Case Study/15 image. Final Design IR Dashboard.png" alt="The redesigned Arctic Wolf Incident Response dashboard">
+                </div>
+            </div>
+
+            <dl class="cs-meta">
+                <div><dt>Role</dt><dd>Lead Product Designer<br>UX Service Owner, Incident Response</dd></div>
+                <div><dt>Timeline</dt><dd>Three months<br>Q1 2025</dd></div>
+                <div><dt>Team</dt><dd>Product, Engineering, IR, Concierge, Triage</dd></div>
+                <div><dt>Recognition</dt><dd>IDC Market Note<br>July 2025</dd></div>
+            </dl>
+
+            <div class="cs-pao">
+                <div>
+                    <h3>Problem</h3>
+                    <p>A new premium retainer product had no customer-facing home. The legacy dashboard offered no self-service, no hierarchy, and no way to act during a breach.</p>
+                </div>
+                <div>
+                    <h3>Approach</h3>
+                    <p>Technical discovery with SMEs and CSMs to establish what could surface, then a layout that separates fast factual checks from active self-serve work.</p>
+                </div>
+                <div>
+                    <h3>Outcome</h3>
+                    <p>$9M in revenue within 12 months of launch, and an IDC Market Note that named the dashboard directly.</p>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <main class="container">
-        <section class="case-study-hero">
-            <p class="case-study-tags" style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-secondary); margin-bottom: 1.5rem;">Enterprise &nbsp;·&nbsp; B2B Dashboard &nbsp;·&nbsp; Cybersecurity &nbsp;·&nbsp; Customer Facing</p>
-            <h1 class="case-study-title">IR Dashboard: Designing the Operational Infrastructure for a $9M Product Launch</h1>
-            <p class="case-study-subtitle">Designed the operational infrastructure for a $9M B2B security product, turning a bare-bones legacy dashboard into a self-serve platform for enterprise cyber readiness and incident response.</p>
+    <div class="container">
+        <div class="cs-shell">
 
-            <div class="metadata-grid">
-                <div class="metadata-item">
-                    <h3>Role</h3>
-                    <p>Lead Product Designer · UX Service Owner, Incident Response</p>
-                </div>
-                <div class="metadata-item">
-                    <h3>Timeline</h3>
-                    <p>3 months · Q1 2025</p>
-                </div>
-                <div class="metadata-item">
-                    <h3>Team</h3>
-                    <p>Product, Engineering, IR, Concierge, Triage teams</p>
-                </div>
-                <div class="metadata-item">
-                    <h3>Recognition</h3>
-                    <p>IDC Market Note July 2025</p>
-                </div>
+            <div class="cs-rail">
+                <nav aria-label="Sections">
+                    <a href="#context">01 Context</a>
+                    <a href="#problem">02 The problem</a>
+                    <a href="#research">03 Research</a>
+                    <a href="#ideation">04 Ideation</a>
+                    <a href="#layout">05 Layout</a>
+                    <a href="#widgets">06 Widgets</a>
+                    <a href="#shipped">07 What shipped</a>
+                    <a href="#impact">08 Impact</a>
+                    <a href="#reflection">09 Reflection</a>
+                </nav>
             </div>
-        </section>
 
-        <!-- FINAL DASHBOARD HERO IMAGE -->
-        <div class="hero-showcase">
-            <!-- top glow line -->
-            <div style="position: absolute; top: 0; left: 10%; right: 10%; height: 1px; background: linear-gradient(90deg, transparent, rgba(99,179,237,0.5), transparent); pointer-events: none;"></div>
-            <!-- corner accents -->
-            <div style="position: absolute; top: 1rem; left: 1rem; width: 18px; height: 18px; border-top: 1.5px solid rgba(99,179,237,0.4); border-left: 1.5px solid rgba(99,179,237,0.4); border-radius: 2px 0 0 0; pointer-events: none;"></div>
-            <div style="position: absolute; top: 1rem; right: 1rem; width: 18px; height: 18px; border-top: 1.5px solid rgba(99,179,237,0.4); border-right: 1.5px solid rgba(99,179,237,0.4); border-radius: 0 2px 0 0; pointer-events: none;"></div>
-            <div style="position: absolute; bottom: 1rem; left: 1rem; width: 18px; height: 18px; border-bottom: 1.5px solid rgba(99,179,237,0.4); border-left: 1.5px solid rgba(99,179,237,0.4); border-radius: 0 0 0 2px; pointer-events: none;"></div>
-            <div style="position: absolute; bottom: 1rem; right: 1rem; width: 18px; height: 18px; border-bottom: 1.5px solid rgba(99,179,237,0.4); border-right: 1.5px solid rgba(99,179,237,0.4); border-radius: 0 0 2px 0; pointer-events: none;"></div>
-            <!-- image -->
-            <img src="../assets/images/IR Dashboard Case Study/15 image. Final Design IR Dashboard.png" alt="Final IR Dashboard Design" style="
-                display: block;
-                width: 100%;
-                height: auto;
-                border-radius: 0.875rem;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.15), 0 8px 24px rgba(0,0,0,0.3), 0 24px 64px rgba(0,0,0,0.45), 0 0 0 1px rgba(0,0,0,0.08);
-            ">
+            <main class="cs-doc">
+
+                <!-- 01 -->
+                <section class="cs-sec" id="context">
+                    <span class="cs-eyebrow">01 &mdash; Context</span>
+
+                    <p>Arctic Wolf was launching a new incident response product, Incident360 Retainers. The legacy platform had to evolve to carry self-service for a set of premium contractual benefits it had never been built to hold.</p>
+
+                    <h3>My role</h3>
+                    <p>I was Lead Product Designer, owning the end-to-end experience from technical discovery and research through to high-fidelity design. Inside a compressed three-month window, my job was to turn a complex new enterprise offering into a clear, production-ready customer-facing interface.</p>
+                </section>
+
+                <!-- 02 -->
+                <section class="cs-sec" id="problem">
+                    <span class="cs-eyebrow">02 &mdash; The problem</span>
+                    <h2>Three compounding failures in the legacy dashboard</h2>
+
+                    <ul class="cs-list">
+                        <li>
+                            <span class="cs-n">01</span>
+                            <span class="cs-q">No self-service option
+                                <small>Routine requests were routed through CSMs and IR specialists, spending specialist time on scheduling and creating a bottleneck that would not survive scale.</small>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="cs-n">02</span>
+                            <span class="cs-q">High cognitive load in a crisis
+                                <small>Dense formatting and no visual hierarchy failed users at exactly the moment clarity mattered most: an active security breach.</small>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="cs-n">03</span>
+                            <span class="cs-q">Bare-bones functionality
+                                <small>The interface behaved like a static landing page rather than an operational workspace where customers could manage their security posture.</small>
+                            </span>
+                        </li>
+                    </ul>
+
+                    <figure class="cs-wide">
+                        <img src="../assets/images/IR Dashboard Case Study/1 Image. IRJS OLD.png" alt="The legacy Incident Response dashboard" loading="lazy">
+                        <figcaption>The legacy IR Dashboard. No hierarchy, no self-serve functionality, nothing to act on.</figcaption>
+                    </figure>
+
+                    <h3>How I framed the challenge</h3>
+                    <p>Three pillars, each one tied to a distinct user state rather than a feature area.</p>
+
+                    <ul class="cs-list">
+                        <li><span class="cs-n">01</span><span class="cs-q">How might we guide users through incident readiness milestones?</span></li>
+                        <li><span class="cs-n">02</span><span class="cs-q">How might we let customers autonomously manage their retainer entitlements?</span></li>
+                        <li><span class="cs-n">03</span><span class="cs-q">How might we keep emergency escalation instantly accessible during an active breach?</span></li>
+                    </ul>
+
+                    <dl class="cs-spec">
+                        <dt>Goal 01</dt>
+                        <dd class="cs-fixed">Encourage customers to complete their IR Planners.</dd>
+
+                        <dt>Goal 02</dt>
+                        <dd class="cs-fixed">Allow customers to manage their retainer entitlements without a CSM.</dd>
+
+                        <dt>Goal 03</dt>
+                        <dd class="cs-fixed">Keep the dashboard navigable under high stress, including during an active breach.</dd>
+                    </dl>
+                </section>
+
+                <!-- 03 -->
+                <section class="cs-sec" id="research">
+                    <span class="cs-eyebrow">03 &mdash; Research and discovery</span>
+
+                    <div class="cs-stat">
+                        <span class="cs-figure">3 months</span>
+                        <p class="cs-cap">From research and testing through development to post-launch QA. Less than one quarter, end to end.</p>
+                        <p class="cs-src">The constraint that shaped every decision</p>
+                    </div>
+
+                    <div class="cs-method"><span class="cs-what">SME and stakeholder interviews</span><span class="cs-n">Technical, CSM, product</span></div>
+
+                    <p>The timeline meant I could not design in a vacuum. To understand the technical landscape, the data-tracking requirements, and the gap between what needed to surface and what was feasible to surface, I interviewed and worked directly with technical subject matter experts, Customer Success Managers, and product partners.</p>
+
+                    <p>That produced a comprehensive system user flow, which aligned UX, product, and development by letting us stress-test the feasibility of requirements like submitting a breach threat and requesting a touchpoint review.</p>
+
+                    <figure class="cs-wide">
+                        <img src="../assets/images/IR Dashboard Case Study/2 Image. Bundled &amp; Standalone Customer and Internal Experience.jpg" alt="System user flow mapping current and future states for emergency and touchpoint requests across retainer tiers" loading="lazy">
+                        <figcaption>Current and future states, used to validate how emergency and touchpoint requests would be processed across retainer tiers.</figcaption>
+                    </figure>
+
+                    <div class="cs-method"><span class="cs-what">Prior survey review</span><span class="cs-n">IR customers</span></div>
+
+                    <div class="cs-reveal">
+                        <p class="cs-lead">Reviewing past research surfaced the number that reframed one of our goals.</p>
+                        <p class="cs-quote">47% completion</p>
+                        <p class="cs-after">More than half of surveyed IR customers had not started their plan at all.</p>
+                    </div>
+
+                    <p>An audit of the legacy dashboard explained part of it. The interface did not clearly communicate the state of the IR Plan, specifically whether it had been started, so customers had no signal telling them when to act.</p>
+
+                    <figure class="cs-wide">
+                        <img src="../assets/images/IR Dashboard Case Study/4 Image. graph.jpg" alt="Survey data showing a 47% IR Planner completion rate" loading="lazy">
+                        <figcaption>With 53% of customers not yet using the IR Planner, the opportunity was adoption: making it easier to start and easier to understand the value.</figcaption>
+                    </figure>
+
+                    <figure class="cs-wide">
+                        <img src="../assets/images/IR Dashboard Case Study/3 Image. old purple.jpg" alt="The legacy JumpStart IR Planner widget, the primary call to action on the old dashboard" loading="lazy">
+                        <figcaption>The outline marks the legacy JumpStart IR Planner widget, which served as the primary call to action on the old dashboard.</figcaption>
+                    </figure>
+                </section>
+
+                <!-- 04 -->
+                <section class="cs-sec" id="ideation">
+                    <span class="cs-eyebrow">04 &mdash; Ideation</span>
+                    <h2>Three layout directions</h2>
+
+                    <p>Before designing individual widgets I stepped back to the structure. The question was how information should be grouped so the dashboard could be read quickly, so I tested three distinct concepts against it.</p>
+
+                    <div class="cs-explore">
+                        <div>
+                            <div class="cs-explore-head">
+                                <span class="cs-idx">Exploration 01</span>
+                                <span class="cs-verdict">Not chosen</span>
+                            </div>
+                            <h3>Flat equal-weight grid</h3>
+                            <p>A uniform grid with every widget the same size. Simple to build, but it removed hierarchy entirely, so the IR Planner sat at the same weight as the least critical data on the page.</p>
+                            <p class="cs-why">Increased cognitive load. Does not support fast, high-priority decisions.</p>
+                        </div>
+                        <figure>
+                            <img src="../assets/images/IR Dashboard Case Study/5 image. wireframe version one.jpg" alt="Wireframe of a flat equal-weight grid layout" loading="lazy">
+                        </figure>
+                    </div>
+
+                    <div class="cs-explore">
+                        <div>
+                            <div class="cs-explore-head">
+                                <span class="cs-idx">Exploration 02</span>
+                                <span class="cs-verdict">Not chosen</span>
+                            </div>
+                            <h3>Tabbed navigation</h3>
+                            <p>Splitting the dashboard into separate tabs for runbooks and touchpoints gave each area room to scale, but hid critical information the moment a user switched away from it.</p>
+                            <p class="cs-why">Tabs suit static data, not a monitoring surface that needs an always-visible overview.</p>
+                        </div>
+                        <figure>
+                            <img src="../assets/images/IR Dashboard Case Study/6 image. wireframe version two.jpg" alt="Wireframe of a tabbed navigation layout" loading="lazy">
+                        </figure>
+                    </div>
+
+                    <div class="cs-explore is-selected">
+                        <div>
+                            <div class="cs-explore-head">
+                                <span class="cs-idx">Exploration 03</span>
+                                <span class="cs-verdict">Selected</span>
+                            </div>
+                            <h3>Overview and work area</h3>
+                            <p>A quick synthesis of retainer details sitting above the main work area in a single view. Key information stays visible at all times, and understanding status no longer requires navigating anywhere.</p>
+                            <p class="cs-why">The only direction that delivered the clarity and hierarchy fast decisions require.</p>
+                        </div>
+                        <figure>
+                            <img src="../assets/images/IR Dashboard Case Study/7 image. wireframe version three.jpg" alt="Wireframe of the selected overview and work area layout" loading="lazy">
+                        </figure>
+                    </div>
+                </section>
+
+                <!-- 05 -->
+                <section class="cs-sec" id="layout">
+                    <span class="cs-eyebrow">05 &mdash; Layout architecture</span>
+                    <h2>Two groups, two jobs</h2>
+
+                    <p>Feedback from Customer Success, product, and customers all pointed at the same need for a more intentional structure. The selected layout worked because it split the page along a real distinction: what people read, and what people do.</p>
+
+                    <div class="cs-decision">
+                        <h3>Group 1 &mdash; Quick, factual information</h3>
+                        <dl>
+                            <dt>Behaviour</dt>
+                            <dd>Users frequently log in only to validate what they purchased. Within seconds they need to answer a short mental checklist: what tier did I buy, when does it renew, and how many entitlements are left.</dd>
+                            <dt>Shipped</dt>
+                            <dd>A compact, scannable header row. Lightweight by design and intentionally free of complex interaction, showing the retainer name, available readiness touchpoints, covered cases, and renewal dates.</dd>
+                        </dl>
+                        <figure>
+                            <img src="../assets/images/IR Dashboard Case Study/8 Image. decision two.png" alt="The compact header row showing retainer name, touchpoints, covered cases and renewal dates" loading="lazy">
+                            <figcaption>Group 1. Retainer name, available touchpoints, covered incidents and renewal dates, readable at a glance.</figcaption>
+                        </figure>
+                    </div>
+
+                    <div class="cs-decision">
+                        <h3>Group 2 &mdash; High-interaction work area</h3>
+                        <dl>
+                            <dt>Behaviour</dt>
+                            <dd>This is where customers actually work: requesting touchpoints, managing the account, downloading runbooks, comparing tiers, and tracking IR Planner progress.</dd>
+                            <dt>Shipped</dt>
+                            <dd>The bulk of the screen, grouped into a single action-focused area so interactive tasks sit together rather than being scattered across the page.</dd>
+                        </dl>
+                        <figure>
+                            <img src="../assets/images/IR Dashboard Case Study/9 Image design row  (3).png" alt="The final dashboard layout with both groups combined" loading="lazy">
+                            <figcaption>The two groups together.</figcaption>
+                        </figure>
+                    </div>
+                </section>
+
+                <!-- 06 -->
+                <section class="cs-sec" id="widgets">
+                    <span class="cs-eyebrow">06 &mdash; Widget design</span>
+                    <h2>From architecture to action</h2>
+
+                    <p>With the macro layout settled, the next problem was the components that fill it. Three widgets carried the three framing questions, each placed in the zone that matched its job.</p>
+
+                    <div class="cs-decision">
+                        <h3>The IR Planner widget</h3>
+                        <dl>
+                            <dt>Problem</dt>
+                            <dd>The planner is critical to readiness, but engagement suffered from inertia. Customers who had not started needed an unmissable call to action; customers mid-plan needed a fast visual way to track progress so they would not stall out.</dd>
+                            <dt>Decided by</dt>
+                            <dd>The 47% completion figure, and the dashboard audit showing that plan state was never communicated.</dd>
+                            <dt>V1</dt>
+                            <dd>Surfaced granular sub-sections, breaking Response down into Legal, Technical and Financial leaders. Cut for two reasons: the density overwhelmed a confined widget, and sub-sections are not universally applicable when business sizes vary this much.</dd>
+                            <dt>Shipped</dt>
+                            <dd>A dedicated high-contrast unstarted state with a single START action routing into onboarding, and a started state showing core sections with simplified progress bars. Readiness becomes readable without making assumptions about how an organization is structured.</dd>
+                        </dl>
+                        <div class="cs-compare">
+                            <figure class="cs-before">
+                                <span class="cs-tag">V1</span>
+                                <img src="../assets/images/IR Dashboard Case Study/10 image. ir planner wid before.png" alt="IR Planner widget version one with a granular sub-section breakdown" loading="lazy">
+                            </figure>
+                            <figure class="cs-after">
+                                <span class="cs-tag">V2 &mdash; shipped</span>
+                                <img src="../assets/images/IR Dashboard Case Study/12 image. ir planner wid after.png" alt="IR Planner widget version two with simplified progress bars" loading="lazy">
+                            </figure>
+                        </div>
+                    </div>
+
+                    <div class="cs-decision">
+                        <h3>The touchpoint self-serve widget</h3>
+                        <dl>
+                            <dt>Problem</dt>
+                            <dd>Customers improve their posture through expert-led sessions, but this was a brand-new offering with no booking process at all. They needed to evaluate three touchpoint types, book without a support ticket, and see history from past sessions.</dd>
+                            <dt>Constraint</dt>
+                            <dd>Manual ticket submission was off the table from the business side. It would not scale, so self-serve had to work from day one.</dd>
+                            <dt>Shipped</dt>
+                            <dd>A tabbed architecture, one touchpoint type per tab. Selecting a tab updates the body copy with the name and a short description, which removes the ambiguity that otherwise turns into support volume.</dd>
+                            <dt>Hierarchy</dt>
+                            <dd>Request Touchpoint as the high-contrast primary, which validates entitlement intent and moves the user into delivery. View Touchpoints as a lower-emphasis secondary for notes, documents and feedback from completed sessions.</dd>
+                        </dl>
+                        <figure>
+                            <img src="../assets/images/IR Dashboard Case Study/13 image. touchpoint widget.png" alt="The final touchpoint widget with tabbed architecture and a request and view action pair" loading="lazy">
+                            <figcaption>The shipped touchpoint widget. Educational context paired with a strict action hierarchy.</figcaption>
+                        </figure>
+                    </div>
+
+                    <div class="cs-decision">
+                        <h3>The emergency &ldquo;Report a Breach&rdquo; widget</h3>
+                        <dl>
+                            <dt>Problem</dt>
+                            <dd>A customer under active attack is in a panic state. They need a literal emergency button: radically clear, findable within seconds, with zero room for searching through menus.</dd>
+                            <dt>Tension</dt>
+                            <dd>The action must demand attention when it matters, without dominating the screen every other day of the year. It represents a rare worst case.</dd>
+                            <dt>Shipped</dt>
+                            <dd>Placed in the Group 1 top row, where eye-tracking patterns show customers look first. Right-aligned to separate it from passive retainer data so it reads as a distinct high-priority action rather than another account stat.</dd>
+                            <dt>Why not bigger</dt>
+                            <dd>Deep red contrast and placement do the work instead of size. The element stays small, and the balance of the everyday workspace survives.</dd>
+                        </dl>
+                        <div class="cs-compare">
+                            <figure class="cs-before">
+                                <span class="cs-tag">Before</span>
+                                <img src="../assets/images/IR Dashboard Case Study/14 image. almost DASH.png" alt="The dashboard before the emergency widget was added" loading="lazy">
+                            </figure>
+                            <figure class="cs-after">
+                                <span class="cs-tag">After</span>
+                                <img src="../assets/images/IR Dashboard Case Study/15 image. Final Design IR Dashboard.png" alt="The dashboard with the Report a Breach widget anchored top right" loading="lazy">
+                            </figure>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 07 -->
+                <section class="cs-sec" id="shipped">
+                    <span class="cs-eyebrow">07 &mdash; What shipped</span>
+                    <h2>A unified experience</h2>
+
+                    <p>Pulled back, the spatial logic pays off. The goal was never to make the legacy dashboard look better. It was to give enterprise customers somewhere to work and manage their security posture without going through a person. A fragmented legacy interface became a cohesive, production-ready product built on the internal design system.</p>
+
+                    <figure class="cs-wide">
+                        <img src="../assets/images/IR Dashboard Case Study/15 image. Final Design IR Dashboard.png" alt="The final Incident Response dashboard" loading="lazy">
+                        <figcaption>The shipped IR Dashboard. Top row summary above the full self-serve workspace.</figcaption>
+                    </figure>
+                </section>
+
+                <!-- 08 -->
+                <section class="cs-sec" id="impact">
+                    <span class="cs-eyebrow">08 &mdash; Impact</span>
+
+                    <div class="cs-stat">
+                        <span class="cs-figure">$9M</span>
+                        <p class="cs-cap">Revenue generated in the 12 months after launch, from zero at launch.</p>
+                        <p class="cs-src">Incident360 and Incident360 Plus, excluding JumpStart</p>
+                    </div>
+
+                    <p>The Incident360 Retainer launch was a commercial success, with strong customer feedback on the new self-serve capabilities.</p>
+
+                    <dl class="cs-spec">
+                        <dt>Revenue</dt>
+                        <dd class="cs-fixed">Following launch in May 2025, the premium retainer tiers scaled from $0 to $9 million in generated revenue. Figures cover Incident360 and Incident360 Plus with the Rapid Response add-on, excluding the entry-level JumpStart tier.</dd>
+
+                        <dt>Validation</dt>
+                        <dd>A July 2025 IDC Market Note covered the product under the title <em>&ldquo;Arctic Wolf's Incident Response Retainer Plan: Why Didn't Anyone Think of This Before?&rdquo;</em></dd>
+
+                        <dt>Named</dt>
+                        <dd>The report highlighted the redesigned dashboard directly, describing it as providing tools for incident response planning, cyber-resilience assessment, and insurability evaluation.</dd>
+
+                        <dt>Efficiency</dt>
+                        <dd>Centralizing these workflows into a self-serve surface met the stated goal of improving preparedness and response efficiency for midmarket organizations.</dd>
+                    </dl>
+                </section>
+
+                <!-- 09 -->
+                <section class="cs-sec" id="reflection">
+                    <span class="cs-eyebrow">09 &mdash; Reflection</span>
+
+                    <div class="cs-decision">
+                        <h3>Protecting the scope</h3>
+                        <dl>
+                            <dt>What happened</dt>
+                            <dd>Moving fast in enterprise B2B requires ruthless prioritization. Aligning with engineering from day one gave me the confidence to cut features that would not scale, including a real-time status tracker. Pushing back on scope is what made the three-month target survivable.</dd>
+                        </dl>
+                    </div>
+
+                    <div class="cs-decision">
+                        <h3>Designing for the worst case</h3>
+                        <dl>
+                            <dt>What happened</dt>
+                            <dd>Designing for an active breach reinforced that the most effective UX is often the quietest. When someone is panicking, visual restraint and spatial clarity matter more than any interaction I could have added.</dd>
+                        </dl>
+                    </div>
+
+                    <div class="cs-close">
+                        <h2>The short version</h2>
+                        <p>The dashboard's job was never to be looked at. It was to be used quickly, twice: once a month for a routine entitlement check, and once in a career on the worst day of someone's year. Most of the work went into making sure those two states never got in each other's way.</p>
+                    </div>
+                </section>
+
+            </main>
         </div>
+    </div>
 
-        <article class="case-study-content" style="max-width: 780px; margin-left: auto; margin-right: auto;">
+    <div class="container">
+        <div class="cs-next">
+            <span class="cs-eyebrow">Next case study</span>
+            <p style="margin:.5rem 0 0"><a href="planner.html">IR Planner <span aria-hidden="true">&rarr;</span></a></p>
+        </div>
+    </div>
 
-            <!-- 01 CONTEXT --><section class="content-section" id="s01">
-                <span class="section-label">01 Context</span>
-                <h2 class="section-title">Project Overview & Context</h2>
-                <p>The business is launching a brand-new IR product called "Incident 360 Retainers". The legacy platform must now evolve to accommodate self-service features for these premium contractual benefits.</p>
-
-                <h3 style="margin-top: 3rem;">My Role and Responsibilities</h3>
-                <p>As the Lead Product Designer on this project, I owned the end-to-end user experience of the new dashboard from initial technical discovery and user research through to high-fidelity designs. Working within a compressed 3-month timeline, my core responsibility was to translate a complex new enterprise product offering into a clear, intuitive, and production-ready customer facing interface.</p>
-            </section>
-
-            <!-- 02 THE PROBLEM --><section class="content-section" id="s02">
-                <span class="section-label">02 The Problem</span>
-                <h2 class="section-title">Three compounding failures in the legacy dashboard</h2>
-
-                <div style="display: flex; flex-direction: column; gap: 0; margin: 2.5rem 0; border: 1px solid var(--border-color, rgba(0,0,0,0.1)); border-radius: 1rem; overflow: hidden;">
-                    <div style="display: grid; grid-template-columns: 2.5rem 1fr; gap: 1.5rem; align-items: start; padding: 1.5rem 2rem; border-bottom: 1px solid var(--border-color, rgba(0,0,0,0.08));">
-                        <span style="font-size: 0.75rem; font-weight: 700; color: #fff; background: var(--accent-blue-dark, #3b82f6); border-radius: 0.375rem; padding: 0.25rem 0.4rem; text-align: center; line-height: 1.4; letter-spacing: 0.04em;">01</span>
-                        <div>
-                            <h4 style="margin: 0 0 0.35rem 0; font-size: 1rem; color: var(--text-primary);">No Self-Service Option</h4>
-                            <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">Routine requests were routed through CSMs and IR specialists wasting specialized time and creating an unsustainable operational bottleneck at scale.</p>
-                        </div>
-                    </div>
-                    <div style="display: grid; grid-template-columns: 2.5rem 1fr; gap: 1.5rem; align-items: start; padding: 1.5rem 2rem; border-bottom: 1px solid var(--border-color, rgba(0,0,0,0.08));">
-                        <span style="font-size: 0.75rem; font-weight: 700; color: #fff; background: var(--accent-blue-dark, #3b82f6); border-radius: 0.375rem; padding: 0.25rem 0.4rem; text-align: center; line-height: 1.4; letter-spacing: 0.04em;">02</span>
-                        <div>
-                            <h4 style="margin: 0 0 0.35rem 0; font-size: 1rem; color: var(--text-primary);">High Cognitive Load in a Crisis</h4>
-                            <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">Dense formatting and no visual hierarchy failed users at exactly the moment clarity mattered most an active security breach.</p>
-                        </div>
-                    </div>
-                    <div style="display: grid; grid-template-columns: 2.5rem 1fr; gap: 1.5rem; align-items: start; padding: 1.5rem 2rem;">
-                        <span style="font-size: 0.75rem; font-weight: 700; color: #fff; background: var(--accent-blue-dark, #3b82f6); border-radius: 0.375rem; padding: 0.25rem 0.4rem; text-align: center; line-height: 1.4; letter-spacing: 0.04em;">03</span>
-                        <div>
-                            <h4 style="margin: 0 0 0.35rem 0; font-size: 1rem; color: var(--text-primary);">Bare-Bones Functionality</h4>
-                            <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">The legacy interface functioned like a static landing page not an operational workspace where customers could manage their security posture.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Legacy dashboard image -->
-                <div style="margin: 2rem 0;">
-                    <img src="../assets/images/IR Dashboard Case Study/1 Image. IRJS OLD.png" alt="Legacy IR Dashboard" style="width: 100%; height: auto; display: block; border-radius: 0.75rem;">
-                    <p class="img-cap-center">The legacy IR Dashboard bare-bones, no visual hierarchy, no self-serve functionality.</p>
-                </div>
-
-                <h3 style="margin-top: 4rem;">Hypothesis</h3>
-                <p>I framed our core design challenge around three distinct pillars:</p>
-
-                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; margin: 2rem 0 0 0; border: 1px solid var(--border-color, rgba(0,0,0,0.1)); border-radius: 1rem; overflow: hidden;">
-                    <div style="padding: 2rem 1.75rem; position: relative; border-right: 1px solid var(--border-color, rgba(0,0,0,0.1));">
-                        <span style="position: absolute; top: 1.25rem; right: 1.5rem; font-size: 2.5rem; font-weight: 800; color: var(--accent-blue-dark, #3b82f6); opacity: var(--ghost-num-opacity, 0.1); line-height: 1;">01</span>
-                        <p class="cs-label" style="font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 1rem 0;">Readiness</p>
-                        <p style="font-size: 1rem; font-weight: 400; line-height: 1.6; color: var(--text-primary); margin: 0; font-style: italic; opacity: 0.85;">"How might we guide users through incident readiness milestones?"</p>
-                    </div>
-                    <div style="padding: 2rem 1.75rem; position: relative; border-right: 1px solid var(--border-color, rgba(0,0,0,0.1));">
-                        <span style="position: absolute; top: 1.25rem; right: 1.5rem; font-size: 2.5rem; font-weight: 800; color: var(--accent-blue-dark, #3b82f6); opacity: var(--ghost-num-opacity, 0.1); line-height: 1;">02</span>
-                        <p class="cs-label" style="font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 1rem 0;">Self-Service</p>
-                        <p style="font-size: 1rem; font-weight: 400; line-height: 1.6; color: var(--text-primary); margin: 0; font-style: italic; opacity: 0.85;">"How might we let customers autonomously manage their retainer entitlements?"</p>
-                    </div>
-                    <div style="padding: 2rem 1.75rem; position: relative;">
-                        <span style="position: absolute; top: 1.25rem; right: 1.5rem; font-size: 2.5rem; font-weight: 800; color: var(--accent-blue-dark, #3b82f6); opacity: var(--ghost-num-opacity, 0.1); line-height: 1;">03</span>
-                        <p class="cs-label" style="font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 1rem 0;">Crisis Response</p>
-                        <p style="font-size: 1rem; font-weight: 400; line-height: 1.6; color: var(--text-primary); margin: 0; font-style: italic; opacity: 0.85;">"How might we keep emergency escalations instantly accessible during an active breach?"</p>
-                    </div>
-                </div>
-
-                <h3 style="margin-top: 4rem;">Project Goals</h3>
-                <div style="margin: 1.5rem 0 0 0; border: 1px solid var(--border-color, rgba(0,0,0,0.1)); border-radius: 1rem; overflow: hidden;">
-                    <div style="display: grid; grid-template-columns: 2rem 1fr; gap: 1.25rem; align-items: center; padding: 1.25rem 1.75rem; border-bottom: 1px solid var(--border-color, rgba(0,0,0,0.08));">
-                        <span style="font-size: 0.7rem; font-weight: 700; color: #fff; background: var(--accent-blue-dark, #3b82f6); border-radius: 0.375rem; padding: 0.2rem 0.4rem; text-align: center; line-height: 1.4; letter-spacing: 0.04em;">01</span>
-                        <p style="margin: 0; font-size: 0.95rem; line-height: 1.5; color: var(--text-primary);">Encourage customers to complete their IR Planners</p>
-                    </div>
-                    <div style="display: grid; grid-template-columns: 2rem 1fr; gap: 1.25rem; align-items: center; padding: 1.25rem 1.75rem; border-bottom: 1px solid var(--border-color, rgba(0,0,0,0.08));">
-                        <span style="font-size: 0.7rem; font-weight: 700; color: #fff; background: var(--accent-blue-dark, #3b82f6); border-radius: 0.375rem; padding: 0.2rem 0.4rem; text-align: center; line-height: 1.4; letter-spacing: 0.04em;">02</span>
-                        <p style="margin: 0; font-size: 0.95rem; line-height: 1.5; color: var(--text-primary);">Allow customers to manage their Retainer entitlements</p>
-                    </div>
-                    <div style="display: grid; grid-template-columns: 2rem 1fr; gap: 1.25rem; align-items: center; padding: 1.25rem 1.75rem;">
-                        <span style="font-size: 0.7rem; font-weight: 700; color: #fff; background: var(--accent-blue-dark, #3b82f6); border-radius: 0.375rem; padding: 0.2rem 0.4rem; text-align: center; line-height: 1.4; letter-spacing: 0.04em;">03</span>
-                        <p style="margin: 0; font-size: 0.95rem; line-height: 1.5; color: var(--text-primary);">Ensure the dashboard is easy to navigate under high stress including during an active breach</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 03 DISCOVERY & RESEARCH --><section class="content-section" id="s03">
-                <span class="section-label">03 Research & Discovery</span>
-                <h2 class="section-title">The Constraint: A 3-Month Timeline</h2>
-
-                <div class="goal-card">
-                    <span class="goal-label">On the timeline</span>
-                    <p>"We had less than one quarter (~3 months) to go from research and testing to development, and post-launch QA."</p>
-                </div>
-
-                <p>Since the timeline was incredibly tight, I couldn't design in a vacuum. To fully understand the technical landscape, data-tracking requirements, and what actually needed to surface on the dashboard vs. what was feasible to surface, I interviewed and collaborated directly with technical Subject Matter Experts (SMEs), Customer Success Managers (CSMs), and product partners.</p>
-                <p>The direct result of this data-gathering research was a comprehensive System User Flow, which helped align UX, Product, and Development by allowing us to stress-test the feasibility of requirements, such as submitting a breach threat and requesting a touchpoint review.</p>
-
-                <!-- System flow image -->
-                <div style="margin: 2rem 0;">
-                    <img src="../assets/images/IR Dashboard Case Study/2 Image. Bundled & Standalone Customer and Internal Experience.jpg" alt="System User Flow current and future states for emergency and touchpoint requests across retainer tiers" style="width: 100%; height: auto; display: block; border-radius: 0.75rem;">
-                    <p class="img-cap-center">Visual map of the current and future states used to validate how emergency and touchpoint requests would be processed across different retainer tiers.</p>
-                </div>
-
-                <h3 style="margin-top: 4rem;">Survey Results: Low IR Plan Completion</h3>
-                <p>When reviewing past research, I uncovered a key insight tied to one of the project goals: encouraging customers to complete their IR Plans.</p>
-                <p>Survey data showed that the legacy IR Planner had only a <strong>47% completion rate</strong> among respondents (IR customers), with many not having started their plans at all.</p>
-                <p>This pointed to a clear gap. An audit of the legacy dashboard revealed that it didn't clearly communicate the state of the IR Plan specifically whether it had been started or not making it harder for customers to know when to take action.</p>
-
-                <div style="display: flex; flex-direction: column; gap: 1.5rem; margin: 3rem 0;">
-                    <div>
-                        <img src="../assets/images/IR Dashboard Case Study/4 Image. graph.jpg" alt="Survey data showing 47% IR Planner completion rate" style="width: 100%; height: auto; display: block; border-radius: 0.75rem;">
-                        <p class="img-cap-center">With 53% of customers not yet using the IR Planner, there's an opportunity to improve adoption by making it easier for customers to start using it and understand its value.</p>
-                    </div>
-                    <div>
-                        <img src="../assets/images/IR Dashboard Case Study/3 Image. old purple.jpg" alt="Legacy IR Planner widget the primary CTA for the legacy IR Dashboard" style="width: 100%; height: auto; display: block; border-radius: 0.75rem;">
-                        <p class="img-cap-center">The pink outline highlights the old JumpStart IR Planner widget, which served as the primary call-to-action (CTA) for the legacy IR Dashboard.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 04 IDEATION --><section class="content-section" id="s04">
-                <span class="section-label">04 Ideation</span>
-                <h2 class="section-title">Dashboard Layout Explorations</h2>
-                <p>Before diving into individual widget designs, I stepped back to explore different layout directions. My main priority was figuring out how the information should be grouped and structured to make the dashboard as intuitive as possible, so I tested three distinct concepts to see what worked best.</p>
-
-                <div style="display: flex; flex-direction: column; gap: 1rem; margin: 3rem 0;">
-
-                    <!-- Exploration 1 -->
-                    <div style="display: grid; grid-template-columns: 1fr 1.2fr; border: 1px solid var(--border-color, rgba(0,0,0,0.1)); border-radius: 1rem; overflow: hidden; align-items: stretch;">
-                        <div style="padding: 1.75rem 2rem; display: flex; flex-direction: column; justify-content: center; gap: 0.75rem;">
-                            <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
-                                <span style="font-size: 0.55rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-secondary); opacity: 0.6;">Exploration 1</span>
-                                <span style="font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #7a5200; background: #f6c94e; padding: 0.2rem 0.7rem; border-radius: 2rem; white-space: nowrap;">Not Chosen</span>
-                            </div>
-                            <h4 style="margin: 0; font-size: 0.95rem; line-height: 1.4;">Flat Equal-Weight Grid</h4>
-                            <p style="font-size: 0.85rem; line-height: 1.65; color: var(--text-secondary); margin: 0;">This concept used a uniform grid where all widgets were the same size. While simple and easy to build, it removed visual hierarchy, making important elements like the IR Planner blend in with less critical data.</p>
-                            <p style="font-size: 0.82rem; line-height: 1.6; color: var(--text-secondary); margin: 0; padding-top: 0.25rem; border-top: 1px solid var(--border-color, rgba(0,0,0,0.08));"><strong style="color: var(--text-primary); font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.06em;">Reasoning </strong>Increased cognitive load; doesn't support quick, high-priority decision-making.</p>
-                        </div>
-                        <div style="border-left: 1px solid var(--border-color, rgba(0,0,0,0.1)); background: rgba(128,128,128,0.04); display: flex; align-items: center; justify-content: center; padding: 1.25rem;">
-                            <img src="../assets/images/IR Dashboard Case Study/5 image. wireframe version one.jpg" alt="Wireframe Exploration 1 Flat Equal-Weight Grid" style="width: 100%; height: auto; display: block; border-radius: 0.5rem;">
-                        </div>
-                    </div>
-
-                    <!-- Exploration 2 -->
-                    <div style="display: grid; grid-template-columns: 1fr 1.2fr; border: 1px solid var(--border-color, rgba(0,0,0,0.1)); border-radius: 1rem; overflow: hidden; align-items: stretch;">
-                        <div style="padding: 1.75rem 2rem; display: flex; flex-direction: column; justify-content: center; gap: 0.75rem;">
-                            <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
-                                <span style="font-size: 0.55rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-secondary); opacity: 0.6;">Exploration 2</span>
-                                <span style="font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #7a5200; background: #f6c94e; padding: 0.2rem 0.7rem; border-radius: 2rem; white-space: nowrap;">Not Chosen</span>
-                            </div>
-                            <h4 style="margin: 0; font-size: 0.95rem; line-height: 1.4;">Tabbed Navigation</h4>
-                            <p style="font-size: 0.85rem; line-height: 1.65; color: var(--text-secondary); margin: 0;">Split the dashboard into separate tabs (Runbooks, Touchpoints), giving each area space to scale. However, it created an "out of sight, out of mind" problem critical information hidden when users switch tabs.</p>
-                            <p style="font-size: 0.82rem; line-height: 1.6; color: var(--text-secondary); margin: 0; padding-top: 0.25rem; border-top: 1px solid var(--border-color, rgba(0,0,0,0.08));"><strong style="color: var(--text-primary); font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.06em;">Reasoning </strong>Tabs suit static data, not monitoring dashboards requiring an always-visible overview.</p>
-                        </div>
-                        <div style="border-left: 1px solid var(--border-color, rgba(0,0,0,0.1)); background: rgba(128,128,128,0.04); display: flex; align-items: center; justify-content: center; padding: 1.25rem;">
-                            <img src="../assets/images/IR Dashboard Case Study/6 image. wireframe version two.jpg" alt="Wireframe Exploration 2 Tabbed Navigation" style="width: 100%; height: auto; display: block; border-radius: 0.5rem;">
-                        </div>
-                    </div>
-
-                    <!-- Exploration 3 -->
-                    <div style="display: grid; grid-template-columns: 1fr 1.2fr; border: 1px solid rgba(26,107,154,0.35); border-radius: 1rem; overflow: hidden; align-items: stretch;">
-                        <div style="padding: 1.75rem 2rem; display: flex; flex-direction: column; justify-content: center; gap: 0.75rem;">
-                            <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
-                                <span style="font-size: 0.55rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-secondary); opacity: 0.6;">Exploration 3</span>
-                                <span style="font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #fff; background: #1a7a4a; padding: 0.2rem 0.7rem; border-radius: 2rem; white-space: nowrap;">Selected</span>
-                            </div>
-                            <h4 style="margin: 0; font-size: 0.95rem; line-height: 1.4;">Overview + Work Area Layout</h4>
-                            <p style="font-size: 0.85rem; line-height: 1.65; color: var(--text-secondary); margin: 0;">Shows a quick synthesis of retainer details alongside the main work area in a single view. Keeps key information visible at all times and reduces navigation between sections to understand status or context.</p>
-                            <p style="font-size: 0.82rem; line-height: 1.6; color: var(--text-secondary); margin: 0; padding-top: 0.25rem; border-top: 1px solid var(--border-color, rgba(0,0,0,0.08));"><strong style="color: var(--text-primary); font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.06em;">Reasoning </strong>The only approach that delivered the clarity and hierarchy needed for fast decision-making.</p>
-                        </div>
-                        <div style="border-left: 1px solid rgba(26,107,154,0.35); background: rgba(26,107,154,0.04); display: flex; align-items: center; justify-content: center; padding: 1.25rem;">
-                            <img src="../assets/images/IR Dashboard Case Study/7 image. wireframe version three.jpg" alt="Wireframe Exploration 3 Overview + Work Area (Selected)" style="width: 100%; height: auto; display: block; border-radius: 0.5rem;">
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-
-            <!-- 05 LAYOUT ARCHITECTURE --><section class="content-section" id="s05">
-                <span class="section-label">05 Macro Dashboard Layout</span>
-                <h2 class="section-title">Dashboard Architecture and Layout Strategy</h2>
-                <p>Feedback from Customer Success Managers, Product, and customers made it clear the dashboard needed a more intentional structure. Exploration 3: Overview + Work Area Layout was the only approach that delivered the clarity we needed.</p>
-                <p>This layout worked best because it naturally grouped information into two key areas:</p>
-
-                <div style="margin: 3rem 0; display: flex; flex-direction: column; gap: 4rem;">
-
-                    <!-- Group 1 -->
-                    <div>
-                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                            <span style="background: var(--accent-bg); border-radius: 0.5rem; padding: 0.4rem 0.9rem; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-secondary);">Group 1</span>
-                            <h3 style="margin: 0; font-size: 1.1rem;">Quick, factual information</h3>
-                        </div>
-                        <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.65; margin-bottom: 1.25rem;">Users frequently log in just to do a fast validation check of what they purchased. Within seconds of logging in, they need to answer a quick mental checklist:</p>
-                        <ul style="list-style: none; padding: 0; margin: 0 0 1.25rem 0; display: flex; flex-direction: column; gap: 0.5rem;">
-                            <li style="font-size: 0.95rem; color: var(--text-secondary); display: flex; gap: 0.75rem;"><span style="color: var(--accent-blue-dark);">·</span> What retainer tier have I purchased?</li>
-                            <li style="font-size: 0.95rem; color: var(--text-secondary); display: flex; gap: 0.75rem;"><span style="color: var(--accent-blue-dark);">·</span> When does my retainer expire or renew?</li>
-                            <li style="font-size: 0.95rem; color: var(--text-secondary); display: flex; gap: 0.75rem;"><span style="color: var(--accent-blue-dark);">·</span> How many entitlements do I have available right now?</li>
-                        </ul>
-                        <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.65; margin-bottom: 2rem;">This resulted in a compact, scannable header section. The retainer content is lightweight, highly scannable, and intentionally designed to avoid complex interactions. It functions purely as a quick check/reminder zone, clearly displaying the retainer name, number of available readiness touchpoints, available covered cases, and their respective renewal dates.</p>
-                        <img src="../assets/images/IR Dashboard Case Study/8 Image. decision two.png" alt="Compact scannable header row retainer name, touchpoints, covered cases, renewal dates" style="width: 100%; height: auto; display: block; border-radius: 0.75rem;">
-                        <p class="img-cap-center">Group 1 top row retainer name, available touchpoints, covered incidents, and renewal dates at a glance.</p>
-                    </div>
-
-                    <!-- Group 2 -->
-                    <div>
-                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                            <span style="background: var(--accent-bg); border-radius: 0.5rem; padding: 0.4rem 0.9rem; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-secondary);">Group 2</span>
-                            <h3 style="margin: 0; font-size: 1.1rem;">High-interaction, Active Work Area</h3>
-                        </div>
-                        <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.65; margin-bottom: 2rem;">This is the meat of the dashboard. It takes up the bulk of the screen real estate because it's where customers engage with self-serve elements to request touchpoints, manage their account, and track readiness activities. This includes tasks like downloading runbooks, comparing retainer tiers, and tracking IR Planner progress. Because these actions are more interactive, they are grouped into an action-focused area of the dashboard.</p>
-                        <img src="../assets/images/IR Dashboard Case Study/9 Image design row  (3).png" alt="Final dashboard layout Group 1 and Group 2 combined" style="width: 100%; height: auto; display: block; border-radius: 0.75rem;">
-                        <p class="img-cap-center">The outcome of the two groups coming together.</p>
-                    </div>
-
-                </div>
-            </section>
-
-            <!-- 06 WIDGET DESIGN --><section class="content-section" id="s06">
-                <span class="section-label">06 Widget Design</span>
-                <h2 class="section-title">Core Widget Design: From Architecture to Action</h2>
-                <p>With the macro-level architecture locked into the Overview + Work Area layout, the next challenge was designing the specific components that would populate these zones. I needed to translate our three core "How Might We" goals into tangible UI elements, focusing on three critical widgets placed strategically within the established layout zones:</p>
-
-                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin: 2.5rem 0 4rem 0;">
-                    <div style="background: var(--accent-bg); border-radius: 0.75rem; padding: 1.25rem;">
-                        <p style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-secondary); margin-bottom: 0.5rem;">Top Row</p>
-                        <p style="font-weight: 600; margin: 0; font-size: 0.95rem;">Emergency Widget</p>
-                    </div>
-                    <div style="background: var(--accent-bg); border-radius: 0.75rem; padding: 1.25rem;">
-                        <p style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-secondary); margin-bottom: 0.5rem;">Active Work Area</p>
-                        <p style="font-weight: 600; margin: 0; font-size: 0.95rem;">IR Planner Widget</p>
-                    </div>
-                    <div style="background: var(--accent-bg); border-radius: 0.75rem; padding: 1.25rem;">
-                        <p style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-secondary); margin-bottom: 0.5rem;">Active Work Area</p>
-                        <p style="font-weight: 600; margin: 0; font-size: 0.95rem;">Touchpoint Widget</p>
-                    </div>
-                </div>
-
-                <!-- IR PLANNER WIDGET -->
-                <h3>Component Deep Dive: The IR Planner Widget</h3>
-                <h4 style="color: var(--text-secondary); font-weight: 400; font-size: 1rem; margin: 0.5rem 0 1.25rem 0;">The Problem & User Need</h4>
-                <p>The IR Planner is critical for ensuring customers are prepared for a security incident, but engagement suffers from user inertia. We identified two core user needs to fix this:</p>
-                <ul style="list-style: none; padding: 0; margin: 1.25rem 0; display: flex; flex-direction: column; gap: 0.75rem;">
-                    <li style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.95rem; line-height: 1.6;"><span style="color: var(--accent-blue-dark); font-weight: 700; flex-shrink: 0; margin-top: 0.1rem;">1.</span><span><strong>Amplify the Planner State (Started vs. Not Started):</strong> If a customer hadn't started their planner, they needed an unmissable call to action. Driving this initial momentum is vital; customers who complete their IR Planner achieve better overall security readiness.</span></li>
-                    <li style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.95rem; line-height: 1.6;"><span style="color: var(--accent-blue-dark); font-weight: 700; flex-shrink: 0; margin-top: 0.1rem;">2.</span><span><strong>Encourage Completion:</strong> For users who had started, they needed a fast, visual way to track progress so they wouldn't stall out mid-way through the process.</span></li>
-                </ul>
-
-                <h4 style="color: var(--text-secondary); font-weight: 600; font-size: 1rem; margin: 2.5rem 0 1.25rem 0;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:0.85em;height:0.85em;vertical-align:-0.1em;margin-right:0.4em;color:var(--accent-blue-dark);flex-shrink:0;"><path d="M9 21h6"/><path d="M12 3a6 6 0 0 1 6 6c0 2.3-1.3 4.3-3 5.4V18H9v-3.6C7.3 13.3 6 11.3 6 9a6 6 0 0 1 6-6z"/></svg>The Design Decisions & Iteration</h4>
-                <p><strong>Unstarted State:</strong> To solve the discovery problem, I designed a dedicated, high-contrast unstarted state featuring a single, prominent "START" CTA button that immediately routes users directly into the onboarding flow.</p>
-                <p><strong>Started State (V1 vs. V2):</strong> Once the planner is underway, the widget transforms into a progress tracker.</p>
-                <p><strong>V1 (The Sub-Section Approach):</strong> In the first iteration, the widget attempted to surface granular sub-sections (e.g., breaking down the 'Response' section into Legal, Technical, and Financial Leaders).</p>
-
-                <div style="display: flex; flex-direction: column; gap: 1.5rem; margin: 2rem 0;">
-                    <div>
-                        <img src="../assets/images/IR Dashboard Case Study/10 image. ir planner wid before.png" alt="IR Planner Widget V1 granular sub-section breakdown" class="widget-img">
-                        <p class="img-cap">V1 Granular sub-section breakdown</p>
-                    </div>
-
-                    <div style="border: 1px solid var(--border-color, rgba(0,0,0,0.1)); border-radius: 1rem; padding: 1.75rem 2rem;">
-                        <p style="font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary); margin: 0 0 1.25rem 0;">Why V1 was cut</p>
-                        <div style="display: flex; flex-direction: column; gap: 0.875rem;">
-                            <div style="display: flex; align-items: flex-start; gap: 0.875rem;">
-                                <span style="width: 20px; height: 20px; border-radius: 50%; background: rgba(192,57,43,0.15); color: #e74c3c; font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.1rem;">✕</span>
-                                <p style="margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--text-secondary);">Too much visual clutter granular sub-sections overwhelm a confined dashboard widget</p>
-                            </div>
-                            <div style="display: flex; align-items: flex-start; gap: 0.875rem;">
-                                <span style="width: 20px; height: 20px; border-radius: 50%; background: rgba(192,57,43,0.15); color: #e74c3c; font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.1rem;">✕</span>
-                                <p style="margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--text-secondary);">Sub-sections aren't universally applicable business sizes vary too much to generalize at widget level</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <img src="../assets/images/IR Dashboard Case Study/12 image. ir planner wid after.png" alt="IR Planner Widget V2 simplified high-level progress bars" class="widget-img">
-                        <p class="img-cap">V2 Simplified progress bars</p>
-                    </div>
-                </div>
-
-                <p>The final V2 widget strips away the clutter and focuses purely on high-level progress. It clearly displays the core sections of the IR Planner alongside simplified progress bars showing exactly how much of each section has been completed. This delivers a quick, lightweight understanding of readiness activity without overwhelming the user or making false assumptions about their organizational incident readiness.</p>
-
-                <!-- TOUCHPOINT WIDGET -->
-                <h3 style="margin-top: 5rem;">Component Deep Dive: The Touchpoint Self-Serve Widget</h3>
-                <h4 style="color: var(--text-secondary); font-weight: 400; font-size: 1rem; margin: 0.5rem 0 1.25rem 0;">The Problem & User Need</h4>
-                <p>To improve their security posture, customers need to engage in expert-led sessions with cybersecurity professionals. However, because this was a brand-new product offering, we needed to build the booking process from the ground up. We identified three critical needs to address:</p>
-                <ul style="list-style: none; padding: 0; margin: 1.25rem 0; display: flex; flex-direction: column; gap: 0.75rem;">
-                    <li style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.95rem; line-height: 1.6;"><span style="color: var(--accent-blue-dark); font-weight: 700; flex-shrink: 0; margin-top: 0.1rem;">1.</span><span><strong>Decision Support:</strong> Customers needed a way to easily evaluate the three available touchpoint types and decide which one to utilize next.</span></li>
-                    <li style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.95rem; line-height: 1.6;"><span style="color: var(--accent-blue-dark); font-weight: 700; flex-shrink: 0; margin-top: 0.1rem;">2.</span><span><strong>Strict Self-Serve Requirement:</strong> From a business perspective, relying on manual "support ticket" submissions to book these sessions was completely off the table it simply wouldn't scale. We had to design an intuitive self-serve mechanism from day one to prevent a massive surge in administrative overhead.</span></li>
-                    <li style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.95rem; line-height: 1.6;"><span style="color: var(--accent-blue-dark); font-weight: 700; flex-shrink: 0; margin-top: 0.1rem;">3.</span><span><strong>End-to-End Lifecycle Tracking:</strong> Users needed visibility into past interactions such as viewing notes, documents, and feedback from previously completed touchpoints.</span></li>
-                </ul>
-
-                <h4 style="color: var(--text-secondary); font-weight: 600; font-size: 1rem; margin: 2.5rem 0 1.25rem 0;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:0.85em;height:0.85em;vertical-align:-0.1em;margin-right:0.4em;color:var(--accent-blue-dark);flex-shrink:0;"><path d="M9 21h6"/><path d="M12 3a6 6 0 0 1 6 6c0 2.3-1.3 4.3-3 5.4V18H9v-3.6C7.3 13.3 6 11.3 6 9a6 6 0 0 1 6-6z"/></svg>The Design Decisions & Component Anatomy</h4>
-                <p>To create an intuitive, self-contained scheduling experience within the main dashboard, I structured the widget around three key UI elements:</p>
-
-                <div style="display: flex; flex-direction: column; gap: 1rem; margin: 1.5rem 0;">
-                    <div style="background: var(--accent-bg); border-radius: 0.75rem; padding: 1.5rem; display: grid; grid-template-columns: 10rem 1fr; gap: 1.5rem; align-items: start;">
-                        <span style="font-weight: 600; font-size: 0.95rem;">Tabbed Architecture</span>
-                        <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">Since there are three distinct touchpoint types defined by the product, I used a tabbed layout at the top of the widget. This allows users to focus on one touchpoint at a time in its own dedicated space without feeling overwhelmed.</p>
-                    </div>
-                    <div style="background: var(--accent-bg); border-radius: 0.75rem; padding: 1.5rem; display: grid; grid-template-columns: 10rem 1fr; gap: 1.5rem; align-items: start;">
-                        <span style="font-weight: 600; font-size: 0.95rem;">Contextual Descriptions</span>
-                        <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">Selecting a tab dynamically updates the widget's body text with the touchpoint name and a concise description. This immediately gives users "the gist" of what the session covers, proactively eliminating the ambiguity that would otherwise drive a surge in support inquiries.</p>
-                    </div>
-                    <div style="background: var(--accent-bg); border-radius: 0.75rem; padding: 1.5rem; display: grid; grid-template-columns: 10rem 1fr; gap: 1.5rem; align-items: start;">
-                        <span style="font-weight: 600; font-size: 0.95rem;">Clear Action Hierarchy</span>
-                        <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;"><strong style="color: var(--text-primary);">Primary:</strong> "Request Touchpoint" a high-contrast button that kicks off the connection process, validates entitlement intent, and transitions the user into the delivery stage.<br><br><strong style="color: var(--text-primary);">Secondary:</strong> "View Touchpoints" a lower-emphasis button giving customers quick access to historical data and artifacts from past completed sessions.</p>
-                    </div>
-                </div>
-
-                <div style="margin: 2rem 0;">
-                    <img src="../assets/images/IR Dashboard Case Study/13 image. touchpoint widget.png" alt="Touchpoint Self-Serve Widget tabbed architecture with contextual descriptions and clear action hierarchy" class="widget-img">
-                    <p class="img-cap-center">Final Touchpoint widget tabbed architecture with contextual descriptions and a clear request/view action hierarchy.</p>
-                </div>
-
-                <p>The final Touchpoint widget successfully establishes a scalable, lightweight self-serve feature right out of the gate. By pairing educational context with a strict action hierarchy, we preemptively bypassed the need for support-ticket middle-men, launching an intuitive system that empowers customers to independently manage their security engagements throughout their retainer term.</p>
-
-                <!-- EMERGENCY WIDGET -->
-                <h3 style="margin-top: 5rem;">Component Deep Dive: The Emergency "Report a Breach" Widget</h3>
-                <h4 style="color: var(--text-secondary); font-weight: 400; font-size: 1rem; margin: 0.5rem 0 1.25rem 0;">The Problem & User Need</h4>
-                <p>When a customer is experiencing an active cyber attack, they are in a high-stress, high-panic state. In that exact moment, they need a literal PANIC, emergency button.</p>
-                <ul style="list-style: none; padding: 0; margin: 1.25rem 0; display: flex; flex-direction: column; gap: 0.75rem;">
-                    <li style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.95rem; line-height: 1.6;"><span style="color: var(--accent-blue-dark); font-weight: 700; flex-shrink: 0; margin-top: 0.1rem;">1.</span><span><strong>Instant Discoverability:</strong> The action had to be radically clear and effortlessly easy to find within seconds of logging in. There is zero room for cognitive load or searching through menus.</span></li>
-                    <li style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.95rem; line-height: 1.6;"><span style="color: var(--accent-blue-dark); font-weight: 700; flex-shrink: 0; margin-top: 0.1rem;">2.</span><span><strong>Immediate Direction:</strong> Users needed to know exactly where to look and precisely what to do the moment a crisis hit.</span></li>
-                </ul>
-
-                <h4 style="color: var(--text-secondary); font-weight: 600; font-size: 1rem; margin: 2.5rem 0 1.25rem 0;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:0.85em;height:0.85em;vertical-align:-0.1em;margin-right:0.4em;color:var(--accent-blue-dark);flex-shrink:0;"><path d="M9 21h6"/><path d="M12 3a6 6 0 0 1 6 6c0 2.3-1.3 4.3-3 5.4V18H9v-3.6C7.3 13.3 6 11.3 6 9a6 6 0 0 1 6-6z"/></svg>The Design Decisions & Spatial Layout Constraint</h4>
-                <p>Once the rest of the dashboard widgets found their homes, I had to balance a unique paradox: The emergency button needs to demand critical attention when necessary, but it shouldn't dominate everyday screen real estate since it represents a rare, worst-case scenario.</p>
-                <p>To achieve this, I made four highly intentional spatial and visual choices:</p>
-
-                <ul style="list-style: none; padding: 0; margin: 1.5rem 0; display: flex; flex-direction: column; gap: 0.875rem;">
-                    <li style="display: flex; align-items: flex-start; gap: 0.875rem; font-size: 0.95rem; line-height: 1.6;"><span style="color: var(--accent-blue-dark); font-weight: 700; flex-shrink: 0; margin-top: 0.1rem;">1.</span><span><strong>Strategic Placement (Top-Row Architecture):</strong> I placed the widget in the Group 1 top header row. Eye-tracking patterns show that customers look at the top-left and top-right of a dashboard first upon loading.</span></li>
-                    <li style="display: flex; align-items: flex-start; gap: 0.875rem; font-size: 0.95rem; line-height: 1.6;"><span style="color: var(--accent-blue-dark); font-weight: 700; flex-shrink: 0; margin-top: 0.1rem;">2.</span><span><strong>Purposeful Visual Segregation:</strong> By right-aligning the emergency button, I purposefully distanced it from the passive retainer data. This ensures the widget stands out as a distinct, high-priority action rather than blending in with routine account stats.</span></li>
-                    <li style="display: flex; align-items: flex-start; gap: 0.875rem; font-size: 0.95rem; line-height: 1.6;"><span style="color: var(--accent-blue-dark); font-weight: 700; flex-shrink: 0; margin-top: 0.1rem;">3.</span><span><strong>High-Contrast Color Psychology:</strong> I made the widget deep red to immediately draw critical attention. This instantly flags emergency priority, matching the user's urgent mental state, and acts as a universal visual anchor on a dark/neutral interface.</span></li>
-                    <li style="display: flex; align-items: flex-start; gap: 0.875rem; font-size: 0.95rem; line-height: 1.6;"><span style="color: var(--accent-blue-dark); font-weight: 700; flex-shrink: 0; margin-top: 0.1rem;">4.</span><span><strong>Designing for the "Once in a Blue Moon" Edge Case:</strong> Instead of making the element larger, I relied on stark color contrast and strategic placement to do the heavy lifting perfectly preserving the balance of the everyday workspace.</span></li>
-                </ul>
-
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 2rem 0;">
-                    <div>
-                        <img src="../assets/images/IR Dashboard Case Study/14 image. almost DASH.png" alt="Dashboard before the Report a Breach widget was added no emergency action visible" style="width: 100%; height: auto; display: block; border-radius: 0.75rem;">
-                        <p class="img-cap-center">Dashboard before no emergency entry point. A user under attack would have nowhere obvious to turn.</p>
-                    </div>
-                    <div>
-                        <img src="../assets/images/IR Dashboard Case Study/15 image. Final Design IR Dashboard.png" alt="Final design and placement of the Report A Breach widget isolated top-right, high-contrast red" style="width: 100%; height: auto; display: block; border-radius: 0.75rem;">
-                        <p class="img-cap-center">After the 'Report a Breach' button anchored top-right, high-contrast red, isolated from routine dashboard content.</p>
-                    </div>
-                </div>
-
-                <p>The final "Report a Breach" widget effectively solves the crisis paradox. By leveraging strict right-alignment and emergency color contrast in a premium top-row location, the widget remains instantly readable and highly accessible when a customer is under attack, without aggressively shouting over the daily self-serve tools below it.</p>
-            </section>
-
-            <!-- 07 FINAL SOLUTION --><section class="content-section" id="s07">
-                <span class="section-label">07 The Final Solution</span>
-                <h2 class="section-title">A Unified Experience</h2>
-                <p>When you pull back and look at the final dashboard, the spatial layout really pays off. The goal was never just to make the legacy dashboard "look better" it was about giving enterprise customers a place to actually work and manage their security posture autonomously. Ultimately, we took a fragmented legacy interface and transformed it into a cohesive, production-ready product using our internal design system.</p>
-
-                <div style="margin: 2rem 0;">
-                    <img src="../assets/images/IR Dashboard Case Study/15 image. Final Design IR Dashboard.png" alt="Final IR Dashboard unified experience" style="width: 100%; height: auto; display: block; border-radius: 0.75rem;">
-                    <p class="img-cap-center">The final IR Dashboard Overview + Work Area layout combining the top row summary with the full self-serve workspace below.</p>
-                </div>
-            </section>
-
-            <!-- 08 OUTCOMES --><section class="content-section" id="s08">
-                <span class="section-label">08 Outcomes</span>
-                <h2 class="section-title">The Business & User Impact</h2>
-                <p>The launch of the Incident360 Retainer was a massive commercial success, driving immense sales and receiving overwhelmingly positive feedback from customers who loved the new self-serve capabilities.</p>
-
-                <div class="outcome-grid">
-                    <div class="outcome-card">
-                        <span class="outcome-stat">$9M</span>
-                        <span class="outcome-label">Revenue in 12 months</span>
-                    </div>
-                    <div class="outcome-card">
-                        <span class="outcome-stat">IDC</span>
-                        <span class="outcome-label">Market Note July 2025</span>
-                    </div>
-                    <div class="outcome-card">
-                        <span class="outcome-stat">0→</span>
-                        <span class="outcome-label">$9M from $0 at launch</span>
-                    </div>
-                </div>
-
-                <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-top: 3rem;">
-                    <div style="border-left: 3px solid var(--accent-blue-dark); padding-left: 1.5rem;">
-                        <h4 style="margin-bottom: 0.5rem; font-size: 1rem;">$9M Revenue Growth in 12 Months</h4>
-                        <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">Following its launch in May 2025, the premium retainer tiers (Incident360 and Incident360 Plus with the Rapid Response Add-On, excluding the entry-level JumpStart tier) scaled rapidly from $0 to $9 million in generated revenue.</p>
-                    </div>
-                    <div style="border-left: 3px solid var(--accent-blue-dark); padding-left: 1.5rem;">
-                        <h4 style="margin-bottom: 0.5rem; font-size: 1rem;">Independent Industry Validation</h4>
-                        <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">The product received highly visible industry recognition in a July 2025 IDC Market Note titled, <em>"Arctic Wolf's Incident Response Retainer Plan: Why Didn't Anyone Think of This Before?"</em></p>
-                    </div>
-                    <div style="border-left: 3px solid var(--accent-blue-dark); padding-left: 1.5rem;">
-                        <h4 style="margin-bottom: 0.5rem; font-size: 1rem;">Validated UX Strategy</h4>
-                        <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">The IDC report explicitly highlighted the newly designed IR Dashboard, noting that it <em>"provides tools for incident response planning, cyber-resilience assessment, and insurability evaluation."</em></p>
-                    </div>
-                    <div style="border-left: 3px solid var(--accent-blue-dark); padding-left: 1.5rem;">
-                        <h4 style="margin-bottom: 0.5rem; font-size: 1rem;">Proven Efficiency</h4>
-                        <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">By centralizing these complex workflows into an intuitive self-serve portal, the dashboard successfully achieved its core goal of <em>"enhancing preparedness and response efficiency"</em> for midmarket organizations.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 09 REFLECTIONS --><section class="content-section" id="s09">
-                <span class="section-label">09 Reflections</span>
-                <h2 class="section-title">Reflections as a Lead Designer</h2>
-
-                <div style="display: flex; flex-direction: column; gap: 1.5rem;">
-                    <div style="background: var(--accent-bg); border-radius: 1rem; padding: 2rem;">
-                        <h4 style="margin-bottom: 0.75rem;">Protecting the Scope</h4>
-                        <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.65;">Moving fast in enterprise B2B requires ruthless prioritization. Aligning closely with engineering from day one gave me the confidence to cut unscalable features like the real-time pizza tracker. Pushing back on scope ensured we hit our aggressive 3-month target with a rock-solid, reliable product.</p>
-                    </div>
-                    <div style="background: var(--accent-bg); border-radius: 1rem; padding: 2rem;">
-                        <h4 style="margin-bottom: 0.75rem;">Designing for the Worst-Case Scenario</h4>
-                        <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.65;">Designing for an active cyber breach reinforced that sometimes the most effective UX is the quietest. When a user is in a state of panic, extreme visual restraint and spatial clarity are far more critical than flashy interactions.</p>
-                    </div>
-                </div>
-            </section>
-
-        </article>
-    </main>
-
-    <!-- DOT NAV TOC -->
-    <nav id="dot-nav" aria-label="Page sections" style="
-        position: fixed;
-        right: 28px;
-        top: 50%;
-        transform: translateY(-50%);
-        display: flex;
-        flex-direction: column;
-        gap: 14px;
-        z-index: 100;
-        opacity: 0;
-        transition: opacity 0.3s;
-    ">
-        <style>
-            .dn-item { display: flex; align-items: center; gap: 10px; cursor: pointer; justify-content: flex-end; }
-            .dn-label {
-                font-size: 0.55rem; font-weight: 500; letter-spacing: 0.04em;
-                color: #fff; background: rgba(15,20,30,0.85);
-                padding: 3px 8px; border-radius: 4px;
-                white-space: nowrap; pointer-events: none;
-                opacity: 0; transform: translateX(6px);
-                transition: opacity 0.18s, transform 0.18s;
-                border: 1px solid rgba(255,255,255,0.1);
-            }
-            .dn-item:hover .dn-label { opacity: 1; transform: translateX(0); }
-            .dn-dot {
-                width: 6px; height: 6px; border-radius: 50%;
-                background: rgba(0,0,0,0.55);
-                transition: background 0.2s, width 0.2s, height 0.2s;
-                flex-shrink: 0;
-            }
-            .dn-item.done .dn-dot { background: rgba(29,78,216,0.45); }
-            .dn-item.active .dn-dot { width: 9px; height: 9px; background: #1d4ed8; }
-            .dn-item:hover .dn-dot { background: rgba(29,78,216,0.7); }
-            /* Force light mode dots dark when user has toggled to light (beats media query) */
-            html:not(.dark) .dn-dot { background: rgba(0,0,0,0.55) !important; }
-            html:not(.dark) .dn-item.done .dn-dot { background: rgba(29,78,216,0.45) !important; }
-            html:not(.dark) .dn-item.active .dn-dot { background: #1d4ed8 !important; }
-            html:not(.dark) .dn-item:hover .dn-dot { background: rgba(29,78,216,0.7) !important; }
-            /* Dark mode */
-            html.dark .dn-dot, body.dark .dn-dot { background: rgba(255,255,255,0.3) !important; }
-            html.dark .dn-item.done .dn-dot, body.dark .dn-item.done .dn-dot { background: rgba(99,179,237,0.4) !important; }
-            html.dark .dn-item.active .dn-dot, body.dark .dn-item.active .dn-dot { background: #63b3ed !important; }
-            html.dark .dn-item:hover .dn-dot, body.dark .dn-item:hover .dn-dot { background: rgba(99,179,237,0.7) !important; }
-            @media (prefers-color-scheme: dark) {
-                .dn-dot { background: rgba(255,255,255,0.3); }
-                .dn-item.done .dn-dot { background: rgba(99,179,237,0.4); }
-                .dn-item.active .dn-dot { background: #63b3ed; }
-                .dn-item:hover .dn-dot { background: rgba(99,179,237,0.7); }
-            }
-        </style>
-        <div class="dn-item" data-target="s01"><span class="dn-label">01 Context</span><span class="dn-dot"></span></div>
-        <div class="dn-item" data-target="s02"><span class="dn-label">02 Problem</span><span class="dn-dot"></span></div>
-        <div class="dn-item" data-target="s03"><span class="dn-label">03 Research</span><span class="dn-dot"></span></div>
-        <div class="dn-item" data-target="s04"><span class="dn-label">04 Ideation</span><span class="dn-dot"></span></div>
-        <div class="dn-item" data-target="s05"><span class="dn-label">05 Macro Layout</span><span class="dn-dot"></span></div>
-        <div class="dn-item" data-target="s06"><span class="dn-label">06 Widgets</span><span class="dn-dot"></span></div>
-        <div class="dn-item" data-target="s07"><span class="dn-label">07 Solution</span><span class="dn-dot"></span></div>
-        <div class="dn-item" data-target="s08"><span class="dn-label">08 Outcomes</span><span class="dn-dot"></span></div>
-        <div class="dn-item" data-target="s09"><span class="dn-label">09 Reflections</span><span class="dn-dot"></span></div>
-    </nav>
-    <script>
-        (function() {
-            var nav = document.getElementById('dot-nav');
-            var items = Array.from(nav.querySelectorAll('.dn-item'));
-            var sections = items.map(function(i) { return document.getElementById(i.dataset.target); });
-            var activeIdx = -1;
-
-            function update() {
-                var mid = window.innerHeight * 0.45;
-                var best = -1;
-                sections.forEach(function(s, i) {
-                    if (!s) return;
-                    var rect = s.getBoundingClientRect();
-                    if (rect.top <= mid) best = i;
-                });
-                if (best === activeIdx) return;
-                activeIdx = best;
-                items.forEach(function(item, i) {
-                    item.classList.toggle('active', i === best);
-                    item.classList.toggle('done', i < best);
-                });
-            }
-
-            function showNav() {
-                nav.style.opacity = window.scrollY > 200 ? '1' : '0';
-            }
-
-            items.forEach(function(item) {
-                item.addEventListener('click', function() {
-                    var target = document.getElementById(item.dataset.target);
-                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                });
-            });
-
-            window.addEventListener('scroll', function() { update(); showNav(); }, { passive: true });
-            update();
-            showNav();
-        })();
-    </script>
-
-    <footer class="footer">
+    <footer class="site-footer">
         <div class="container">
-            <div class="footer-content">
-                <p class="copyright">&copy; 2026 Drasti Patel. All rights reserved.</p>
-                <div class="footer-links">
-                    <a href="https://www.linkedin.com/in/drasti/">LinkedIn</a>
-                    <a href="mailto:drastipatel705@gmail.com">Email</a>
-                </div>
-            </div>
+            <span class="copy">&copy; 2026 Drasti Patel. All rights reserved.</span>
+            <span class="links">
+                <a href="https://www.linkedin.com/in/drasti/">LinkedIn</a>
+                <a href="mailto:drastipatel705@gmail.com">Email</a>
+            </span>
         </div>
     </footer>
+
+    <script>
+        // Highlight the rail link for the section currently in view.
+        (function () {
+            var links = Array.prototype.slice.call(document.querySelectorAll('.cs-rail a'));
+            if (!links.length || !('IntersectionObserver' in window)) return;
+            var map = {};
+            links.forEach(function (a) {
+                var el = document.querySelector(a.getAttribute('href'));
+                if (el) map[el.id] = a;
+            });
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (!entry.isIntersecting) return;
+                    links.forEach(function (a) { a.classList.remove('is-active'); });
+                    if (map[entry.target.id]) map[entry.target.id].classList.add('is-active');
+                });
+            }, { rootMargin: '-20% 0px -70% 0px' });
+            Object.keys(map).forEach(function (id) { observer.observe(document.getElementById(id)); });
+        })();
+    </script>
 </body>
 </html>
-
-

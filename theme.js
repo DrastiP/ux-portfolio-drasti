@@ -1,7 +1,6 @@
 (function() {
-    const savedTheme = localStorage.getItem('theme');
-    // Default to dark if no theme is saved, or if saved theme is 'dark'
-    if (savedTheme !== 'light') {
+    // Paper is the default ground for the editorial system; dark is opt-in.
+    if (localStorage.getItem('theme') === 'dark') {
         document.documentElement.setAttribute('data-theme', 'dark');
     }
 })();

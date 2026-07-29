@@ -3,312 +3,439 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IR Planner Redesign | Drasti Patel</title>
+    <title>IR Planner &mdash; Case Study | Drasti Patel</title>
+    <meta name="description" content="Redesigning how businesses prepare for their worst day: migrating Arctic Wolf's IR Planner into the customer portal.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-    <link rel="stylesheet" href="../styles.css?v=1.3">
+    <link rel="stylesheet" href="../styles.css?v=2.0">
     <script src="../theme.js"></script>
-    <style>
-        :root { --accent-blue-dark: #1d4ed8; --ghost-num-opacity: 0.07; --cs-blue: #1d4ed8; --border-color: rgba(0,0,0,0.1); }
-        html.dark, body.dark, [data-theme="dark"] { --accent-blue-dark: #3b82f6; --ghost-num-opacity: 0.2; --cs-blue: #3b82f6; --border-color: rgba(255,255,255,0.1); }
-        @media (prefers-color-scheme: dark) { :root { --accent-blue-dark: #3b82f6; --ghost-num-opacity: 0.2; --cs-blue: #3b82f6; --border-color: rgba(255,255,255,0.1); } }
-        .cs-label { color: var(--cs-blue, #1d4ed8) !important; }
-        .img-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 3rem 0; }
-        .img-grid-2 > div { min-width: 0; overflow: hidden; }
-        .img-grid-2 img { width: 100%; height: auto; display: block; border-radius: 0.5rem; }
-        .img-cap, .img-grid-2 .img-cap { text-align: center; margin-top: 1rem; font-size: 0.65rem !important; color: var(--text-secondary); word-break: break-word; font-style: normal; letter-spacing: 0.08em; text-transform: uppercase; }
-        .img-cap-center { text-align: center; margin-top: 1rem; font-size: 0.65rem !important; color: var(--text-secondary); font-style: normal; letter-spacing: 0.08em; text-transform: uppercase; }
-        .case-study-content { counter-reset: fig; }
-        .img-cap-center::before, .img-grid-2 .img-cap::before, .img-cap::before { counter-increment: fig; content: "Figure " counter(fig) ". "; }
-
-        /* Hero showcase card */
-        .hero-showcase {
-            position: relative;
-            margin: 0 0 7rem 0;
-            padding: 3rem;
-            background: radial-gradient(ellipse 90% 70% at 50% 30%, rgba(26,107,154,0.22) 0%, rgba(10,18,32,0.7) 55%, transparent 100%);
-            border-radius: 1.75rem;
-            border: 1px solid rgba(26,107,154,0.18);
-            overflow: hidden;
-        }
-        html.dark .hero-showcase,
-        body.dark .hero-showcase,
-        [data-theme="dark"] .hero-showcase {
-            background: radial-gradient(ellipse 90% 70% at 50% 30%, rgba(26,107,154,0.38) 0%, rgba(8,16,30,0.98) 60%, rgba(6,12,24,1) 100%);
-            border-color: rgba(26,107,154,0.38);
-        }
-        @media (prefers-color-scheme: dark) {
-            .hero-showcase {
-                background: radial-gradient(ellipse 90% 70% at 50% 30%, rgba(26,107,154,0.38) 0%, rgba(8,16,30,0.98) 60%, rgba(6,12,24,1) 100%);
-                border-color: rgba(26,107,154,0.38);
-            }
-        }
-
-        /* Industry context stat callout */
-        .stat-flag {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            margin: 3rem 0;
-            padding: 2rem 2.5rem;
-            border: 1px solid var(--border-color, rgba(0,0,0,0.1));
-            border-radius: 1rem;
-            background: var(--accent-bg);
-        }
-        .stat-flag .stat-num {
-            font-size: 3rem;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            color: var(--accent-blue-dark, #3b82f6);
-            line-height: 1;
-            flex-shrink: 0;
-        }
-        .stat-flag p {
-            margin: 0 !important;
-            font-size: 1.05rem !important;
-            color: var(--text-primary) !important;
-        }
-        @media (max-width: 600px) {
-            .stat-flag { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
-        }
-
-        /* Placeholder marker for empty sections still being written */
-        .tbd {
-            border: 1px dashed var(--border-color, rgba(0,0,0,0.2));
-            border-radius: 0.75rem;
-            padding: 1.5rem 1.75rem;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            font-style: italic;
-        }
-    </style>
 </head>
-<body class="has-banner">
-    <div class="wip-banner">Under Construction &bull; Case Study Work in Progress</div>
-    <header class="navbar">
+<body class="cs">
+
+    <div class="topbar">
         <div class="container">
-            <a href="../" class="logo">Drasti Patel</a>
+            <a class="mark" href="../">Drasti Patel</a>
             <div class="nav-right">
-                <nav class="nav-links">
-                    <a href="../#work">Work</a>
+                <nav class="nav">
+                    <a href="../#work" class="is-active">Work</a>
                     <a href="../about.html">About</a>
                 </nav>
                 <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 18v1m9-11h1M3 12H1m15.364-6.364l.707-.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
                     </svg>
-                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                     </svg>
                 </button>
             </div>
         </div>
+    </div>
+
+    <div class="cs-topbar">
+        <div class="container">
+            <div class="cs-mark"><b>Case study</b> / Arctic Wolf</div>
+            <div class="cs-mark">Incident Response &middot; Enterprise SaaS</div>
+        </div>
+    </div>
+
+    <header class="cs-hero">
+        <div class="container">
+            <div class="cs-hero-split">
+                <div class="cs-headline">
+                    <p class="cs-eyebrow">IR Planner</p>
+                    <h1>Redesigning how businesses prepare for their worst day</h1>
+                    <p class="cs-deck">An incident response planning tool lived outside Arctic Wolf's customer portal. Only 30% of surveyed customers had a plan complete enough to use.</p>
+                </div>
+                <div class="cs-hero-shot">
+                    <img src="../assets/images/IR_Planner_Thumbnail.png" alt="The redesigned Arctic Wolf IR Planner inside the customer portal">
+                </div>
+            </div>
+
+            <dl class="cs-meta">
+                <div><dt>Role</dt><dd>Lead Product Designer<br>Only designer on the migration</dd></div>
+                <div><dt>Partner</dt><dd>One product lead</dd></div>
+                <div><dt>Timeline</dt><dd>Four months<br>Design complete end of October</dd></div>
+                <div><dt>Scope</dt><dd>Five sections, web, full state specs<br>Light and dark themes</dd></div>
+            </dl>
+
+            <div class="cs-pao">
+                <div>
+                    <h3>Problem</h3>
+                    <p>An acquired planning tool sat outside the portal. Most customers had no usable plan, and many did not know the tool existed.</p>
+                </div>
+                <div>
+                    <h3>Approach</h3>
+                    <p>Research to find the real barrier, then migrate the planner into the portal and make plan progress visible where customers already work.</p>
+                </div>
+                <div>
+                    <h3>Outcome</h3>
+                    <p><em>[Fill: metrics against the 30% baseline, or shipped-before-sunset at feature parity.]</em></p>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <main class="container">
-        <section class="case-study-hero">
-            <p class="case-study-tags" style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-secondary); margin-bottom: 1.5rem;">Enterprise &nbsp;·&nbsp; Unified Portal &nbsp;·&nbsp; Cybersecurity &nbsp;·&nbsp; Migration</p>
-            <h1 class="case-study-title">IR Planner: Redesigning How Businesses Prepare for Their Worst Day</h1>
-            <p class="case-study-subtitle">Migrating Arctic Wolf's legacy IR Planner into a Unified Portal under strict parity constraints and a high-velocity 4-month timeline.</p>
-
-            <div class="metadata-grid">
-                <div class="metadata-item">
-                    <h3>Role</h3>
-                    <p>Product Designer</p>
-                </div>
-                <div class="metadata-item">
-                    <h3>Timeline</h3>
-                    <p>4 months (Sep 2025 – Jan 2026)</p>
-                </div>
-                <div class="metadata-item">
-                    <h3>Team</h3>
-                    <p>India-based Dev Team (Async-first)</p>
-                </div>
-                <div class="metadata-item">
-                    <h3>Org</h3>
-                    <p>Arctic Wolf</p>
-                </div>
+    <div class="container">
+        <div class="cs-proof">
+            <p class="cs-cap">Arctic Wolf's own customer walkthrough of the redesigned IR Planner</p>
+            <div class="cs-frame">
+                <iframe src="https://player.vimeo.com/video/993536452?autoplay=0&amp;muted=1" title="How to build an IR plan with Arctic Wolf Cyber JumpStart" allow="fullscreen" allowfullscreen loading="lazy"></iframe>
             </div>
-        </section>
-
-        <!-- HERO IMAGE -->
-        <div class="hero-showcase">
-            <div style="position: absolute; top: 0; left: 10%; right: 10%; height: 1px; background: linear-gradient(90deg, transparent, rgba(99,179,237,0.5), transparent); pointer-events: none;"></div>
-            <div style="position: absolute; top: 1rem; left: 1rem; width: 18px; height: 18px; border-top: 1.5px solid rgba(99,179,237,0.4); border-left: 1.5px solid rgba(99,179,237,0.4); border-radius: 2px 0 0 0; pointer-events: none;"></div>
-            <div style="position: absolute; top: 1rem; right: 1rem; width: 18px; height: 18px; border-top: 1.5px solid rgba(99,179,237,0.4); border-right: 1.5px solid rgba(99,179,237,0.4); border-radius: 0 2px 0 0; pointer-events: none;"></div>
-            <div style="position: absolute; bottom: 1rem; left: 1rem; width: 18px; height: 18px; border-bottom: 1.5px solid rgba(99,179,237,0.4); border-left: 1.5px solid rgba(99,179,237,0.4); border-radius: 0 0 0 2px; pointer-events: none;"></div>
-            <div style="position: absolute; bottom: 1rem; right: 1rem; width: 18px; height: 18px; border-bottom: 1.5px solid rgba(99,179,237,0.4); border-right: 1.5px solid rgba(99,179,237,0.4); border-radius: 0 0 2px 0; pointer-events: none;"></div>
-            <img src="../assets/images/ir-planner-after.png" alt="IR Planner final design" style="
-                display: block;
-                width: 100%;
-                height: auto;
-                border-radius: 0.875rem;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.15), 0 8px 24px rgba(0,0,0,0.3), 0 24px 64px rgba(0,0,0,0.45), 0 0 0 1px rgba(0,0,0,0.08);
-            ">
         </div>
+    </div>
 
-        <article class="case-study-content" style="max-width: 780px; margin-left: auto; margin-right: auto;">
+    <div class="container">
+        <div class="cs-shell">
 
-            <!-- 01 INDUSTRY CONTEXT --><section class="content-section" id="s01">
-                <span class="section-label">01 Industry Context</span>
-                <h2 class="section-title">Redesigning How Businesses Prepare for Their Worst Day</h2>
-
-                <div class="goal-card">
-                    <span class="goal-label">IBM, Cost of a Data Breach Report</span>
-                    <p>"$2.66M saved per breach, on average, by companies with a tested Incident Response Plan — the single biggest cost reducer in a breach."</p>
-                </div>
-
-                <p>When ransomware hits, the first hours decide everything: who gets called, what gets restored first, where the backups live.</p>
-                <p>Companies with a tested Incident Response Plan answer those questions instantly and contain the breach fast. Companies without one scramble, and breaches that drag past 200 days cost dramatically more.</p>
-                <p>The stakes have moved beyond best practice. Cyber insurers now require a completed IR plan, reviewed quarterly, as a condition of coverage. What was once a security recommendation is now a recurring obligation for every business, from a ten-person shop to a 500-person enterprise.</p>
-
-                <div class="stat-flag">
-                    <span class="stat-num">30%</span>
-                    <p>Arctic Wolf had a tool for exactly this. Only 30% of customers had a plan complete enough to use.</p>
-                </div>
-            </section>
-
-            <!-- 02 CONTEXT --><section class="content-section" id="s02">
-                <span class="section-label">02 Context</span>
-                <h2 class="section-title">[Section title]</h2>
-                <div class="tbd">What's the project ask, and what were you personally responsible for? (This is where "the redesign overview" content used to live.)</div>
-            </section>
-
-            <!-- 03 THE PROBLEM --><section class="content-section" id="s03">
-                <span class="section-label">03 The Problem</span>
-                <h2 class="section-title">[Section title]</h2>
-                <div class="tbd">What was broken about the legacy experience, for users and for the business? Any research/survey findings that surfaced it?</div>
-            </section>
-
-            <!-- 04 CONSTRAINTS --><section class="content-section" id="s04">
-                <span class="section-label">04 Constraints</span>
-                <h2 class="section-title">[Section title]</h2>
-                <div class="tbd">What real-world limits shaped the design (timeline, parity requirements, team setup, etc.)?</div>
-            </section>
-
-            <!-- 05 RESEARCH & DECISIONS --><section class="content-section" id="s05">
-                <span class="section-label">05 Research &amp; Design Decisions</span>
-                <h2 class="section-title">[Section title]</h2>
-                <div class="tbd">What did you learn from users, and what decisions came out of it? This is usually the meatiest section — good place for before/after images.</div>
-            </section>
-
-            <!-- 06 OUTCOMES --><section class="content-section" id="s06">
-                <span class="section-label">06 Outcomes</span>
-                <h2 class="section-title">[Section title]</h2>
-                <div class="tbd">What changed after launch? Numbers, quotes, adoption.</div>
-            </section>
-
-        </article>
-    </main>
-
-    <!-- DOT NAV TOC -->
-    <nav id="dot-nav" aria-label="Page sections" style="
-        position: fixed;
-        right: 28px;
-        top: 50%;
-        transform: translateY(-50%);
-        display: flex;
-        flex-direction: column;
-        gap: 14px;
-        z-index: 100;
-        opacity: 0;
-        transition: opacity 0.3s;
-    ">
-        <style>
-            .dn-item { display: flex; align-items: center; gap: 10px; cursor: pointer; justify-content: flex-end; }
-            .dn-label {
-                font-size: 0.55rem; font-weight: 500; letter-spacing: 0.04em;
-                color: #fff; background: rgba(15,20,30,0.85);
-                padding: 3px 8px; border-radius: 4px;
-                white-space: nowrap; pointer-events: none;
-                opacity: 0; transform: translateX(6px);
-                transition: opacity 0.18s, transform 0.18s;
-                border: 1px solid rgba(255,255,255,0.1);
-            }
-            .dn-item:hover .dn-label { opacity: 1; transform: translateX(0); }
-            .dn-dot {
-                width: 6px; height: 6px; border-radius: 50%;
-                background: rgba(0,0,0,0.55);
-                transition: background 0.2s, width 0.2s, height 0.2s;
-                flex-shrink: 0;
-            }
-            .dn-item.done .dn-dot { background: rgba(29,78,216,0.45); }
-            .dn-item.active .dn-dot { width: 9px; height: 9px; background: #1d4ed8; }
-            .dn-item:hover .dn-dot { background: rgba(29,78,216,0.7); }
-            html:not(.dark) .dn-dot { background: rgba(0,0,0,0.55) !important; }
-            html:not(.dark) .dn-item.done .dn-dot { background: rgba(29,78,216,0.45) !important; }
-            html:not(.dark) .dn-item.active .dn-dot { background: #1d4ed8 !important; }
-            html:not(.dark) .dn-item:hover .dn-dot { background: rgba(29,78,216,0.7) !important; }
-            html.dark .dn-dot, body.dark .dn-dot { background: rgba(255,255,255,0.3) !important; }
-            html.dark .dn-item.done .dn-dot, body.dark .dn-item.done .dn-dot { background: rgba(99,179,237,0.4) !important; }
-            html.dark .dn-item.active .dn-dot, body.dark .dn-item.active .dn-dot { background: #63b3ed !important; }
-            html.dark .dn-item:hover .dn-dot, body.dark .dn-item:hover .dn-dot { background: rgba(99,179,237,0.7) !important; }
-            @media (prefers-color-scheme: dark) {
-                .dn-dot { background: rgba(255,255,255,0.3); }
-                .dn-item.done .dn-dot { background: rgba(99,179,237,0.4); }
-                .dn-item.active .dn-dot { background: #63b3ed; }
-                .dn-item:hover .dn-dot { background: rgba(99,179,237,0.7); }
-            }
-        </style>
-        <div class="dn-item" data-target="s01"><span class="dn-label">01 Industry Context</span><span class="dn-dot"></span></div>
-        <div class="dn-item" data-target="s02"><span class="dn-label">02 Context</span><span class="dn-dot"></span></div>
-        <div class="dn-item" data-target="s03"><span class="dn-label">03 Problem</span><span class="dn-dot"></span></div>
-        <div class="dn-item" data-target="s04"><span class="dn-label">04 Constraints</span><span class="dn-dot"></span></div>
-        <div class="dn-item" data-target="s05"><span class="dn-label">05 Research</span><span class="dn-dot"></span></div>
-        <div class="dn-item" data-target="s06"><span class="dn-label">06 Outcomes</span><span class="dn-dot"></span></div>
-    </nav>
-    <script>
-        (function() {
-            var nav = document.getElementById('dot-nav');
-            var items = Array.from(nav.querySelectorAll('.dn-item'));
-            var sections = items.map(function(i) { return document.getElementById(i.dataset.target); });
-            var activeIdx = -1;
-
-            function update() {
-                var mid = window.innerHeight * 0.45;
-                var best = -1;
-                sections.forEach(function(s, i) {
-                    if (!s) return;
-                    var rect = s.getBoundingClientRect();
-                    if (rect.top <= mid) best = i;
-                });
-                if (best === activeIdx) return;
-                activeIdx = best;
-                items.forEach(function(item, i) {
-                    item.classList.toggle('active', i === best);
-                    item.classList.toggle('done', i < best);
-                });
-            }
-
-            function showNav() {
-                nav.style.opacity = window.scrollY > 200 ? '1' : '0';
-            }
-
-            items.forEach(function(item) {
-                item.addEventListener('click', function() {
-                    var target = document.getElementById(item.dataset.target);
-                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                });
-            });
-
-            window.addEventListener('scroll', function() { update(); showNav(); }, { passive: true });
-            update();
-            showNav();
-        })();
-    </script>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <p class="copyright">&copy; 2026 Drasti Patel. All rights reserved.</p>
-                <div class="footer-links">
-                    <a href="https://www.linkedin.com/in/drasti/">LinkedIn</a>
-                    <a href="mailto:drastipatel705@gmail.com">Email</a>
-                </div>
+            <div class="cs-rail">
+                <nav aria-label="Sections">
+                    <a href="#context">01 Industry Context</a>
+                    <a href="#background">02 Background</a>
+                    <a href="#suspected">03 Where it lived</a>
+                    <a href="#assumed">04 What we assumed</a>
+                    <a href="#research">05 Research</a>
+                    <a href="#hmw">06 How might we</a>
+                    <a href="#scope">07 Constraints</a>
+                    <a href="#decisions">08 Decisions</a>
+                    <a href="#shipped">09 What shipped</a>
+                    <a href="#impact">10 Impact</a>
+                    <a href="#next">11 What's next</a>
+                </nav>
             </div>
+
+            <main class="cs-doc">
+
+                <!-- 01 -->
+                <section class="cs-sec" id="context">
+                    <span class="cs-eyebrow">01 &mdash; Industry Context</span>
+
+                    <div class="cs-stat">
+                        <span class="cs-figure">$2.66M</span>
+                        <p class="cs-cap">Saved per breach, on average, by companies with a tested incident response plan. The single largest cost reducer measured.</p>
+                        <p class="cs-src">IBM &mdash; Cost of a Data Breach Report</p>
+                    </div>
+
+                    <p>When ransomware hits, the first hours decide everything. Who gets called. What gets restored first. Where the backups live. Companies with a tested incident response plan answer instantly and contain the breach; companies without one scramble, and breaches that drag past 200 days cost dramatically more.</p>
+
+                    <p>The stakes have moved past best practice. Cyber insurers now require a completed IR plan, reviewed quarterly, as a condition of coverage. What was a security recommendation is now a recurring obligation for every business, from a ten-person shop to a 500-person enterprise.</p>
+
+                    <p>Arctic Wolf had a tool for exactly this. Only 30% of surveyed customers had a plan complete enough to use.</p>
+                </section>
+
+                <!-- 02 -->
+                <section class="cs-sec" id="background">
+                    <span class="cs-eyebrow">02 &mdash; Project background and my role</span>
+
+                    <p>The IR Planner was not built at Arctic Wolf. It arrived through an acquisition: a mature product with years of engineering behind it and none of what a mature product usually has. No design system. No accessibility checks. No prior usability research. It had been shipped sprint by sprint by engineering and product, built to function rather than to be used.</p>
+
+                    <p>I joined as Lead Product Designer when the handover began, the only designer on the migration. The work started with building context on a tool I had not built, and rapport with the product and engineering leads who had, so I could tell which decisions were deliberate and which were inherited.</p>
+                </section>
+
+                <!-- 03 -->
+                <section class="cs-sec" id="suspected">
+                    <span class="cs-eyebrow">03 &mdash; Where the IR Planner lived</span>
+
+                    <p>Post-acquisition, the IR Planner was classified as a standalone application. It lived on the legacy portal behind its own login, outside the environment customers actually worked in. Reaching it meant going from the portal home, to the Incident Response page, clicking &ldquo;Open IR Planner,&rdquo; and leaving the portal entirely. Four steps and a context switch.</p>
+
+                    <p>The fragmentation was visible before any research. What it was costing was not.</p>
+
+                    <figure class="cs-wide">
+                        <div class="cs-ph"><span>Figure &mdash; Legacy access path, four steps out of the portal, beside the three-step redesigned path</span></div>
+                        <figcaption>Four steps out of the portal and into a separate application. The redesign cuts a step and stays in place.</figcaption>
+                    </figure>
+                </section>
+
+                <!-- 04 -->
+                <section class="cs-sec" id="assumed">
+                    <span class="cs-eyebrow">04 &mdash; What we assumed</span>
+
+                    <p>The assumption on the table was the obvious one. IR planning is tedious. It asks IT teams to document contacts, systems, escalation paths, and recovery order, none of which feels urgent until the day it is the only thing that matters. So people start, stall, and never come back.</p>
+
+                    <p>If that were the whole story, the fix was a better form. Clearer inputs, smarter defaults, a well-timed nudge.</p>
+
+                    <p>Before building it, we checked.</p>
+                </section>
+
+                <!-- 05 -->
+                <section class="cs-sec" id="research">
+                    <span class="cs-eyebrow">05 &mdash; Research findings</span>
+
+                    <div class="cs-method"><span class="cs-what">Survey</span><span class="cs-n">57 responses</span></div>
+
+                    <p>We asked customers on the legacy IR Planner whether they had completed their plan and, if not, what was stopping them.</p>
+
+                    <div class="cs-reveal">
+                        <p class="cs-lead">The second most common answer was not &ldquo;I don't have time.&rdquo;</p>
+                        <p class="cs-quote">&ldquo;What is the IR Planner?&rdquo;</p>
+                        <p class="cs-after">28% of surveyed customers did not know the tool existed.</p>
+                    </div>
+
+                    <figure class="cs-wide">
+                        <div class="cs-ph"><span>Figure &mdash; Bar chart of the 57 survey responses to &ldquo;is your IR Planner up to date&rdquo;</span></div>
+                        <figcaption>57 responses. Directional rather than statistically representative; used to locate the problem, not to size it.</figcaption>
+                    </figure>
+
+                    <p>Awareness was the first barrier, not the only one. Among customers who did know about the tool, fewer than half were making real progress. Most had either started and stalled or never begun, and only a handful had actively opted out.</p>
+
+                    <div class="cs-method"><span class="cs-what">Follow-up interviews</span><span class="cs-n">8 customers</span></div>
+
+                    <p>I wrote the protocol and moderated a round of interviews to dig into the survey responses. Customers described what they had been working from before: Word documents, Excel, in some cases handwritten plans.</p>
+
+                    <div class="cs-pull">
+                        <blockquote>&ldquo;Have an external IR plan&hellip; Excel doc.&rdquo;</blockquote>
+                    </div>
+
+                    <p>They also described the IR Planner as less overwhelming than the Excel and PDF templates they had been using. Whatever was stopping people, it was not that the tool compared badly to the alternative.</p>
+
+                    <div class="cs-method"><span class="cs-what">Usability benchmark</span><span class="cs-n">Legacy experience, 5 sections</span></div>
+
+                    <p>I ran a usability test of the legacy experience to capture task performance before anything changed, so the redesign could be measured against real numbers rather than assessed on impression.</p>
+                </section>
+
+                <!-- 06 -->
+                <section class="cs-sec" id="hmw">
+                    <span class="cs-eyebrow">06 &mdash; How might we</span>
+                    <ul class="cs-list">
+                        <li><span class="cs-n">01</span><span class="cs-q">How might we integrate the IR Planner into the Arctic Wolf customer portal so it becomes a seamless part of the customer's existing workflow?</span></li>
+                        <li><span class="cs-n">02</span><span class="cs-q">How might we surface plan completion progress inside the portal so IT security teams discover the IR Planner and know what's left to finish?</span></li>
+                    </ul>
+                </section>
+
+                <!-- 07 -->
+                <section class="cs-sec" id="scope">
+                    <span class="cs-eyebrow">07 &mdash; Scope and constraints</span>
+
+                    <p>The goal was to migrate the acquired tool and blend it into Arctic Wolf's customer-facing product. That meant rebuilding on Arctic Wolf's design system at feature parity with the legacy state.</p>
+
+                    <dl class="cs-spec">
+                        <dt>Parity</dt>
+                        <dd class="cs-fixed">Nothing inherited could be removed.</dd>
+
+                        <dt>Deadline</dt>
+                        <dd>The legacy portal hosting the IR Planner was being sunset. Four months end to end: design complete by the end of October, code complete by the end of November.</dd>
+
+                        <dt>Foundation</dt>
+                        <dd>No legacy design system. Every pattern had to be mapped onto Arctic Wolf's from scratch.</dd>
+
+                        <dt class="cs-open">Negotiable</dt>
+                        <dd class="cs-open">Inherited functionality was fixed; anything not yet built was still slightly open to question, but the deadline constrained dramatically what new things could be added.</dd>
+                    </dl>
+                </section>
+
+                <!-- 08 -->
+                <section class="cs-sec" id="decisions">
+                    <span class="cs-eyebrow">08 &mdash; Design decisions</span>
+
+                    <div class="cs-decision">
+                        <h3>Surfacing the plan where customers already were</h3>
+                        <dl>
+                            <dt>Problem</dt>
+                            <dd>Moving the IR Planner into the portal made it reachable, not visible. Someone who did not know the tool existed still had no reason to navigate to Incident Response and find out.</dd>
+                            <dt>Decided by</dt>
+                            <dd>The survey. This surface did not exist before the research; it was scoped because 28% of respondents had never heard of the tool.</dd>
+                            <dt>Shipped</dt>
+                            <dd>A plan status widget on the Unified Portal home dashboard and the Incident Response dashboard. Customers who have not started see an introduction and a single action to begin. Customers with a plan underway see a status readout: one row per section, each with its completion percentage and a link straight into it.</dd>
+                            <dt>Why two states</dt>
+                            <dd>Someone who does not know the tool exists has to be told what it is. Someone mid-plan needs to know what is unfinished. An aggregate figure would only say they were behind; five rows reading 75%, 25%, 0%, 75%, 75% say exactly where.</dd>
+                        </dl>
+                        <div class="cs-compare">
+                            <figure class="cs-before">
+                                <span class="cs-tag">Not started</span>
+                                <img src="../assets/images/ir-planner-before.png" alt="The plan status widget in its unstarted state, introducing the IR Planner with a single Start My Plan action" loading="lazy">
+                            </figure>
+                            <figure class="cs-after">
+                                <span class="cs-tag">Plan underway</span>
+                                <img src="../assets/images/ir-planner-after.png" alt="The plan status widget in its in-progress state, one row per section with completion percentages" loading="lazy">
+                            </figure>
+                        </div>
+                    </div>
+
+                    <div class="cs-decision">
+                        <h3>Making progress visible</h3>
+                        <dl>
+                            <dt>Problem</dt>
+                            <dd>The legacy tool tracked completeness card by card, across four states. A user could tell whether any single card was done and never know their position in the plan, because nothing aggregated those states.</dd>
+                            <dt>Decided by</dt>
+                            <dd>The research. People who stalled were not confused about individual fields; they had no sense of how much was left.</dd>
+                            <dt>Shipped</dt>
+                            <dd>Completion surfaced at two levels: a section completion percentage above the content, and a count chip on every section tab. Progress is readable without opening anything.</dd>
+                        </dl>
+                        <div class="cs-compare">
+                            <figure class="cs-before">
+                                <span class="cs-tag">Before</span>
+                                <div class="cs-ph"><span>Legacy card states. Crop tight on one or two role cards showing the four states.</span></div>
+                            </figure>
+                            <figure class="cs-after">
+                                <span class="cs-tag">After</span>
+                                <div class="cs-ph"><span>Tab bar with count chips and the section completion meter.</span></div>
+                            </figure>
+                        </div>
+                    </div>
+
+                    <div class="cs-decision">
+                        <h3>Making entered data visible</h3>
+                        <dl>
+                            <dt>Problem</dt>
+                            <dd>Legacy roles were cards with an Add button. Entered values stayed hidden inside the card, so a user could not answer &ldquo;who is my Legal Leader&rdquo; without clicking.</dd>
+                            <dt>Constraint</dt>
+                            <dd>Feature parity. I could not cut fields to simplify the view, so the view had to hold all of them.</dd>
+                            <dt>Shipped</dt>
+                            <dd>A data grid with every field on screen, plus search, column controls, filters, and density settings to manage the width.</dd>
+                            <dt>Cost</dt>
+                            <dd>The legacy cards carried an always-visible description of each role. In the grid that guidance moved into an info tooltip. Persistent scaffolding became on-demand scaffolding, which serves returning users better and first-time users slightly worse.</dd>
+                        </dl>
+                        <figure>
+                            <div class="cs-ph"><span>Figure &mdash; One populated legacy card beside one grid row</span></div>
+                        </figure>
+                    </div>
+
+                    <div class="cs-decision">
+                        <h3>Where role editing lives</h3>
+                        <dl>
+                            <dt>Problem</dt>
+                            <dd>The legacy tool edited every role in a flyout over the section view. A drawer preserves context, which holds when the edit is short. Several roles carried more than ten fields, so the drawer became a narrow scrolling column with the grid sitting uselessly behind it.</dd>
+                            <dt>Decided by</dt>
+                            <dd>A threshold rather than a blanket rule: short edits stay in a drawer, anything past a handful of fields gets a dedicated page.</dd>
+                            <dt>Shipped</dt>
+                            <dd>Role editing on its own page, with a breadcrumb back to the section, read-only as the arrival state so landing there does not mean editing, and an unsaved-changes guard on exit.</dd>
+                            <dt>Cost</dt>
+                            <dd>Losing your place in the grid. The gain is a form that can be linked to, returned to, and validated in place, which matters for a document assembled by several people over weeks.</dd>
+                        </dl>
+                        <div class="cs-compare">
+                            <figure class="cs-before">
+                                <span class="cs-tag">Before</span>
+                                <div class="cs-ph"><span>Legacy flyout panel over the section view</span></div>
+                            </figure>
+                            <figure class="cs-after">
+                                <span class="cs-tag">After</span>
+                                <div class="cs-ph"><span>Role Detail Page, read-only arrival state</span></div>
+                            </figure>
+                        </div>
+                    </div>
+
+                    <div class="cs-decision">
+                        <h3>Naming roles customers actually have</h3>
+                        <dl>
+                            <dt>Problem</dt>
+                            <dd>Arctic Wolf's incident response practice recommends a canonical role set: Legal Leader, Technical Leader, Financial Leader, Executive Response Leader. Real organizations do not always map cleanly onto them.</dd>
+                            <dt>Decided by</dt>
+                            <dd>Customers asked for it directly in the survey.</dd>
+                            <dt>Shipped</dt>
+                            <dd>Recommended role names are editable rather than locked, and customers can add roles beyond the recommended set. The structure of the plan stays intact while the labels reflect the organization using it.</dd>
+                        </dl>
+                    </div>
+
+                    <div class="cs-decision">
+                        <h3>Managing contacts across sections</h3>
+                        <dl>
+                            <dt>Problem</dt>
+                            <dd>Contact records are shared: one person, referenced from any of the five sections, so correcting a phone number updates it everywhere. That is right, and it was already how the backend worked. What the interface never did was say so. Someone adding a vendor's after-hours line inside External Providers had no signal they were editing a record the Response Team also depends on. And with no single place contacts lived, verifying who was in the plan meant opening all five sections.</dd>
+                            <dt>Shipped</dt>
+                            <dd>Removing and deleting are separate actions. Removing unlinks a contact from that section and leaves the record intact everywhere else; deleting removes the record and every reference to it. Every delete lives in one place at the bottom of the drawer rather than a table ellipsis menu, and each carries its own confirmation.</dd>
+                            <dt>Proposed</dt>
+                            <dd>Centralizing edits and deletes in Section 1. Product pushed back: Section 1 is Response Team, so housing external providers there would break the section's meaning, and the other sections could already edit and delete contacts, so removing that broke parity.</dd>
+                            <dt>Open</dt>
+                            <dd>The design still cannot show where else a contact is referenced before a delete is confirmed. Documented in the PRD; centralized contact management is scoped for the phase after migration.</dd>
+                        </dl>
+                        <figure>
+                            <div class="cs-ph"><span>Figure &mdash; Existing vs. new contact fork, and the two confirmations</span></div>
+                        </figure>
+                    </div>
+
+                    <div class="cs-decision">
+                        <h3>Cutting the onboarding wizard</h3>
+                        <dl>
+                            <dt>Problem</dt>
+                            <dd>A guided wizard had been scoped months earlier to orient customers to the five sections. By the time the sections were built out, it navigated users through five pages without collecting a single input. A gate without a payoff.</dd>
+                            <dt>Decided by</dt>
+                            <dd>Pressure-testing the call with our senior design consultant and the product lead, and confirming the original rationale no longer applied.</dd>
+                            <dt>Shipped</dt>
+                            <dd>The wizard cut from scope. The need it served was real, so guidance moved into the interface: role tooltips, section descriptions, and inline help that costs nothing to skip.</dd>
+                            <dt>Note</dt>
+                            <dd><em>Feature parity meant I could not remove inherited functionality. Proposed scope was still mine to question.</em></dd>
+                        </dl>
+                    </div>
+                </section>
+
+                <!-- 09 -->
+                <section class="cs-sec" id="shipped">
+                    <span class="cs-eyebrow">09 &mdash; What shipped</span>
+
+                    <p>The IR Planner now lives inside the Arctic Wolf portal as part of Incident Response. Four steps became three, and the standalone application is no longer needed.</p>
+
+                    <figure class="cs-wide">
+                        <img src="../assets/images/IR_Planner_Thumbnail.png" alt="The shipped IR Planner section view inside the portal, with section tabs, count chips, a completion meter and the role data grid" loading="lazy">
+                        <figcaption>The shipped section view. Tab chips and a completion meter make progress readable before anything is opened.</figcaption>
+                    </figure>
+
+                    <p>Every state across all five sections was specified to development-ready: empty and filled views, creation and save flows, edit and delete paths, confirmation and unsaved-changes dialogs, error and validation states, in both light and dark themes. A product that shipped with no design system and no accessibility checks now runs on Arctic Wolf's system with accessibility standards applied throughout.</p>
+
+                    <figure>
+                        <div class="cs-ph"><span>Figure &mdash; One cropped annotated spec frame, as evidence of the above</span></div>
+                    </figure>
+                </section>
+
+                <!-- 10 -->
+                <section class="cs-sec" id="impact">
+                    <span class="cs-eyebrow">10 &mdash; Impact</span>
+                    <p class="cs-todo">TO FILL. Two baselines exist: the 30% completion figure and the pre-launch usability benchmark across all five sections. Lead with post-launch task performance against that benchmark if you have it. Otherwise: four months end to end, one designer, five sections specced to development-ready in both themes, shipped at feature parity ahead of the legacy portal sunset, with both baselines set as the measures to move.</p>
+                </section>
+
+                <!-- 11 -->
+                <section class="cs-sec" id="next">
+                    <span class="cs-eyebrow">11 &mdash; What's next</span>
+                    <p>Centralized contact management, connected to Arctic Wolf's customer directory. It is scoped for the phase after the migration, and it is the fix to the limitation I raised and documented inside V1's constraints.</p>
+
+                    <div class="cs-close">
+                        <h2>Reflection</h2>
+                        <p>The plan only matters on the worst day. Most of this work was not about making incident response planning pleasant; it was about making sure the plan exists, and is correct, before anyone needs it.</p>
+                        <p>The thing I would do differently is the contact proposal. Centralizing edits was the right instinct and Section 1 was the wrong home for it. A contact surface sitting outside the five sections would have answered the objection I did not anticipate.</p>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="cs-next">
+            <span class="cs-eyebrow">Next case study</span>
+            <p style="margin:.5rem 0 0"><a href="dashboard.html">IR Dashboard <span aria-hidden="true">&rarr;</span></a></p>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container">
+            <span class="copy">&copy; 2026 Drasti Patel. All rights reserved.</span>
+            <span class="links">
+                <a href="https://www.linkedin.com/in/drasti/">LinkedIn</a>
+                <a href="mailto:drastipatel705@gmail.com">Email</a>
+            </span>
         </div>
     </footer>
+
+    <script>
+        // Highlight the rail link for the section currently in view.
+        (function () {
+            var links = Array.prototype.slice.call(document.querySelectorAll('.cs-rail a'));
+            if (!links.length || !('IntersectionObserver' in window)) return;
+            var map = {};
+            links.forEach(function (a) {
+                var el = document.querySelector(a.getAttribute('href'));
+                if (el) map[el.id] = a;
+            });
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (!entry.isIntersecting) return;
+                    links.forEach(function (a) { a.classList.remove('is-active'); });
+                    if (map[entry.target.id]) map[entry.target.id].classList.add('is-active');
+                });
+            }, { rootMargin: '-20% 0px -70% 0px' });
+            Object.keys(map).forEach(function (id) { observer.observe(document.getElementById(id)); });
+        })();
+    </script>
 </body>
 </html>
