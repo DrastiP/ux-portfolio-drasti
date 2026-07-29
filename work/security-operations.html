@@ -1,116 +1,152 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Empowering Security Operations | Drasti Patel</title>
+    <title>Empowering Security Operations &mdash; Case Study | Drasti Patel</title>
+    <meta name="description" content="Streamlining complex cybersecurity workflows to reduce alert fatigue and accelerate threat detection for security analysts.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-    <link rel="stylesheet" href="../styles.css?v=1.3">
-    <script src="../theme.js"></script>
+    <link rel="stylesheet" href="../styles.css?v=2.0">
 </head>
-<body>
-    <header class="navbar">
+<body class="cs">
+
+    <div class="topbar">
         <div class="container">
-            <a href="../" class="logo">Drasti Patel</a>
-            <div class="nav-right">
-                <nav class="nav-links">
-                    <a href="../#work">Work</a>
-                    <a href="../about.html">About</a>
-                </nav>
-                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 18v1m9-11h1M3 12H1m15.364-6.364l.707-.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
-                    </svg>
-                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                    </svg>
-                </button>
+            <a class="mark" href="../">Drasti Patel</a>
+            <nav class="nav">
+              <a href="../#work" class="is-active">Work</a>
+              <a href="../about.html">About</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="cs-topbar">
+        <div class="container">
+            <div class="cs-mark"><b>Case study</b> / Arctic Wolf</div>
+            <div class="cs-mark">Internal Tools &middot; Security Operations</div>
+        </div>
+    </div>
+
+    <header class="cs-hero">
+        <div class="container">
+            <div class="cs-headline">
+                <p class="cs-eyebrow">Security Operations</p>
+                <h1>Empowering security operations</h1>
+                <p class="cs-deck">Streamlining complex cybersecurity workflows to reduce alert fatigue and accelerate threat detection for security analysts.</p>
             </div>
+
+            <dl class="cs-meta">
+                <div><dt>Role</dt><dd>Product Designer</dd></div>
+                <div><dt>Timeline</dt><dd>Six months &middot; 2023</dd></div>
+                <div><dt>Team</dt><dd>SecOps, Platform</dd></div>
+                <div><dt>Org</dt><dd>Arctic Wolf</dd></div>
+            </dl>
         </div>
     </header>
 
-    <main class="container">
-        <section class="case-study-hero">
-            <h1 class="case-study-title">Empowering Security Operations</h1>
-            <p class="case-study-subtitle">Streamlining complex cybersecurity workflows to reduce alert fatigue and accelerate threat detection for security analysts.</p>
-            
-            <div class="metadata-grid">
-                <div class="metadata-item">
-                    <h3>Role</h3>
-                    <p>Product Designer</p>
-                </div>
-                <div class="metadata-item">
-                    <h3>Timeline</h3>
-                    <p>6 months · 2023</p>
-                </div>
-                <div class="metadata-item">
-                    <h3>Team</h3>
-                    <p>SecOps · Platform</p>
-                </div>
-                <div class="metadata-item">
-                    <h3>Org</h3>
-                    <p>Arctic Wolf</p>
-                </div>
+    <div class="container">
+        <div class="cs-shell">
+
+            <div class="cs-rail">
+                <nav aria-label="Sections">
+                    <a href="#context">01 Context</a>
+                    <a href="#problem">02 The problem</a>
+                    <a href="#solution">03 Design solution</a>
+                    <a href="#impact">04 Outcomes</a>
+                </nav>
             </div>
-        </section>
 
-        <article class="case-study-content">
-            <section class="content-section">
-                <span class="section-label">01 — Context</span>
-                <h2 class="section-title">The Analyst's Dilemma</h2>
-                <p>Security analysts are bombarded with thousands of alerts every day. Identifying the "needle in the haystack"—the one alert that signifies a real breach—is an exhausting and error-prone process. This project focused on the internal tools used by Arctic Wolf analysts to triage and investigate these threats.</p>
-            </section>
+            <main class="cs-doc">
 
-            <section class="content-section">
-                <span class="section-label">02 — The problem</span>
-                <h2 class="section-title">Alert Fatigue & Context Switching</h2>
-                <p>Analysts were forced to switch between multiple tabs and tools to gather context on a single alert. This fragmentation led to slower response times and increased the risk of missing critical information.</p>
-                <div class="image-placeholder-large"></div>
-            </section>
+                <section class="cs-sec" id="context">
+                    <span class="cs-eyebrow">01 &mdash; Context</span>
+                    <h2>The analyst's dilemma</h2>
+                    <p>Security analysts are bombarded with thousands of alerts every day. Identifying the needle in the haystack, the one alert that signifies a real breach, is an exhausting and error-prone process. This project focused on the internal tools Arctic Wolf analysts use to triage and investigate those threats.</p>
+                </section>
 
-            <section class="content-section">
-                <span class="section-label">03 — Design Solution</span>
-                <h2 class="section-title">The Unified Triage Interface</h2>
-                <p>We redesigned the triage experience into a single, unified interface that surfaces all necessary context—user behavior, network logs, and device history—in one view. By leveraging intelligent grouping and prioritization, we allowed analysts to focus on high-risk incidents first.</p>
-                <div class="quote-block">
-                    "The goal wasn't just to make it look better, but to make the analysts faster and more accurate."
-                </div>
-            </section>
+                <section class="cs-sec" id="problem">
+                    <span class="cs-eyebrow">02 &mdash; The problem</span>
+                    <h2>Alert fatigue and context switching</h2>
+                    <p>Analysts were forced to switch between multiple tabs and tools to gather context on a single alert. That fragmentation slowed response times and increased the risk of missing critical information.</p>
 
-            <section class="content-section">
-                <span class="section-label">04 — Outcomes</span>
-                <h2 class="section-title">Impact on Operations</h2>
-                <div class="outcome-grid">
-                    <div class="outcome-card">
-                        <span class="outcome-stat">30%</span>
-                        <span class="outcome-label">Reduction in triage time</span>
+                    <figure>
+                        <div class="cs-ph"><span>Figure &mdash; The fragmented legacy triage workflow across tools</span></div>
+                    </figure>
+                </section>
+
+                <section class="cs-sec" id="solution">
+                    <span class="cs-eyebrow">03 &mdash; Design solution</span>
+                    <h2>The unified triage interface</h2>
+                    <p>We redesigned the triage experience into a single, unified interface that surfaces all the necessary context, user behaviour, network logs and device history, in one view. Intelligent grouping and prioritization let analysts focus on high-risk incidents first.</p>
+
+                    <div class="cs-pull">
+                        <blockquote>The goal wasn't just to make it look better, but to make the analysts faster and more accurate.</blockquote>
                     </div>
-                    <div class="outcome-card">
-                        <span class="outcome-stat">25%</span>
-                        <span class="outcome-label">Increase in analyst accuracy</span>
-                    </div>
-                    <div class="outcome-card">
-                        <span class="outcome-stat">Better</span>
-                        <span class="outcome-label">Analyst well-being</span>
-                    </div>
-                </div>
-            </section>
-        </article>
-    </main>
 
-    <footer class="footer">
+                    <figure>
+                        <div class="cs-ph"><span>Figure &mdash; The unified triage view, with grouped and prioritized alerts</span></div>
+                    </figure>
+                </section>
+
+                <section class="cs-sec" id="impact">
+                    <span class="cs-eyebrow">04 &mdash; Outcomes</span>
+                    <h2>Impact on operations</h2>
+
+                    <dl class="cs-spec">
+                        <dt>Triage time</dt>
+                        <dd class="cs-fixed">30% reduction</dd>
+
+                        <dt>Accuracy</dt>
+                        <dd class="cs-fixed">25% increase in analyst accuracy</dd>
+
+                        <dt>Well-being</dt>
+                        <dd>Measurably less alert fatigue reported by the analyst team.</dd>
+                    </dl>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="cs-next">
+            <span class="cs-eyebrow">Next case study</span>
+            <p style="margin:.5rem 0 0"><a href="dashboard.html">IR Dashboard <span aria-hidden="true">&rarr;</span></a></p>
+        </div>
+    </div>
+
+    <footer class="site-footer">
         <div class="container">
-            <div class="footer-content">
-                <p class="copyright">&copy; 2026 Drasti Patel. All rights reserved.</p>
-                <div class="footer-links">
-                    <a href="https://www.linkedin.com/in/drasti/">LinkedIn</a>
-                    <a href="mailto:drastipatel705@gmail.com">Email</a>
-                </div>
-            </div>
+            <span class="copy">&copy; 2026 Drasti Patel. All rights reserved.</span>
+            <span class="links">
+                <a href="https://www.linkedin.com/in/drasti/">LinkedIn</a>
+                <a href="mailto:drastipatel705@gmail.com">Email</a>
+            </span>
         </div>
     </footer>
+
+    <script>
+        // Highlight the rail link for the section currently in view.
+        (function () {
+            var links = Array.prototype.slice.call(document.querySelectorAll('.cs-rail a'));
+            if (!links.length || !('IntersectionObserver' in window)) return;
+            var map = {};
+            links.forEach(function (a) {
+                var el = document.querySelector(a.getAttribute('href'));
+                if (el) map[el.id] = a;
+            });
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (!entry.isIntersecting) return;
+                    links.forEach(function (a) { a.classList.remove('is-active'); });
+                    if (map[entry.target.id]) map[entry.target.id].classList.add('is-active');
+                });
+            }, { rootMargin: '-20% 0px -70% 0px' });
+            Object.keys(map).forEach(function (id) { observer.observe(document.getElementById(id)); });
+        })();
+    </script>
 </body>
 </html>

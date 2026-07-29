@@ -1,160 +1,79 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drasti | Product Designer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="stylesheet" href="styles.css?v=1.3">
-    <script src="theme.js"></script>
-    <style>
-        .wip-badge {
-            position: absolute;
-            top: 0.9rem;
-            left: 0.9rem;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            background: rgba(255, 255, 255, 0.92);
-            color: #92400e;
-            font-size: 0.6rem;
-            font-weight: 600;
-            letter-spacing: 0.03em;
-            padding: 3px 8px;
-            border-radius: 999px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-        }
-        .wip-dot {
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: #f59e0b;
-            animation: wip-blink 1.4s ease-in-out infinite;
-        }
-        @keyframes wip-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.15; } }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drasti | Product Designer</title>
+<meta name="description" content="Drasti Patel — product designer. I turn messy, undefined problems into products people actually understand.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css?v=2.0">
 </head>
 <body>
-    <header class="navbar">
-        <div class="container">
-            <a href="./" class="logo">Drasti Patel</a>
-            <div class="nav-right">
-                <nav class="nav-links">
-                    <a href="#work">Work</a>
-                    <a href="about.html">About</a>
-                </nav>
-                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 18v1m9-11h1M3 12H1m15.364-6.364l.707-.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
-                    </svg>
-                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </header>
 
-    <main>
-        <section class="hero">
-            <div class="container">
-                <div class="hero-label-container">
-                    <span class="hero-label">Product Designer</span>
-                </div>
-                <h1 class="hero-title">I turn messy, undefined problems into products people <span class="highlight">actually understand.</span></h1>
-                <p class="hero-subtitle">Grounded in research. Comfortable with ambiguity.</p>
-            </div>
-        </section>
+<div class="topbar">
+  <div class="wrap">
+    <a class="mark" href="./">Drasti Patel</a>
+    <nav class="nav">
+      <a href="#work">Work</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</div>
 
-        <section id="work" class="work-section">
-            <div class="container">
-                <!-- Featured Projects -->
-                <div class="featured-section">
-                    <div class="featured-grid">
-                        <article class="project-card featured">
-                            <a href="work/dashboard.html" class="project-link">
-                                <div class="project-image-container" style="background-color: #DBEAFE;">
-                                    <img src="assets/images/IR_Dashboard_Thumbnail_v2.png" alt="Incident Response Dashboard" class="project-thumbnail">
-                                </div>
-                                <div class="project-info-header">
-                                    <h2 class="project-title">Incident Response Dashboard</h2>
-                                    <p class="project-company" style="margin: -0.25rem 0 0; font-size: 0.85rem; font-weight: 600; color: var(--text-secondary);">Arctic Wolf</p>
-                                    <div class="project-meta-tags">
-                                        <span class="tag">Enterprise</span>
-                                        <span class="tag">Dashboard</span>
-                                        <span class="tag">Cybersecurity</span>
-                                        <span class="tag">Customer Facing</span>
-                                    </div>
-                                </div>
-                                <p class="project-description">Designing the operational infrastructure for a $9M product launch, recognized as an IDC category-defining product.</p>
-                            </a>
-                        </article>
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Product Designer</p>
+    <h1>I turn messy, undefined problems into products people actually understand.</h1>
+    <p class="sub">Grounded in research. Comfortable with ambiguity.</p>
+  </div>
+</header>
 
-                        <article class="project-card featured">
-                            <a href="work/planner.html" class="project-link">
-                                <div class="project-image-container" style="background-color: #FEE2E2; position: relative; overflow: hidden;">
-                                    <div class="wip-badge"><span class="wip-dot"></span>Work in Progress</div>
-                                    <img src="assets/images/IR_Planner_Thumbnail.png" alt="IR Planner" class="project-thumbnail">
-                                </div>
-                                <div class="project-info-header">
-                                    <h2 class="project-title">Incident Response Planner</h2>
-                                    <p class="project-company" style="margin: -0.25rem 0 0; font-size: 0.85rem; font-weight: 600; color: var(--text-secondary);">Arctic Wolf</p>
-                                    <div class="project-meta-tags">
-                                        <span class="tag">UX Research</span>
-                                        <span class="tag">Strategy</span>
-                                        <span class="tag">2024</span>
-                                    </div>
-                                </div>
-                                <p class="project-description">A proactive readiness tool helping security teams build and maintain response plans.</p>
-                            </a>
-                        </article>
-                    </div>
-                </div>
+<main class="wrap" id="work">
 
-                <!-- Supporting Projects Grid -->
-                <div class="supporting-grid">
-                    <article class="project-card">
-                        <a href="work/raw-search.html" class="project-link">
-                            <div class="project-image-container">
-                                <img src="assets/images/raw-log-search-thumbnail.png" alt="Raw Log Search" class="project-thumbnail">
-                            </div>
-                            <div class="project-content">
-                                <h2 class="project-title" style="font-size: 1.25rem;">Raw Log Search</h2>
-                                <p class="project-category" style="font-size: 0.875rem;">Visual Design • Big Data</p>
-                            </div>
-                        </a>
-                    </article>
+  <p class="slabel">Selected work</p>
 
-                    <article class="project-card">
-                        <a href="work/spur-onboarding.html" class="project-link">
-                            <div class="project-image-container">
-                                <img src="assets/images/Spur Case Study/hero.png" alt="Spur Onboarding" class="project-thumbnail">
-                            </div>
-                            <div class="project-content">
-                                <h2 class="project-title" style="font-size: 1.25rem;">Spur Onboarding</h2>
-                                <p class="project-category" style="font-size: 0.875rem;">Product Design • Onboarding</p>
-                            </div>
-                        </a>
-                    </article>
-                </div>
-            </div>
-        </section>
-    </main>
+  <a class="big" href="work/dashboard.html">
+    <span class="frame has-img"><img src="assets/images/IR Dashboard Case Study/15 image. Final Design IR Dashboard.png" alt="Incident Response Dashboard"></span>
+    <span class="tags">Arctic Wolf &middot; Enterprise Dashboard &middot; Cybersecurity &middot; Customer Facing</span>
+    <h2>Incident Response Dashboard</h2>
+    <p class="oneline">Designing the operational infrastructure for a $9M product launch, recognized as an IDC category-defining product.</p>
+  </a>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <p class="copyright">&copy; 2026 Drasti Patel. All rights reserved.</p>
-                <div class="footer-links">
-                    <a href="https://www.linkedin.com/in/drasti/">LinkedIn</a>
-                    <a href="mailto:drastipatel705@gmail.com">Email</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+  <a class="big" href="work/planner.html">
+    <span class="frame has-img"><img src="assets/images/IR_Planner_Thumbnail.png" alt="Incident Response Planner"></span>
+    <span class="badge">Work in progress</span>
+    <span class="tags">Arctic Wolf &middot; UX Research &middot; Strategy &middot; 2024</span>
+    <h2>Incident Response Planner</h2>
+    <p class="oneline">A proactive readiness tool helping security teams build and maintain response plans.</p>
+  </a>
+
+  <div class="minor-grid">
+    <a class="minor" href="work/raw-search.html">
+      <span class="frame has-img"><img src="assets/images/Raw Log Search Visuals/1. main.png" alt="Raw Log Search"></span>
+      <span class="tags">Visual Design &middot; Big Data</span>
+      <h3>Raw Log Search</h3>
+    </a>
+    <a class="minor" href="work/spur-onboarding.html">
+      <span class="frame has-img"><img src="assets/images/Spur Case Study/hero.png" alt="Spur Onboarding"></span>
+      <span class="tags">Product Design &middot; Onboarding</span>
+      <h3>Spur Onboarding</h3>
+    </a>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="copy">&copy; 2026 Drasti Patel. All rights reserved.</span>
+    <span class="links">
+      <a href="https://www.linkedin.com/in/drasti/">LinkedIn</a>
+      <a href="mailto:drastipatel705@gmail.com">Email</a>
+    </span>
+  </div>
+</footer>
+
 </body>
 </html>
