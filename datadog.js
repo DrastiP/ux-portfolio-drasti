@@ -44,10 +44,10 @@
             // A portfolio gets low traffic, so keep every session.
             sessionSampleRate: 100,
 
-            // Session Replay records the screen. Off by default because it
-            // carries the heaviest privacy obligations; raise to 20 if you
-            // want it and are comfortable with that.
-            sessionReplaySampleRate: 0,
+            // Session Replay records the screen. Kept at 100 for the same
+            // reason as sessionSampleRate: at portfolio traffic, a lower
+            // rate would leave most visits with no replay to watch.
+            sessionReplaySampleRate: 100,
 
             trackResources: true,
             trackLongTasks: true,
