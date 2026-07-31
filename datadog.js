@@ -13,8 +13,8 @@
    ============================================================ */
 
 (function () {
-    var APPLICATION_ID = 'REPLACE_WITH_APPLICATION_ID';
-    var CLIENT_TOKEN   = 'REPLACE_WITH_CLIENT_TOKEN';
+    var APPLICATION_ID = '4798de20-e6ea-4776-84fb-9ac89a330e13';
+    var CLIENT_TOKEN   = 'pub10774b9fc75f06c1871cf29490b3cd46';
 
     // US1 (app.datadoghq.com). For another region change both of these
     // together — e.g. EU1 is 'datadoghq.eu' with a /eu1/ SDK path.
