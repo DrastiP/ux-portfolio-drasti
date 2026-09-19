@@ -1245,11 +1245,30 @@ body.cs figcaption {
     from { opacity: 0; }
 }
 
+/* Ambient drift: every dot wanders a little, always. Each wrapper gets
+   its own period and a negative delay from hero-figure.js, so the field
+   shimmers rather than pulsing in time. Amplitude scales with the dot's
+   weight, so the motion fades out along with the dots themselves. */
+.hero-figure .drift {
+    animation-name: dot-drift;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-duration: 8s;   /* overridden per dot */
+}
+
+@keyframes dot-drift {
+    0%, 100% { transform: translate(0, 0); }
+    25%  { transform: translate(calc(var(--amp, 1) * 1.1px),  calc(var(--amp, 1) * -0.8px)); }
+    50%  { transform: translate(calc(var(--amp, 1) * -0.5px), calc(var(--amp, 1) * 1.2px)); }
+    75%  { transform: translate(calc(var(--amp, 1) * -1.2px), calc(var(--amp, 1) * -0.35px)); }
+}
+
 /* No room for it alongside the headline below this width. */
 @media (max-width: 900px) {
     .hero-figure { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .hero-figure circle { transition: none; animation: none; }
+    .hero-figure circle,
+    .hero-figure .drift { transition: none; animation: none; }
 }

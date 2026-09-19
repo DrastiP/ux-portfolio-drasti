@@ -61,6 +61,11 @@
     var SWELL = 3.4;            // extra scale at full strength
     var HEAT = 1.4;             // how fast the colour runs to the signal
 
+    /* ---- ambient drift ---- */
+    var DRIFT_MIN = 5.5;        // seconds for the fastest dot's cycle
+    var DRIFT_MAX = 11;         // seconds for the slowest
+    var DRIFT_FLOOR = 0.22;     // dots fainter than this stay still
+
     function clamp01(t) { return t < 0 ? 0 : t > 1 ? 1 : t; }
     function smoothstep(a, b, x) {
         var t = clamp01((x - a) / (b - a));
@@ -106,18 +111,42 @@
     var nx = 0, ny = 0, ox = 0, oy = 0;
     var built = false;
 
+    // A block element's box is as wide as its column, not as wide as the
+    // words in it -- the eyebrow is ~140px of type in a 960px box, and the
+    // headline is ragged inside a solid rectangle. Reserving those boxes
+    // punched big empty patches in the field. Range rects give one tightly
+    // fitted rect per rendered line instead, so the gap follows the text.
+    function lineRects(el) {
+        var rects = [];
+        try {
+            var range = document.createRange();
+            range.selectNodeContents(el);
+            var list = range.getClientRects();
+            for (var i = 0; i < list.length; i++) {
+                if (list[i].width > 0.5 && list[i].height > 0.5) rects.push(list[i]);
+            }
+        } catch (e) { /* fall through to the element box */ }
+        if (!rects.length) {
+            var r = el.getBoundingClientRect();
+            if (r.width && r.height) rects.push(r);
+        }
+        return rects;
+    }
+
     function exclusionZones(box) {
         var zones = [];
         var nodes = document.querySelectorAll(EXCLUDE);
         for (var i = 0; i < nodes.length; i++) {
-            var r = nodes[i].getBoundingClientRect();
-            if (!r.width || !r.height) continue;
-            zones.push({
-                l: r.left - box.left - BUFFER,
-                t: r.top - box.top - BUFFER,
-                r: r.right - box.left + BUFFER,
-                b: r.bottom - box.top + BUFFER
-            });
+            var rects = lineRects(nodes[i]);
+            for (var j = 0; j < rects.length; j++) {
+                var r = rects[j];
+                zones.push({
+                    l: r.left - box.left - BUFFER,
+                    t: r.top - box.top - BUFFER,
+                    r: r.right - box.left + BUFFER,
+                    b: r.bottom - box.top + BUFFER
+                });
+            }
         }
         return zones;
     }
@@ -152,6 +181,8 @@
         oy = (H - (ny - 1) * PITCH) / 2;
 
         var frag = document.createDocumentFragment();
+        var drifts = !(window.matchMedia &&
+                       window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
         for (var r = 0; r < ny; r++) {
             for (var c = 0; c < nx; c++) {
@@ -199,7 +230,24 @@
                 } else {
                     el.style.animation = 'none';
                 }
-                frag.appendChild(el);
+
+                // The cursor writes a transform onto the circle, so the
+                // never-ending drift rides a wrapper instead. Two transform
+                // layers, composed by the tree, neither clobbering the other.
+                var g = document.createElementNS(NS, 'g');
+                if (drifts && weight > DRIFT_FLOOR) {
+                    g.setAttribute('class', 'drift');
+                    // Each dot gets its own period, so the field never
+                    // pulses in unison, and a negative delay drops it in
+                    // mid-cycle rather than all starting from rest.
+                    var period = DRIFT_MIN + Math.random() * (DRIFT_MAX - DRIFT_MIN);
+                    g.style.animationDuration = period.toFixed(2) + 's';
+                    g.style.animationDelay = (-Math.random() * period).toFixed(2) + 's';
+                    // fainter dots drift less, so the motion fades out with them
+                    g.style.setProperty('--amp', (0.55 + weight * 0.75).toFixed(2));
+                }
+                g.appendChild(el);
+                frag.appendChild(g);
 
                 var dot = {
                     el: el, x: x, y: y, react: react, base: base,
