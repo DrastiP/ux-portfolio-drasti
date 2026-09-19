@@ -1259,6 +1259,19 @@ body.cs figcaption {
     animation-duration: 8s;   /* overridden per dot */
 }
 
+/* A scattered few also breathe. The pulse rides the wrapper's opacity,
+   which multiplies with the circle's own, so it composes with both the
+   entrance wipe and whatever the cursor is writing rather than fighting
+   either. Both durations and delays are set per dot in hero-figure.js. */
+.hero-figure .drift.accent {
+    animation-name: dot-drift, dot-pulse;
+}
+
+@keyframes dot-pulse {
+    0%, 100% { opacity: .28; }
+    50%      { opacity: 1; }
+}
+
 @keyframes dot-drift {
     0%, 100% { transform: translate(0, 0); }
     20%  { transform: translate(calc(var(--amp, 1) * 3.4px),  calc(var(--amp, 1) * -2.6px)); }

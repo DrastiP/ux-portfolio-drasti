@@ -42,8 +42,8 @@
 
     /* ---- grid geometry (FR-1) ---- */
     var PITCH = 30;             // uniform X and Y spacing, spec 28-32px
-    var R = 1.25;               // 2.5px diameter, top of the spec's 2.0-2.5
-    var BASE_OPACITY = 0.68;    // above the spec's 0.5, which read too faint
+    var R = 1.6;                // 3.2px diameter, over the spec's 2.5 on request
+    var BASE_OPACITY = 0.82;    // well above the spec's 0.5, which read too faint
 
     /* ---- masking (FR-2, FR-3) ---- */
     var LEFT_GATE = 0.50;       // nothing left of the half way line
@@ -65,6 +65,12 @@
     var DRIFT_MIN = 3.6;        // seconds for the fastest dot's cycle
     var DRIFT_MAX = 8.5;        // seconds for the slowest
     var DRIFT_FLOOR = 0.22;     // dots fainter than this stay still
+
+    /* ---- ambient colour ---- */
+    var ACCENT_RATE = 0.10;     // share of dots that carry the signal at rest
+    var ACCENT_HEAT = 0.85;     // how far toward the signal they sit
+    var PULSE_MIN = 5;          // seconds for the fastest accent's breath
+    var PULSE_MAX = 13;         // seconds for the slowest
 
     function clamp01(t) { return t < 0 ? 0 : t > 1 ? 1 : t; }
     function smoothstep(a, b, x) {
@@ -234,15 +240,33 @@
                 // The cursor writes a transform onto the circle, so the
                 // never-ending drift rides a wrapper instead. Two transform
                 // layers, composed by the tree, neither clobbering the other.
+                // A scattered few carry the signal colour at rest and
+                // breathe in and out on their own clock, so the field has
+                // some warmth in it without the cursor.
+                var baseFill = '';
+                var accent = tintable && drifts &&
+                             weight > DRIFT_FLOOR && Math.random() < ACCENT_RATE;
+                if (accent) {
+                    baseFill = tint(ACCENT_HEAT);
+                    el.style.fill = baseFill;
+                }
+
                 var g = document.createElementNS(NS, 'g');
                 if (drifts && weight > DRIFT_FLOOR) {
-                    g.setAttribute('class', 'drift');
+                    g.setAttribute('class', accent ? 'drift accent' : 'drift');
                     // Each dot gets its own period, so the field never
                     // pulses in unison, and a negative delay drops it in
                     // mid-cycle rather than all starting from rest.
                     var period = DRIFT_MIN + Math.random() * (DRIFT_MAX - DRIFT_MIN);
-                    g.style.animationDuration = period.toFixed(2) + 's';
-                    g.style.animationDelay = (-Math.random() * period).toFixed(2) + 's';
+                    if (accent) {
+                        var breath = PULSE_MIN + Math.random() * (PULSE_MAX - PULSE_MIN);
+                        g.style.animationDuration = period.toFixed(2) + 's, ' + breath.toFixed(2) + 's';
+                        g.style.animationDelay = (-Math.random() * period).toFixed(2) + 's, ' +
+                                                 (-Math.random() * breath).toFixed(2) + 's';
+                    } else {
+                        g.style.animationDuration = period.toFixed(2) + 's';
+                        g.style.animationDelay = (-Math.random() * period).toFixed(2) + 's';
+                    }
                     // fainter dots drift less, so the motion fades out with them
                     g.style.setProperty('--amp', (0.55 + weight * 0.75).toFixed(2));
                 }
@@ -251,7 +275,7 @@
 
                 var dot = {
                     el: el, x: x, y: y, react: react, base: base,
-                    tr: '', fill: '', op: '', seen: -1
+                    baseFill: baseFill, tr: '', fill: '', op: '', seen: -1
                 };
                 index[index.length - 1] = dot;
                 dots.push(dot);
@@ -314,7 +338,7 @@
 
     function reset(d) {
         if (d.tr) { d.el.style.transform = ''; d.tr = ''; }
-        if (d.fill) { d.el.style.fill = ''; d.fill = ''; }
+        if (d.fill) { d.el.style.fill = d.baseFill; d.fill = ''; }
         if (d.op) { d.el.style.opacity = d.base.toFixed(3); d.op = ''; }
     }
 
