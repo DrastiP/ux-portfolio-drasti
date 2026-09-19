@@ -1109,6 +1109,55 @@ body.cs figcaption {
 .big h2,
 .minor h3 { transition: color .2s var(--ease-out); }
 
+/* Hover reveal over the thumbnail. Pointer devices only — on touch
+   there is no hover, and a permanently visible fill would just
+   obscure the work.
+   The label is the .badge component inverted onto the signal fill:
+   same mono face, size, letter-spacing, border and padding. */
+.peek { display: none; }
+
+@media (hover: hover) and (pointer: fine) {
+    .big .frame,
+    .minor .frame { position: relative; }
+
+    .peek {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--signal);
+        opacity: 0;
+        transition: opacity .28s var(--ease-out);
+    }
+    /* Specificity has to beat `.big .frame span` / `.minor .frame span`,
+       which otherwise set the placeholder type size on this label. */
+    .big .frame .peek > span,
+    .minor .frame .peek > span {
+        font-family: var(--mono);
+        font-size: .625rem;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        color: var(--paper);
+        border: 1px solid var(--paper);
+        padding: .2rem .5rem;
+        display: inline-block;
+        line-height: 1.7;
+        transform: translateY(6px);
+        transition: transform .28s var(--ease-out);
+    }
+
+    .big:hover .peek,
+    .big:focus-visible .peek,
+    .minor:hover .peek,
+    .minor:focus-visible .peek { opacity: .94; }
+
+    .big:hover .peek > span,
+    .big:focus-visible .peek > span,
+    .minor:hover .peek > span,
+    .minor:focus-visible .peek > span { transform: none; }
+}
+
 /* ---------- next case study ---------- */
 .cs-next a span[aria-hidden] {
     display: inline-block;
