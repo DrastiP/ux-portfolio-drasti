@@ -1027,3 +1027,161 @@ body.cs figcaption {
         scroll-behavior: auto !important;
     }
 }
+
+/* ============================================================
+   MOTION
+   ------------------------------------------------------------
+   Reveal-on-scroll, gated behind the .js-motion class that
+   motion.js sets. Without JavaScript, or when the visitor asks
+   for reduced motion, nothing here hides anything — the page
+   renders exactly as it did before.
+
+   Everything animates transform and opacity only, so there is
+   no layout shift and no cost to Core Web Vitals.
+   ============================================================ */
+
+:root {
+    --ease-out: cubic-bezier(.16, .84, .44, 1);
+    --reveal-time: .55s;
+}
+
+/* ---------- reveal on scroll ---------- */
+.js-motion .will-reveal {
+    opacity: 0;
+    transform: translateY(10px);
+}
+.js-motion .will-reveal.is-in {
+    opacity: 1;
+    transform: none;
+    transition: opacity var(--reveal-time) var(--ease-out),
+                transform var(--reveal-time) var(--ease-out);
+    transition-delay: var(--reveal-delay, 0ms);
+}
+
+/* ---------- hero entrance ---------- */
+.js-motion .hero .eyebrow,
+.js-motion .hero h1,
+.js-motion .hero .sub,
+.js-motion .cs-hero .cs-eyebrow,
+.js-motion .cs-hero h1,
+.js-motion .cs-hero .cs-deck,
+.js-motion .cs-hero-shot {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: rise .7s var(--ease-out) forwards;
+}
+.js-motion .hero h1,
+.js-motion .cs-hero h1              { animation-delay: .08s; }
+.js-motion .hero .sub,
+.js-motion .cs-hero .cs-deck        { animation-delay: .16s; }
+.js-motion .cs-hero-shot            { animation-delay: .24s; }
+
+@keyframes rise {
+    to { opacity: 1; transform: none; }
+}
+
+/* ---------- nav underline wipe ---------- */
+.nav a { position: relative; }
+.nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -.35rem;
+    height: 1px;
+    background: var(--signal);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .25s var(--ease-out);
+}
+.nav a:hover::after,
+.nav a:focus-visible::after,
+.nav a.is-active::after { transform: scaleX(1); }
+
+/* ---------- work entries ---------- */
+.big .frame,
+.minor .frame { transition: border-color .3s var(--ease-out); }
+.big:hover .frame,
+.big:focus-visible .frame,
+.minor:hover .frame,
+.minor:focus-visible .frame { border-color: var(--signal); }
+
+.big h2,
+.minor h3 { transition: color .2s var(--ease-out); }
+
+/* Hover treatment on the whole card block, not just the thumbnail.
+   The fill is a pseudo-element bled outside the box rather than padding
+   plus a background, so nothing reflows on hover. */
+.peek { display: none; }
+
+@media (hover: hover) and (pointer: fine) {
+    .big,
+    .minor { position: relative; z-index: 0; }
+
+    .big::before,
+    .minor::before {
+        content: "";
+        position: absolute;
+        background: var(--signal);
+        z-index: -1;
+        /* Wipes in left to right, then collapses back to the right on
+           exit — the same gesture as the nav underline. */
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform .42s var(--ease-out);
+    }
+    /* The two-up minor grid has a 3rem gutter, so its bleed has to stay
+       under 1.5rem a side or neighbouring fills would collide. The big
+       cards are full width and have no horizontal neighbour. */
+    .big::before   { inset: -2rem; }
+    .minor::before { inset: -1.4rem; }
+
+    .big:hover::before,
+    .big:focus-visible::before,
+    .minor:hover::before,
+    .minor:focus-visible::before { transform: scaleX(1); transform-origin: left; }
+
+    /* Flip every piece of type and the frame rule onto the fill. These
+       come after the base hover rules so they win at equal specificity. */
+    .big:hover .tags,     .big:focus-visible .tags,
+    .big:hover h2,        .big:focus-visible h2,
+    .big:hover .oneline,  .big:focus-visible .oneline,
+    .minor:hover .tags,   .minor:focus-visible .tags,
+    .minor:hover h3,      .minor:focus-visible h3 { color: var(--paper); transition: color .32s var(--ease-out); }
+
+    .big:hover .badge,
+    .big:focus-visible .badge { color: var(--paper); border-color: var(--paper); }
+
+    .big:hover .frame,    .big:focus-visible .frame,
+    .minor:hover .frame,  .minor:focus-visible .frame { border-color: var(--paper); }
+
+    /* The global focus ring is signal on paper, which vanishes on the
+       fill — swap it for paper while the card is lit. */
+    .big:focus-visible,
+    .minor:focus-visible { outline-color: var(--paper); }
+}
+
+/* ---------- next case study ---------- */
+.cs-next a span[aria-hidden] {
+    display: inline-block;
+    transition: transform .25s var(--ease-out);
+}
+.cs-next a:hover span[aria-hidden] { transform: translateX(5px); }
+
+/* ---------- reduced motion ----------
+   The blanket rule at the end of this file already kills the
+   transitions and animations. These two rules make sure nothing
+   is left stuck at opacity 0 as a result. */
+@media (prefers-reduced-motion: reduce) {
+    .js-motion .will-reveal,
+    .js-motion .hero .eyebrow,
+    .js-motion .hero h1,
+    .js-motion .hero .sub,
+    .js-motion .cs-hero .cs-eyebrow,
+    .js-motion .cs-hero h1,
+    .js-motion .cs-hero .cs-deck,
+    .js-motion .cs-hero-shot {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
