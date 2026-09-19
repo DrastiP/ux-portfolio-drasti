@@ -9,10 +9,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="styles.css?v=2.4">
+<link rel="stylesheet" href="styles.css?v=2.5">
 <script src="datadog.js"></script>
 <script src="motion.js"></script>
-<script src="hero-figure.js" defer></script>
+<script src="hero-figure.js?v=2" defer></script>
 </head>
 <body>
 
@@ -27,16 +27,15 @@
 </div>
 
 <header class="hero">
+  <!-- Decorative. hero-figure.js fills this with the dot matrix, which
+       spans the layer rather than the text column, so it sits outside
+       .wrap. Empty without JS, which is fine. -->
+  <div class="hero-figure" aria-hidden="true"><svg></svg></div>
+
   <div class="wrap">
     <p class="eyebrow">Product Designer</p>
     <h1>I design software for complex workflows and data-heavy systems.</h1>
     <p class="sub">Technical products and workflows that turn complex information into clear, actionable experiences.</p>
-
-    <!-- Decorative. hero-figure.js fills this with a 9x9 dot grid that
-         bends away from the cursor. Empty without JS, which is fine. -->
-    <div class="hero-figure" aria-hidden="true">
-      <svg viewBox="0 0 400 400"></svg>
-    </div>
   </div>
 </header>
 
