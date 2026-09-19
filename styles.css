@@ -1109,53 +1109,48 @@ body.cs figcaption {
 .big h2,
 .minor h3 { transition: color .2s var(--ease-out); }
 
-/* Hover reveal over the thumbnail. Pointer devices only — on touch
-   there is no hover, and a permanently visible fill would just
-   obscure the work.
-   The label is the .badge component inverted onto the signal fill:
-   same mono face, size, letter-spacing, border and padding. */
+/* Hover treatment on the whole card block, not just the thumbnail.
+   The fill is a pseudo-element bled outside the box rather than padding
+   plus a background, so nothing reflows on hover. */
 .peek { display: none; }
 
 @media (hover: hover) and (pointer: fine) {
-    .big .frame,
-    .minor .frame { position: relative; }
+    .big,
+    .minor { position: relative; z-index: 0; }
 
-    .peek {
+    .big::before,
+    .minor::before {
+        content: "";
         position: absolute;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        inset: -1.25rem;
         background: var(--signal);
         opacity: 0;
+        z-index: -1;
         transition: opacity .28s var(--ease-out);
     }
-    /* Specificity has to beat `.big .frame span` / `.minor .frame span`,
-       which otherwise set the placeholder type size on this label. */
-    .big .frame .peek > span,
-    .minor .frame .peek > span {
-        font-family: var(--mono);
-        font-size: .625rem;
-        letter-spacing: .1em;
-        text-transform: uppercase;
-        color: var(--paper);
-        border: 1px solid var(--paper);
-        padding: .2rem .5rem;
-        display: inline-block;
-        line-height: 1.7;
-        transform: translateY(6px);
-        transition: transform .28s var(--ease-out);
-    }
+    .big:hover::before,
+    .big:focus-visible::before,
+    .minor:hover::before,
+    .minor:focus-visible::before { opacity: 1; }
 
-    .big:hover .peek,
-    .big:focus-visible .peek,
-    .minor:hover .peek,
-    .minor:focus-visible .peek { opacity: .94; }
+    /* Flip every piece of type and the frame rule onto the fill. These
+       come after the base hover rules so they win at equal specificity. */
+    .big:hover .tags,     .big:focus-visible .tags,
+    .big:hover h2,        .big:focus-visible h2,
+    .big:hover .oneline,  .big:focus-visible .oneline,
+    .minor:hover .tags,   .minor:focus-visible .tags,
+    .minor:hover h3,      .minor:focus-visible h3 { color: var(--paper); }
 
-    .big:hover .peek > span,
-    .big:focus-visible .peek > span,
-    .minor:hover .peek > span,
-    .minor:focus-visible .peek > span { transform: none; }
+    .big:hover .badge,
+    .big:focus-visible .badge { color: var(--paper); border-color: var(--paper); }
+
+    .big:hover .frame,    .big:focus-visible .frame,
+    .minor:hover .frame,  .minor:focus-visible .frame { border-color: var(--paper); }
+
+    /* The global focus ring is signal on paper, which vanishes on the
+       fill — swap it for paper while the card is lit. */
+    .big:focus-visible,
+    .minor:focus-visible { outline-color: var(--paper); }
 }
 
 /* ---------- next case study ---------- */
