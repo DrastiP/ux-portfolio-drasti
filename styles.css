@@ -1122,16 +1122,24 @@ body.cs figcaption {
     .minor::before {
         content: "";
         position: absolute;
-        inset: -1.25rem;
         background: var(--signal);
-        opacity: 0;
         z-index: -1;
-        transition: opacity .28s var(--ease-out);
+        /* Wipes in left to right, then collapses back to the right on
+           exit — the same gesture as the nav underline. */
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform .42s var(--ease-out);
     }
+    /* The two-up minor grid has a 3rem gutter, so its bleed has to stay
+       under 1.5rem a side or neighbouring fills would collide. The big
+       cards are full width and have no horizontal neighbour. */
+    .big::before   { inset: -2rem; }
+    .minor::before { inset: -1.4rem; }
+
     .big:hover::before,
     .big:focus-visible::before,
     .minor:hover::before,
-    .minor:focus-visible::before { opacity: 1; }
+    .minor:focus-visible::before { transform: scaleX(1); transform-origin: left; }
 
     /* Flip every piece of type and the frame rule onto the fill. These
        come after the base hover rules so they win at equal specificity. */
@@ -1139,7 +1147,7 @@ body.cs figcaption {
     .big:hover h2,        .big:focus-visible h2,
     .big:hover .oneline,  .big:focus-visible .oneline,
     .minor:hover .tags,   .minor:focus-visible .tags,
-    .minor:hover h3,      .minor:focus-visible h3 { color: var(--paper); }
+    .minor:hover h3,      .minor:focus-visible h3 { color: var(--paper); transition: color .32s var(--ease-out); }
 
     .big:hover .badge,
     .big:focus-visible .badge { color: var(--paper); border-color: var(--paper); }
