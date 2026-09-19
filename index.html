@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="stylesheet" href="styles.css?v=2.2">
+<link rel="stylesheet" href="styles.css?v=2.3">
 <script src="datadog.js"></script>
 <script src="motion.js"></script>
 </head>
@@ -30,6 +30,29 @@
     <p class="eyebrow">Product Designer</p>
     <h1>I design software for complex workflows and data-heavy systems.</h1>
     <p class="sub">I design enterprise B2B products, data-heavy interfaces, and complex operational workflows for technical teams.</p>
+
+    <!-- Decorative. The tangle draws itself in, then resolves into ordered
+         rows on hover: complexity made legible. -->
+    <div class="hero-figure" aria-hidden="true">
+      <svg viewBox="0 0 400 400" fill="none">
+        <g class="tangle">
+          <path pathLength="1" d="M60 200C60 90 150 50 230 90S360 200 300 290S140 370 90 300S60 240 60 200"/>
+          <path pathLength="1" d="M120 120C200 60 320 90 340 180S280 320 200 330S80 280 120 200"/>
+          <path pathLength="1" d="M90 260C150 340 280 330 330 250S330 110 250 80"/>
+          <path pathLength="1" d="M150 90C250 110 300 200 260 280S120 330 100 250"/>
+          <path pathLength="1" d="M200 60C120 140 130 280 220 340"/>
+          <path pathLength="1" d="M340 140C280 220 300 300 240 350"/>
+        </g>
+        <g class="rows">
+          <path pathLength="1" d="M60 120H340"/>
+          <path pathLength="1" d="M60 160H300"/>
+          <path pathLength="1" d="M60 200H340"/>
+          <path pathLength="1" d="M60 240H260"/>
+          <path pathLength="1" d="M60 280H320"/>
+          <path pathLength="1" d="M60 320H220"/>
+        </g>
+      </svg>
+    </div>
   </div>
 </header>
 
