@@ -42,8 +42,8 @@
 
     /* ---- grid geometry (FR-1) ---- */
     var PITCH = 30;             // uniform X and Y spacing, spec 28-32px
-    var R = 1.1;                // 2.2px diameter, spec 2.0-2.5px
-    var BASE_OPACITY = 0.5;     // spec baseline
+    var R = 1.25;               // 2.5px diameter, top of the spec's 2.0-2.5
+    var BASE_OPACITY = 0.68;    // above the spec's 0.5, which read too faint
 
     /* ---- masking (FR-2, FR-3) ---- */
     var LEFT_GATE = 0.50;       // nothing left of the half way line
