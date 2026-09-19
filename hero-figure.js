@@ -56,9 +56,10 @@
                   '.hero .eyebrow, .hero h1, .hero .sub';
 
     /* ---- interaction ---- */
-    var REACH = 130;            // px the cursor reaches
-    var PUSH = 18;              // px a dot moves at full strength
-    var SWELL = 2.2;            // extra scale at full strength
+    var REACH = 175;            // px the cursor reaches
+    var PUSH = 28;              // px a dot moves at full strength
+    var SWELL = 3.4;            // extra scale at full strength
+    var HEAT = 1.4;             // how fast the colour runs to the signal
 
     function clamp01(t) { return t < 0 ? 0 : t > 1 ? 1 : t; }
     function smoothstep(a, b, x) {
@@ -278,24 +279,30 @@
                 var dist = Math.sqrt(dx * dx + dy * dy);
                 if (dist >= REACH) continue;
 
+                // Smoothstep rather than a raw ramp: the falloff holds its
+                // strength across the middle of the radius and eases off at
+                // the rim, so the whole bulge reads instead of only the dot
+                // under the cursor.
+                var nd = 1 - dist / REACH;
+                var f = nd * nd * (3 - 2 * nd);
+
                 // AC-3: the same weight that sets visibility damps the
                 // response, so the bottom-right fades out of reach too.
-                var near = (1 - dist / REACH) * d.react;
+                var near = f * d.react;
                 if (near < 0.004) continue;
 
-                var f = near * near;   // tight, local bulge
                 var unit = dist || 1;
 
-                var tr = 'translate(' + (dx / unit * f * PUSH).toFixed(2) + 'px,' +
-                                        (dy / unit * f * PUSH).toFixed(2) + 'px) ' +
-                         'scale(' + (1 + f * SWELL).toFixed(3) + ')';
+                var tr = 'translate(' + (dx / unit * near * PUSH).toFixed(2) + 'px,' +
+                                        (dy / unit * near * PUSH).toFixed(2) + 'px) ' +
+                         'scale(' + (1 + near * SWELL).toFixed(3) + ')';
                 if (tr !== d.tr) { d.el.style.transform = tr; d.tr = tr; }
 
                 var op = (d.base + (1 - d.base) * near).toFixed(3);
                 if (op !== d.op) { d.el.style.opacity = op; d.op = op; }
 
                 if (tintable) {
-                    var fill = tint(near);
+                    var fill = tint(near > 1 / HEAT ? 1 : near * HEAT);
                     if (fill !== d.fill) { d.el.style.fill = fill; d.fill = fill; }
                 }
 
