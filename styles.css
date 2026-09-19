@@ -382,7 +382,10 @@ img { max-width: 100%; }
 }
 
 .spotify-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
-.spotify-grid iframe { width: 100%; border: 1px solid var(--rule); }
+/* No border. The embed is a rounded, coloured card that fills only part
+   of its 352px iframe, so a rule on the iframe box drew a hard rectangle
+   around the transparent space underneath it. */
+.spotify-grid iframe { width: 100%; border: 0; display: block; }
 
 .connect-links { display: flex; flex-direction: column; gap: .75rem; align-items: flex-start; }
 .connect-links a {
