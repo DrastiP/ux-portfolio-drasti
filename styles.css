@@ -1027,3 +1027,109 @@ body.cs figcaption {
         scroll-behavior: auto !important;
     }
 }
+
+/* ============================================================
+   MOTION
+   ------------------------------------------------------------
+   Reveal-on-scroll, gated behind the .js-motion class that
+   motion.js sets. Without JavaScript, or when the visitor asks
+   for reduced motion, nothing here hides anything — the page
+   renders exactly as it did before.
+
+   Everything animates transform and opacity only, so there is
+   no layout shift and no cost to Core Web Vitals.
+   ============================================================ */
+
+:root {
+    --ease-out: cubic-bezier(.16, .84, .44, 1);
+    --reveal-time: .55s;
+}
+
+/* ---------- reveal on scroll ---------- */
+.js-motion .will-reveal {
+    opacity: 0;
+    transform: translateY(10px);
+}
+.js-motion .will-reveal.is-in {
+    opacity: 1;
+    transform: none;
+    transition: opacity var(--reveal-time) var(--ease-out),
+                transform var(--reveal-time) var(--ease-out);
+    transition-delay: var(--reveal-delay, 0ms);
+}
+
+/* ---------- hero entrance ---------- */
+.js-motion .hero .eyebrow,
+.js-motion .hero h1,
+.js-motion .hero .sub,
+.js-motion .cs-hero .cs-eyebrow,
+.js-motion .cs-hero h1,
+.js-motion .cs-hero .cs-deck,
+.js-motion .cs-hero-shot {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: rise .7s var(--ease-out) forwards;
+}
+.js-motion .hero h1,
+.js-motion .cs-hero h1              { animation-delay: .08s; }
+.js-motion .hero .sub,
+.js-motion .cs-hero .cs-deck        { animation-delay: .16s; }
+.js-motion .cs-hero-shot            { animation-delay: .24s; }
+
+@keyframes rise {
+    to { opacity: 1; transform: none; }
+}
+
+/* ---------- nav underline wipe ---------- */
+.nav a { position: relative; }
+.nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -.35rem;
+    height: 1px;
+    background: var(--signal);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .25s var(--ease-out);
+}
+.nav a:hover::after,
+.nav a:focus-visible::after,
+.nav a.is-active::after { transform: scaleX(1); }
+
+/* ---------- work entries ---------- */
+.big .frame,
+.minor .frame { transition: border-color .3s var(--ease-out); }
+.big:hover .frame,
+.big:focus-visible .frame,
+.minor:hover .frame,
+.minor:focus-visible .frame { border-color: var(--signal); }
+
+.big h2,
+.minor h3 { transition: color .2s var(--ease-out); }
+
+/* ---------- next case study ---------- */
+.cs-next a span[aria-hidden] {
+    display: inline-block;
+    transition: transform .25s var(--ease-out);
+}
+.cs-next a:hover span[aria-hidden] { transform: translateX(5px); }
+
+/* ---------- reduced motion ----------
+   The blanket rule at the end of this file already kills the
+   transitions and animations. These two rules make sure nothing
+   is left stuck at opacity 0 as a result. */
+@media (prefers-reduced-motion: reduce) {
+    .js-motion .will-reveal,
+    .js-motion .hero .eyebrow,
+    .js-motion .hero h1,
+    .js-motion .hero .sub,
+    .js-motion .cs-hero .cs-eyebrow,
+    .js-motion .cs-hero h1,
+    .js-motion .cs-hero .cs-deck,
+    .js-motion .cs-hero-shot {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
