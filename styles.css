@@ -180,6 +180,9 @@ img { max-width: 100%; }
     color: var(--muted);
     margin: 1.75rem 0 0;
     font-weight: 300;
+    /* Keeps the measure readable and stops the line running under the
+       dot field in the right margin. */
+    max-width: 58ch;
 }
 
 /* section label */
