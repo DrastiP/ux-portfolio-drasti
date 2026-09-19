@@ -1189,9 +1189,9 @@ body.cs figcaption {
 /* ============================================================
    HERO FIGURE
    ------------------------------------------------------------
-   A tangle that draws itself in, then resolves into ordered rows
-   on hover or keyboard focus — complexity made legible, which is
-   what the headline claims.
+   A field of dots that bends away from the cursor and warms to
+   the signal colour as it gets close. The grid itself is built
+   by hero-figure.js; everything here is the resting state.
 
    Purely decorative: aria-hidden, and it sits behind the type so
    it can never intercept a click meant for the text.
@@ -1204,53 +1204,51 @@ body.cs figcaption {
 .hero-figure {
     position: absolute;
     top: 50%;
-    right: 0;
+    /* Bleeds past the text column toward the viewport edge, but only as
+       far as the outer margin allows, so it can never cause a scrollbar. */
+    right: calc(-1 * min(4rem, (100vw - 100%) / 2 - 1rem));
     transform: translateY(-50%);
     width: clamp(18rem, 30vw, 27rem);
     aspect-ratio: 1;
     z-index: -1;
-    cursor: crosshair;
+    /* The headline runs under the left of this box. Dissolve the field
+       before it gets there so the two never look like they collided. */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 58%);
+            mask-image: linear-gradient(to right, transparent 0%, #000 58%);
 }
 .hero-figure svg { display: block; width: 100%; height: 100%; }
 
-.hero-figure path {
-    fill: none;
-    stroke-width: 1.5;
-    stroke-linecap: round;
-    stroke-dasharray: 1;
+.hero-figure circle {
+    fill: var(--muted);
+    opacity: .5;
+    /* scale has to pivot on the dot, not on the viewBox origin */
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: fill .3s var(--ease-out);
 }
 
-/* idle: the tangle, drawn in once on load */
-.hero-figure .tangle path {
-    stroke: var(--muted);
-    stroke-dashoffset: 1;
-    opacity: .55;
-    animation: figure-draw 1.9s var(--ease-out) forwards;
-    transition: opacity .45s var(--ease-out);
+/* The push is driven frame by frame, so transform must NOT be
+   transitioned while the cursor is in the hero or the dots lag
+   behind it. On the way out the class goes on and they ease home
+   instead of snapping. */
+.hero-figure.is-settling circle {
+    transition: transform .45s var(--ease-out),
+                fill      .45s var(--ease-out),
+                opacity   .45s var(--ease-out);
 }
-.hero-figure .tangle path:nth-child(2) { animation-delay: .12s; }
-.hero-figure .tangle path:nth-child(3) { animation-delay: .24s; }
-.hero-figure .tangle path:nth-child(4) { animation-delay: .36s; }
-.hero-figure .tangle path:nth-child(5) { animation-delay: .48s; }
-.hero-figure .tangle path:nth-child(6) { animation-delay: .60s; }
 
-/* engaged: ordered rows in the signal colour */
-.hero-figure .rows path {
-    stroke: var(--signal);
-    stroke-dashoffset: 1;
-    transition: stroke-dashoffset .5s var(--ease-out);
+/* Entrance: a diagonal wipe, delay set per dot in hero-figure.js.
+   The class comes off once the wipe is done, because a filled
+   animation outranks inline styles and would pin the opacity the
+   cursor is meant to drive. */
+.js-motion .hero-figure.is-entering circle {
+    opacity: 0;
+    animation: figure-dot-in .5s var(--ease-out) forwards;
 }
-.hero-figure .rows path:nth-child(2) { transition-delay: .06s; }
-.hero-figure .rows path:nth-child(3) { transition-delay: .12s; }
-.hero-figure .rows path:nth-child(4) { transition-delay: .18s; }
-.hero-figure .rows path:nth-child(5) { transition-delay: .24s; }
-.hero-figure .rows path:nth-child(6) { transition-delay: .30s; }
 
-.hero-figure:hover .tangle path { opacity: 0; }
-.hero-figure:hover .rows path   { stroke-dashoffset: 0; }
-
-@keyframes figure-draw {
-    to { stroke-dashoffset: 0; }
+@keyframes figure-dot-in {
+    from { opacity: 0; }
+    to   { opacity: .5; }
 }
 
 /* No room for it alongside the headline below this width. */
@@ -1258,8 +1256,6 @@ body.cs figcaption {
     .hero-figure { display: none; }
 }
 
-/* Reduced motion: show the resolved state, no drawing, no transitions. */
 @media (prefers-reduced-motion: reduce) {
-    .hero-figure .tangle path { animation: none; stroke-dashoffset: 0; }
-    .hero-figure .rows path   { stroke-dashoffset: 1; }
+    .hero-figure circle { transition: none; animation: none; opacity: .5; }
 }
