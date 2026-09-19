@@ -1258,9 +1258,10 @@ body.cs figcaption {
 
 @keyframes dot-drift {
     0%, 100% { transform: translate(0, 0); }
-    25%  { transform: translate(calc(var(--amp, 1) * 1.1px),  calc(var(--amp, 1) * -0.8px)); }
-    50%  { transform: translate(calc(var(--amp, 1) * -0.5px), calc(var(--amp, 1) * 1.2px)); }
-    75%  { transform: translate(calc(var(--amp, 1) * -1.2px), calc(var(--amp, 1) * -0.35px)); }
+    20%  { transform: translate(calc(var(--amp, 1) * 3.4px),  calc(var(--amp, 1) * -2.6px)); }
+    40%  { transform: translate(calc(var(--amp, 1) * 1.1px),  calc(var(--amp, 1) * 3.8px)); }
+    60%  { transform: translate(calc(var(--amp, 1) * -3.1px), calc(var(--amp, 1) * 1.9px)); }
+    80%  { transform: translate(calc(var(--amp, 1) * -2.4px), calc(var(--amp, 1) * -3.2px)); }
 }
 
 /* No room for it alongside the headline below this width. */

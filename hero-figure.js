@@ -62,8 +62,8 @@
     var HEAT = 1.4;             // how fast the colour runs to the signal
 
     /* ---- ambient drift ---- */
-    var DRIFT_MIN = 5.5;        // seconds for the fastest dot's cycle
-    var DRIFT_MAX = 11;         // seconds for the slowest
+    var DRIFT_MIN = 3.6;        // seconds for the fastest dot's cycle
+    var DRIFT_MAX = 8.5;        // seconds for the slowest
     var DRIFT_FLOOR = 0.22;     // dots fainter than this stay still
 
     function clamp01(t) { return t < 0 ? 0 : t > 1 ? 1 : t; }
@@ -264,24 +264,39 @@
 
     build(document.documentElement.classList.contains('js-motion'));
 
-    // Text boxes move once the webfonts swap in, and the exclusion zones
-    // are measured from them, so take the measurements again afterwards.
-    if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(function () {
+    // The exclusion zones are measured off the type, and the type MOVES:
+    // swapping in a webfont shifted the headline 12px up here, which left
+    // the grid holed where the text used to be and dotted where it now is.
+    // document.fonts.ready is not enough on its own -- it can resolve
+    // before the new metrics have settled into layout, and it never fires
+    // at all for a font that fails to load. So watch the boxes themselves
+    // and rebuild whenever any of them actually changes size.
+    var rebuildTimer = null;
+    function scheduleRebuild(delay) {
+        if (rebuildTimer) clearTimeout(rebuildTimer);
+        rebuildTimer = setTimeout(function () {
+            rebuildTimer = null;
             touched = [];
             build(false);
-        }).catch(function () {});
+        }, delay || 120);
     }
 
-    var resizeTimer = null;
-    window.addEventListener('resize', function () {
-        if (resizeTimer) clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function () {
-            resizeTimer = null;
-            touched = [];
-            build(false);
-        }, 120);
-    }, { passive: true });
+    if (window.ResizeObserver) {
+        var ro = new ResizeObserver(function () { scheduleRebuild(90); });
+        var watched = document.querySelectorAll('.hero, .hero h1, .hero .sub, .hero .eyebrow, .topbar');
+        for (var wi = 0; wi < watched.length; wi++) ro.observe(watched[wi]);
+    }
+
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(function () { scheduleRebuild(60); })
+                           .catch(function () {});
+    }
+
+    // Belt and braces for anything the observer cannot see -- a font that
+    // swaps without changing the box height, a late stylesheet.
+    window.addEventListener('load', function () { scheduleRebuild(150); });
+
+    window.addEventListener('resize', function () { scheduleRebuild(120); }, { passive: true });
 
     /* ---- interaction ---- */
 
