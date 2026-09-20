@@ -225,6 +225,12 @@ img { max-width: 100%; }
 }
 .big .frame {
     aspect-ratio: 16/9;
+    /* On a short window the 16:9 frame plus the text and the hover bleed
+       runs past the fold, so the card can never be seen whole. Cap the
+       frame against the viewport: 60vh only bites below a 900px-tall
+       viewport, which is exactly where the overflow starts, and the image
+       is object-fit: cover so it crops rather than distorts. */
+    max-height: 60vh;
     border: 1px dashed var(--rule);
     background: var(--paper-2);
     display: flex;
