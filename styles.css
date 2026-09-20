@@ -224,13 +224,26 @@ img { max-width: 100%; }
     margin-bottom: 5.5rem;
 }
 .big .frame {
+    /* width: 100% is load-bearing. aspect-ratio with a max-height does not
+       just clamp the height, it shrinks the WIDTH to keep the ratio, which
+       pulled the frame in from 960px to 732px and left all the slack on one
+       side of the hover fill. An explicit width makes both axes definite,
+       so the ratio yields and only the height is capped. */
+    width: 100%;
     aspect-ratio: 16/9;
-    /* On a short window the 16:9 frame plus the text and the hover bleed
-       runs past the fold, so the card can never be seen whole. Cap the
-       frame against the viewport: 60vh only bites below a 900px-tall
-       viewport, which is exactly where the overflow starts, and the image
-       is object-fit: cover so it crops rather than distorts. */
-    max-height: 60vh;
+    /* A hard 16/9 is 540px tall at the wrap's content width whatever the
+       window is, so with the text block and the 2rem hover bleed the card
+       overflowed a short viewport and could not be seen whole at any
+       scroll position.
+
+       Only the image should flex: the text and the bleed underneath it
+       are fixed pixel heights, so subtract them rather than guessing a
+       vh fraction. 330px covers the tallest text block (the card with a
+       badge, 210px), the bleed top and bottom (64px) and some slack.
+       Above a ~870px window the 16/9 ratio is the smaller of the two and
+       wins, so tall screens are untouched. object-fit: cover means the
+       image crops rather than distorting. */
+    max-height: calc(100vh - 330px);
     border: 1px dashed var(--rule);
     background: var(--paper-2);
     display: flex;
@@ -323,7 +336,21 @@ img { max-width: 100%; }
 .minor:focus-visible h3 { color: var(--signal); }
 
 /* a frame holding a real image loses the dashed placeholder treatment */
-.frame.has-img { padding: 0 !important; border-style: solid !important; }
+/* Thumbnails are matted, not bled. The two big screenshots are 4:3
+   (1.29 and 1.33) and the frame is far wider, so object-fit: cover was
+   discarding 44% of each one -- they read as sliced rather than framed.
+   contain shows the whole screenshot, the paper-2 mat and the solid rule
+   make the surrounding space look deliberate, and nothing is cropped. */
+.frame.has-img {
+    border-style: solid !important;
+    background: var(--paper-2);
+}
+.big .frame.has-img   { padding: 1.5rem !important; }
+.minor .frame.has-img { padding: 1rem !important; }
+.frame.has-img img {
+    object-fit: contain !important;
+    object-position: center !important;
+}
 
 /* ============================================================
    ABOUT
@@ -1009,6 +1036,11 @@ body.cs figcaption {
 }
 
 @media (max-width: 720px) {
+    /* On a phone you scroll anyway, so height is not the constraint.
+       Let the frame take a shape closer to the 4:3 screenshots so the
+       contained image fills it instead of sitting in wide side mats. */
+    .big .frame { aspect-ratio: 4/3; max-height: none; }
+
     body { font-size: 17px; }
     .minor-grid { grid-template-columns: 1fr; gap: 3rem; }
     .big { margin-bottom: 4rem; }
