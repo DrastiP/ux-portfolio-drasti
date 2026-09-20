@@ -223,6 +223,10 @@ img { max-width: 100%; }
     color: inherit;
     margin-bottom: 5.5rem;
 }
+/* overflow is visible on an image frame so the shadow is not clipped;
+   it stays hidden on the empty placeholder frames. */
+.frame.has-img { overflow: visible !important; }
+
 .big .frame {
     /* width: 100% is load-bearing. aspect-ratio with a max-height does not
        just clamp the height, it shrinks the WIDTH to keep the ratio, which
@@ -339,17 +343,34 @@ img { max-width: 100%; }
 /* Thumbnails are matted, not bled. The two big screenshots are 4:3
    (1.29 and 1.33) and the frame is far wider, so object-fit: cover was
    discarding 44% of each one -- they read as sliced rather than framed.
-   contain shows the whole screenshot, the paper-2 mat and the solid rule
-   make the surrounding space look deliberate, and nothing is cropped. */
+   The whole screenshot now sits on a paper-2 mat and lifts off it on a
+   soft shadow, so the surrounding space looks deliberate.
+
+   The image shrink-wraps rather than filling the box: with width/height
+   auto and max-width/max-height 100% the element box IS the picture, so
+   the radius and the shadow hug the screenshot itself. Left at 100% with
+   object-fit: contain they would have drawn around the full-width box
+   instead, with the shadow floating in empty mat. */
 .frame.has-img {
     border-style: solid !important;
+    border-color: var(--rule) !important;
     background: var(--paper-2);
+    border-radius: 6px;
 }
-.big .frame.has-img   { padding: 1.5rem !important; }
-.minor .frame.has-img { padding: 1rem !important; }
+.big .frame.has-img   { padding: 2rem !important; }
+.minor .frame.has-img { padding: 1.25rem !important; }
+
 .frame.has-img img {
+    width: auto !important;
+    height: auto !important;
+    max-width: 100%;
+    max-height: 100%;
     object-fit: contain !important;
-    object-position: center !important;
+    border-radius: 4px;
+    box-shadow:
+        0 1px 2px rgba(25, 27, 30, .07),
+        0 6px 14px -4px rgba(25, 27, 30, .13),
+        0 18px 38px -12px rgba(25, 27, 30, .18);
 }
 
 /* ============================================================
