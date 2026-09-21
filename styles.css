@@ -385,10 +385,13 @@ img { max-width: 100%; }
    floating on it -- one frame, not two. */
 .big .frame.has-img {
     /* paper-2 was so close to the page that the screenshot barely
-       separated from it and the shadow did no work. */
+       separated from it and the shadow did no work. Each card carries
+       its own mat, so the run of work reads as distinct pieces rather
+       than one repeated template. */
     background: var(--mat);
     padding: 2rem !important;
 }
+.big .frame.has-img.mat-slate { background: var(--slate); }
 .big .frame.has-img img {
     width: auto !important;
     height: auto !important;
