@@ -351,16 +351,42 @@ img { max-width: 100%; }
    the radius and the shadow hug the screenshot itself. Left at 100% with
    object-fit: contain they would have drawn around the full-width box
    instead, with the shadow floating in empty mat. */
+/* No border on an image frame. A rule around the mat plus a shadowed,
+   rounded picture inside it reads as a frame within a frame. */
 .frame.has-img {
-    border-style: solid !important;
-    border-color: var(--rule) !important;
-    background: var(--paper-2);
+    border: 0 !important;
     border-radius: 6px;
 }
-.big .frame.has-img   { padding: 2rem !important; }
-.minor .frame.has-img { padding: 1.25rem !important; }
 
-.frame.has-img img {
+/* The two-up thumbnails are device mockups that already carry their own
+   pale backdrop, so matting them produced exactly that picture-in-a-
+   picture. They bleed to the frame edge instead, and the frame itself
+   takes the radius and the shadow. Their sources are 1.835 and 1.836,
+   so an 11/6 frame loses nothing to the crop. */
+.minor .frame.has-img {
+    padding: 0 !important;
+    background: none;
+    aspect-ratio: 11/6;
+    box-shadow:
+        0 1px 2px rgba(25, 27, 30, .07),
+        0 6px 14px -4px rgba(25, 27, 30, .13),
+        0 18px 38px -12px rgba(25, 27, 30, .18);
+}
+.minor .frame.has-img img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 6px;
+}
+
+/* The big thumbnails are raw 4:3 UI captures with no backdrop of their
+   own, so they do need a mat to show whole. Mat, then the screenshot
+   floating on it -- one frame, not two. */
+.big .frame.has-img {
+    background: var(--paper-2);
+    padding: 2rem !important;
+}
+.big .frame.has-img img {
     width: auto !important;
     height: auto !important;
     max-width: 100%;
