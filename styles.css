@@ -13,6 +13,7 @@
     --ink:     #191B1E;
     --muted:   #63666B;
     --rule:    #C9CAC1;
+    --mat:     #AEB0A6;   /* thumbnail mat, darker than paper so the screenshot separates */
     --signal:  #B8341F;
     --slate:   #2E4756;
 
@@ -383,7 +384,9 @@ img { max-width: 100%; }
    own, so they do need a mat to show whole. Mat, then the screenshot
    floating on it -- one frame, not two. */
 .big .frame.has-img {
-    background: var(--paper-2);
+    /* paper-2 was so close to the page that the screenshot barely
+       separated from it and the shadow did no work. */
+    background: var(--mat);
     padding: 2rem !important;
 }
 .big .frame.has-img img {
