@@ -13,7 +13,12 @@
     --ink:     #191B1E;
     --muted:   #63666B;
     --rule:    #C9CAC1;
-    --mat:     #AEB0A6;   /* thumbnail mat, darker than paper so the screenshot separates */
+    /* Thumbnail mats. Each is darker than the artwork that sits on it, so
+       a screenshot with its own pale backdrop floats rather than nesting.
+       One per project, the way the run of work reads as distinct pieces. */
+    --mat:       #AEB0A6;   /* stone */
+    --mat-clay:  #A9765A;
+    --mat-olive: #7D8471;
     --signal:  #B8341F;
     --slate:   #2E4756;
 
@@ -359,40 +364,17 @@ img { max-width: 100%; }
     border-radius: 6px;
 }
 
-/* The two-up thumbnails are device mockups that already carry their own
-   pale backdrop, so matting them produced exactly that picture-in-a-
-   picture. They bleed to the frame edge instead, and the frame itself
-   takes the radius and the shadow. Their sources are 1.835 and 1.836,
-   so an 11/6 frame loses nothing to the crop. */
-.minor .frame.has-img {
-    padding: 0 !important;
-    background: none;
-    aspect-ratio: 11/6;
-    box-shadow:
-        0 1px 2px rgba(25, 27, 30, .07),
-        0 6px 14px -4px rgba(25, 27, 30, .13),
-        0 18px 38px -12px rgba(25, 27, 30, .18);
-}
-.minor .frame.has-img img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    border-radius: 6px;
-}
-
-/* The big thumbnails are raw 4:3 UI captures with no backdrop of their
-   own, so they do need a mat to show whole. Mat, then the screenshot
-   floating on it -- one frame, not two. */
-.big .frame.has-img {
-    /* paper-2 was so close to the page that the screenshot barely
-       separated from it and the shadow did no work. Each card carries
-       its own mat, so the run of work reads as distinct pieces rather
-       than one repeated template. */
+/* One treatment for every thumbnail: a mat, then the artwork floating on
+   it. The two-up sources carry their own pale backdrop, which is why an
+   earlier near-paper mat made them look like a picture in a picture --
+   the fix is a mat dark enough to read as a surface, not a lighter one. */
+.frame.has-img {
     background: var(--mat);
-    padding: 2rem !important;
 }
-.big .frame.has-img.mat-slate { background: var(--slate); }
-.big .frame.has-img img {
+.big .frame.has-img   { padding: 2rem !important; }
+.minor .frame.has-img { padding: 1.25rem !important; }
+
+.frame.has-img img {
     width: auto !important;
     height: auto !important;
     max-width: 100%;
@@ -404,6 +386,13 @@ img { max-width: 100%; }
         0 6px 14px -4px rgba(25, 27, 30, .13),
         0 18px 38px -12px rgba(25, 27, 30, .18);
 }
+
+/* Per-project mats, opt-in from the markup rather than an nth-child rule
+   so the pairing survives reordering. A mat only works under a given
+   capture if it is darker than it, so each one is chosen, not cycled. */
+.frame.has-img.mat-slate { background: var(--slate); }
+.frame.has-img.mat-clay  { background: var(--mat-clay); }
+.frame.has-img.mat-olive { background: var(--mat-olive); }
 
 /* ============================================================
    ABOUT
